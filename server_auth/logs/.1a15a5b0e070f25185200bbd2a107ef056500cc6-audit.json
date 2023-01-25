@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "C:\\Users\\meoro\\OneDrive\\Desktop\\WebProgramming\\toPangyo\\server_auth\\logs\\.1a15a5b0e070f25185200bbd2a107ef056500cc6-audit.json",
+    "files": [
+        {
+            "date": 1674635231098,
+            "name": "C:\\Users\\meoro\\OneDrive\\Desktop\\WebProgramming\\toPangyo\\server_auth\\logs\\2023-01-25.exception.log",
+            "hash": "bd01cd45a234bb05095d88bc5b53a64e53ba943ceab1daf973cbdb23d8cdb5ee"
+        }
+    ],
+    "hashType": "sha256"
+}
