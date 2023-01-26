@@ -5,7 +5,6 @@ const handleUpdateUserInfo = async (req, res) => {
     const { id, name, nickname, email, phoneNumber, birth, gender } = req.body;
     if (
       !id ||
-      !password ||
       !name ||
       !nickname ||
       !email ||
@@ -22,6 +21,9 @@ const handleUpdateUserInfo = async (req, res) => {
       return res.sendStatus(400);
     if (birth && typeof birth !== "string") return res.sendStatus(400);
     if (gender && typeof gender !== "number") return res.sendStatus(400);
+
+    if(req.tokenDecode.userInfo.id !== id)
+    return res.sendStatus(401);
 
     const foundUser = await User.findOne({ id });
     if (!foundUser) return res.sendStatus(204);

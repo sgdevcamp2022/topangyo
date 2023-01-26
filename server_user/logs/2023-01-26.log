@@ -59,3 +59,54 @@
 2023-01-26 14:25:21 [DSG] info: Server running on port 3600
 2023-01-26 14:25:38 [DSG] info: Server running on port 3600
 2023-01-26 14:25:39 [DSG] info: Server running on port 3600
+2023-01-26 21:22:55 [DSG] info: Server running on port 3600
+2023-01-26 21:24:09 [DSG] info: GET /user/users 200 37.301 ms - 227
+
+2023-01-26 21:24:41 [DSG] info: GET /user/users/DSG 200 14.355 ms - 299
+
+2023-01-26 21:27:10 [DSG] info: Server running on port 3600
+2023-01-26 21:28:23 [DSG] info: PUT /user/users 404 1.578 ms - 149
+
+2023-01-26 21:29:11 [DSG] info: Server running on port 3600
+2023-01-26 21:29:19 [DSG] info: Server running on port 3600
+2023-01-26 21:29:26 [DSG] info: Server running on port 3600
+2023-01-26 21:29:35 [DSG] info: Server running on port 3600
+2023-01-26 21:29:40 [DSG] info: PUT /user/ 404 1.526 ms - 144
+
+2023-01-26 21:29:53 [DSG] info: PUT /user/users 204 18.077 ms - -
+
+2023-01-26 21:31:49 [DSG] info: Server running on port 3600
+2023-01-26 21:32:11 [DSG] info: Server running on port 3600
+2023-01-26 21:32:17 [DSG] info: Server running on port 3600
+2023-01-26 21:32:22 [DSG] info: PUT /user/users 400 3.643 ms - 11
+
+2023-01-26 21:32:42 [DSG] info: PUT /user/users 204 25.821 ms - -
+
+2023-01-26 21:33:06 [DSG] info: Server running on port 3600
+2023-01-26 21:33:08 [DSG] info: PUT /user/users 204 28.054 ms - -
+
+2023-01-26 21:34:20 [DSG] info: Server running on port 3600
+2023-01-26 21:34:40 [DSG] info: Server running on port 3600
+2023-01-26 21:34:45 [DSG] info: PUT /user/users 403 4.486 ms - 9
+
+2023-01-26 21:35:00 [DSG] info: PUT /user/users 204 20.591 ms - -
+
+2023-01-26 21:35:14 [DSG] info: Server running on port 3600
+2023-01-26 21:35:21 [DSG] info: Server running on port 3600
+2023-01-26 21:35:25 [DSG] info: Server running on port 3600
+2023-01-26 21:35:32 [DSG] info: Server running on port 3600
+2023-01-26 21:35:46 [DSG] info: Server running on port 3600
+2023-01-26 21:36:24 [DSG] info: Server running on port 3600
+2023-01-26 21:36:28 [DSG] info: Server running on port 3600
+2023-01-26 21:36:43 [DSG] info: PUT /user/users 201 28.588 ms - 7
+
+2023-01-26 21:37:07 [DSG] info: PUT /user/users 401 1.435 ms - 12
+
+2023-01-26 21:40:04 [DSG] info: PUT /user/users 401 0.498 ms - 12
+
+2023-01-26 21:40:04 [DSG] info: PUT /user/users 401 0.497 ms - 12
+
+2023-01-26 21:40:23 [DSG] info: PUT /user/users 401 0.649 ms - 12
+
+2023-01-26 21:40:28 [DSG] info: PUT /user/users 201 16.392 ms - 7
+

@@ -4,9 +4,13 @@ const verifyJwtToken = require("../middlewares/verifyJwtToken");
 
 const getUserController = require("../controllers/getUserController");
 const getSpecificUserController = require("../controllers/getSpecificUserController");
+const updateUserController = require("../controllers/updateUserController");
 
 // router
-router.route("/users").get(verifyJwtToken, getUserController.handleGetUserInfo);
+router
+  .route("/users")
+  .get(verifyJwtToken, getUserController.handleGetUserInfo)
+  .put(verifyJwtToken, updateUserController.handleUpdateUserInfo);
 router
   .route(`/users/:userId`)
   .get(getSpecificUserController.handleSpecificUserInfo);

@@ -1,3 +1,10 @@
 2023-01-26 13:59:53 [DSG] info: Server running on port 3500
 2023-01-26 14:00:10 [DSG] info: POST /auth/login 201 166.342 ms - 261
 
+2023-01-26 21:22:46 [DSG] info: Server running on port 3500
+2023-01-26 21:23:55 [DSG] info: POST /auth/login 201 208.212 ms - 261
+
+2023-01-26 21:34:50 [DSG] info: POST /auth/login 201 132.175 ms - 261
+
+2023-01-26 21:40:09 [DSG] info: POST /auth/login 201 107.232 ms - 265
+
