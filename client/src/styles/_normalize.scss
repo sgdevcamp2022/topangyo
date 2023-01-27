@@ -1,0 +1,31 @@
+//커스텀 스타일을 기본으로 설정해놓고 싶은 공간
+
+.container {
+    display: flex;
+    padding : 0 30%;
+}
+
+.container-row {
+    @extend .container;
+    flex-direction: row;
+}
+
+.container-col {
+    @extend .container;
+    flex-direction: column;
+}
+
+.align-center {
+    align-items: center;
+}
+
+button {
+    padding: 5px 30px;
+    background-color: #6892FF;
+    border-radius: 15px;
+    transition: all 0.3s ease 0s;
+}
+
+button:hover {
+    background-color: #2762ab;
+}

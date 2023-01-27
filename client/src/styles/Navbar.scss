@@ -1,0 +1,36 @@
+header {
+    background-color: #8EB4E3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10%;
+
+    li, a, button {
+        font-size: 16px;
+        color: white;
+    }
+    
+    .logo-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .logo {
+        width: 30px;
+        margin: 0 10px;
+    }
+    
+    .user-box {
+        display: flex;
+        align-items: center;
+    }
+    
+    .user-icon {
+        width: 30px;
+        margin : 0 10px;
+    }
+
+
+}
+
