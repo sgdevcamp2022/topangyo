@@ -5,9 +5,9 @@ import {SignInBox} from "./../components/SignInPage/SignInBox";
 export function SignInPage() {
     return(
         <>
-        <SignInBox placeHolder="ID">
+        <SignInBox holderText="ID">
         </SignInBox>
-        <SignInBox placeHolder="PassWord">
+        <SignInBox holderText="PassWord">
         </SignInBox>
 
         <Button text = "Login">
