@@ -1,0 +1,145 @@
+2023-01-25 17:27:13 [DSG] info: Server running on port 3500
+2023-01-25 17:36:33 [DSG] info: Server running on port 3500
+2023-01-25 17:41:54 [DSG] info: Server running on port 3500
+2023-01-25 17:42:37 [DSG] info: POST /auth/register 400 1.985 ms - 11
+
+2023-01-25 17:42:53 [DSG] info: Server running on port 3500
+2023-01-25 17:42:55 [DSG] info: POST /auth/register 400 4.291 ms - 11
+
+2023-01-25 17:43:12 [DSG] info: Server running on port 3500
+2023-01-25 17:43:25 [DSG] info: Server running on port 3500
+2023-01-25 17:43:33 [DSG] info: POST /auth/register 201 162.614 ms - 7
+
+2023-01-25 17:46:13 [DSG] info: Server running on port 3500
+2023-01-25 17:46:19 [DSG] info: Server running on port 3500
+2023-01-25 18:00:00 [DSG] info: Server running on port 3500
+2023-01-25 18:00:18 [DSG] info: Server running on port 3500
+2023-01-25 18:03:20 [DSG] info: Server running on port 3500
+2023-01-25 18:03:25 [DSG] info: Server running on port 3500
+2023-01-25 18:03:38 [DSG] info: Server running on port 3500
+2023-01-25 18:03:50 [DSG] info: Server running on port 3500
+2023-01-25 18:04:07 [DSG] info: Server running on port 3500
+2023-01-25 18:04:23 [DSG] info: Server running on port 3500
+2023-01-25 18:04:28 [DSG] info: Server running on port 3500
+2023-01-25 18:04:33 [DSG] info: Server running on port 3500
+2023-01-25 18:05:15 [DSG] info: Server running on port 3500
+2023-01-25 18:06:49 [DSG] info: Server running on port 3500
+2023-01-25 18:06:53 [DSG] info: Server running on port 3500
+2023-01-25 18:07:10 [DSG] info: Server running on port 3500
+2023-01-25 18:15:26 [DSG] info: Server running on port 3500
+2023-01-25 18:15:34 [DSG] info: Server running on port 3500
+2023-01-25 18:15:37 [DSG] info: Server running on port 3500
+2023-01-25 18:15:45 [DSG] info: Server running on port 3500
+2023-01-25 18:15:56 [DSG] info: Server running on port 3500
+2023-01-25 18:18:20 [DSG] info: Server running on port 3500
+2023-01-25 18:19:14 [DSG] info: Server running on port 3500
+2023-01-25 18:19:35 [DSG] info: Server running on port 3500
+2023-01-25 18:19:53 [DSG] info: Server running on port 3500
+2023-01-25 18:20:05 [DSG] info: Server running on port 3500
+2023-01-25 18:20:16 [DSG] info: Server running on port 3500
+2023-01-25 18:20:39 [DSG] info: Server running on port 3500
+2023-01-25 18:20:57 [DSG] info: Server running on port 3500
+2023-01-25 18:20:59 [DSG] info: Server running on port 3500
+2023-01-25 18:26:03 [DSG] info: Server running on port 3500
+2023-01-25 20:43:33 [DSG] info: Server running on port 3500
+2023-01-25 20:44:08 [DSG] info: POST /auth/login 404 2.521 ms - 150
+
+2023-01-25 20:44:38 [DSG] info: Server running on port 3500
+2023-01-25 20:45:24 [DSG] info: Server running on port 3500
+2023-01-25 20:45:28 [DSG] info: POST /auth/login 201 165.389 ms - 271
+
+2023-01-25 20:46:19 [DSG] info: Server running on port 3500
+2023-01-25 20:47:14 [DSG] info: Server running on port 3500
+2023-01-25 20:49:09 [DSG] info: Server running on port 3500
+2023-01-25 20:49:23 [DSG] info: Server running on port 3500
+2023-01-25 20:49:56 [DSG] info: Server running on port 3500
+2023-01-25 20:50:06 [DSG] info: Server running on port 3500
+2023-01-25 20:50:17 [DSG] info: Server running on port 3500
+2023-01-25 20:57:34 [DSG] info: Server running on port 3500
+2023-01-25 20:57:57 [DSG] info: Server running on port 3500
+2023-01-25 21:02:13 [DSG] info: Server running on port 3500
+2023-01-25 21:02:38 [DSG] info: Server running on port 3500
+2023-01-25 21:02:46 [DSG] info: Server running on port 3500
+2023-01-25 21:03:11 [DSG] info: Server running on port 3500
+2023-01-25 21:03:32 [DSG] info: Server running on port 3500
+2023-01-25 21:03:36 [DSG] info: Server running on port 3500
+2023-01-25 21:04:36 [DSG] info: Server running on port 3500
+2023-01-25 21:05:35 [DSG] info: Server running on port 3500
+2023-01-25 21:05:52 [DSG] info: Server running on port 3500
+2023-01-25 21:06:16 [DSG] info: Server running on port 3500
+2023-01-25 21:06:30 [DSG] info: Server running on port 3500
+2023-01-25 21:06:56 [DSG] info: Server running on port 3500
+2023-01-25 21:07:23 [DSG] info: Server running on port 3500
+2023-01-25 21:07:57 [DSG] info: POST /auth/login 400 1.773 ms - 11
+
+2023-01-25 21:08:08 [DSG] info: Server running on port 3500
+2023-01-25 21:08:44 [DSG] info: POST /auth/register 201 125.025 ms - 7
+
+2023-01-25 21:09:05 [DSG] info: Server running on port 3500
+2023-01-25 21:10:14 [DSG] info: Server running on port 3500
+2023-01-25 21:10:26 [DSG] info: Server running on port 3500
+2023-01-25 21:10:30 [DSG] info: POST /auth/login 201 141.464 ms - 261
+
+2023-01-25 21:11:32 [DSG] info: Server running on port 3500
+2023-01-25 21:12:21 [DSG] info: Server running on port 3500
+2023-01-25 21:12:57 [DSG] info: Server running on port 3500
+2023-01-25 21:13:54 [DSG] info: Server running on port 3500
+2023-01-25 21:14:30 [DSG] info: Server running on port 3500
+2023-01-25 21:20:16 [DSG] info: Server running on port 3500
+2023-01-25 21:20:22 [DSG] info: Server running on port 3500
+2023-01-25 21:20:35 [DSG] info: Server running on port 3500
+2023-01-25 21:20:45 [DSG] info: Server running on port 3500
+2023-01-25 21:20:54 [DSG] info: POST /auth/login 201 185.938 ms - 261
+
+2023-01-25 21:21:13 [DSG] info: Server running on port 3500
+2023-01-25 21:22:54 [DSG] info: Server running on port 3500
+2023-01-25 21:23:07 [DSG] info: Server running on port 3500
+2023-01-25 21:23:23 [DSG] info: Server running on port 3500
+2023-01-25 21:23:33 [DSG] info: Server running on port 3500
+2023-01-25 21:23:44 [DSG] info: Server running on port 3500
+2023-01-25 21:25:22 [DSG] info: Server running on port 3500
+2023-01-25 21:25:48 [DSG] info: Server running on port 3500
+2023-01-25 21:25:54 [DSG] info: GET /auth/token_info 200 3.583 ms - 132
+
+2023-01-25 21:36:54 [DSG] info: GET /auth/token_info 403 1.297 ms - 9
+
+2023-01-25 21:41:46 [DSG] info: Server running on port 3500
+2023-01-25 21:42:17 [DSG] info: Server running on port 3500
+2023-01-25 21:42:55 [DSG] info: Server running on port 3500
+2023-01-25 21:43:02 [DSG] info: Server running on port 3500
+2023-01-25 21:44:23 [DSG] info: Server running on port 3500
+2023-01-25 21:44:47 [DSG] info: Server running on port 3500
+2023-01-25 21:45:08 [DSG] info: Server running on port 3500
+2023-01-25 21:45:18 [DSG] info: Server running on port 3500
+2023-01-25 21:45:23 [DSG] info: Server running on port 3500
+2023-01-25 21:45:45 [DSG] info: Server running on port 3500
+2023-01-25 21:45:58 [DSG] info: Server running on port 3500
+2023-01-25 21:46:03 [DSG] info: Server running on port 3500
+2023-01-25 21:46:17 [DSG] info: Server running on port 3500
+2023-01-25 21:46:52 [DSG] info: Server running on port 3500
+2023-01-25 21:48:03 [DSG] info: Server running on port 3500
+2023-01-25 21:48:35 [DSG] info: Server running on port 3500
+2023-01-25 21:48:46 [DSG] info: Server running on port 3500
+2023-01-25 21:48:56 [DSG] info: Server running on port 3500
+2023-01-25 21:49:04 [DSG] info: Server running on port 3500
+2023-01-25 21:49:12 [DSG] info: Server running on port 3500
+2023-01-25 21:49:16 [DSG] info: Server running on port 3500
+2023-01-25 21:49:25 [DSG] info: Server running on port 3500
+2023-01-25 21:49:45 [DSG] info: Server running on port 3500
+2023-01-25 21:49:59 [DSG] info: Server running on port 3500
+2023-01-25 21:50:14 [DSG] info: Server running on port 3500
+2023-01-25 21:50:30 [DSG] info: Server running on port 3500
+2023-01-25 21:50:38 [DSG] info: Server running on port 3500
+2023-01-25 21:50:53 [DSG] info: Server running on port 3500
+2023-01-25 21:51:03 [DSG] info: Server running on port 3500
+2023-01-25 21:51:50 [DSG] info: Server running on port 3500
+2023-01-25 21:51:56 [DSG] info: Server running on port 3500
+2023-01-25 21:52:13 [DSG] info: Server running on port 3500
+2023-01-25 21:52:18 [DSG] info: Server running on port 3500
+2023-01-25 21:52:43 [DSG] info: Server running on port 3500
+2023-01-25 21:54:56 [DSG] info: Server running on port 3500
+2023-01-25 21:55:06 [DSG] info: Server running on port 3500
+2023-01-25 21:55:09 [DSG] info: Server running on port 3500
+2023-01-25 21:55:21 [DSG] info: Server running on port 3500
+2023-01-25 21:57:23 [DSG] info: Server running on port 3500
+2023-01-25 21:57:42 [DSG] info: Server running on port 3500
