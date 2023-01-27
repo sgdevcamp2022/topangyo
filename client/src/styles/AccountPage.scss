@@ -1,0 +1,60 @@
+
+.profile-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+.profile-account {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.profile-edit-btn {
+    color: white;
+    padding: 10px 30px;
+    background-color: #6892FF;
+    border-radius: 5px;
+    transition: all 0.3s ease 0s;
+    font-size: 18px;
+}
+
+.profile-user-image {
+    width: 100px;
+}
+
+.profile-user-box {
+    padding: 0 50px;
+}
+
+.profile-user-nickname {
+    padding: 10px 0;
+}
+
+.profile-user-about {
+    padding: 10px 0;
+}
+
+.alert-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 50px;
+}
+
+.history-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 50px;
+}
+
+.friends-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 50px;
+}
