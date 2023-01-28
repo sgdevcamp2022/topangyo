@@ -2,6 +2,8 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
 const handleNewUserRegist = async (req, res) => {
+  console.log(req.body);
+  console.log(typeof req.body);
   try {
     const { id, password, name, nickname, email, phoneNumber, birth, gender } =
       req.body;
@@ -45,6 +47,7 @@ const handleNewUserRegist = async (req, res) => {
 
     res.sendStatus(201);
   } catch (error) {
+    console.log(error);
     res.sendStatus(500);
   }
 };
