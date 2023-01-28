@@ -23,4 +23,14 @@ yarn-debug.log*
 yarn-error.log*
 
 
-node_modules
+
+/client/node_modules
+/server_auth/node_modules
+/server_boilerPlate/node_modules
+/server_user/node_modules
+/server_auth/.env
+/server_boilerPlate/.env
+/server_user/.env
+/server_auth/logs
+/server_boilerPlate/logs
+/server_user/logs
