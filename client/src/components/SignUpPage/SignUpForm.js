@@ -21,9 +21,9 @@ const SignUpForm = () => {
                 <input type='radio' name='gender' value='1' checked/>남
                 <input type='radio' name='gender' value='2' />여
                 </form>
-                <button type='submit' name='button'>Sign Up</button>
+                <button type='submit'>Sign Up</button>
             </form>
-            <p className = "signUpText">Already have an account? <span className = "signUpWord">Sign In</span></p>
+            <p className = "signInText">Already have an account? <span className = "signInWord">Sign In</span></p>
         </>
     );
 }
