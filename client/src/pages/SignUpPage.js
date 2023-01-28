@@ -1,9 +1,10 @@
+import SignUpForm from "../components/SignUpPage/SignUpForm";
 
 
 export function SignUpPage() {
     return(
-        <div>
-            회원가입 페이지
+        <div className="container-col align-center">
+           <SignUpForm></SignUpForm>
         </div>
     );
 }

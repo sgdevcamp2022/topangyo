@@ -11,7 +11,7 @@ const Routes = () => {
     <div>
       {/*<AccountPage/>*/}
       <SignInPage/>
-      {/* <SignUpPage/> */}
+      <SignUpPage/>
       {/* <UserPage/> */}
       {/* <ChangeAccountPage/> */}
     </div>
