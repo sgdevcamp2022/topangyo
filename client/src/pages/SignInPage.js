@@ -1,17 +1,11 @@
-import { Component } from "react";
-import {Button} from "./../components/SignInPage/Button";
-import {SignInBox} from "./../components/SignInPage/SignInBox";
+import SignInForm from "../components/SignInPage/SignInForm";
 
-export function SignInPage() {
-    return(
-        <>
-        <SignInBox holderText="ID">
-        </SignInBox>
-        <SignInBox holderText="PassWord">
-        </SignInBox>
-
-        <Button text = "Login">
-        </Button>
-        </>
-    );
+const SignInPage = () => {
+  return (
+    <div className="container-col align-center">
+        <SignInForm/>
+    </div>
+  )
 }
+
+export default SignInPage

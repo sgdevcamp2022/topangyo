@@ -1,10 +1,9 @@
-import {Button} from "./../components/SignInPage/Button";
+
 
 export function SignUpPage() {
     return(
-        <>
-        <Button text = "Sign up">
-        </Button>
-        </>
+        <div>
+            회원가입 페이지
+        </div>
     );
 }

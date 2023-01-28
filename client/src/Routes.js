@@ -3,7 +3,7 @@ import './styles/_normalize.scss'
 import AccountPage from './pages/AccountPage'
 import ChangeAccountPage from './pages/ChangeAccountPage'
 import UserPage from './pages/UserPage'
-import {SignInPage} from "./pages/SignInPage";
+import SignInPage from "./pages/SignInPage";
 import {SignUpPage} from "./pages/SignUpPage";
 
 const Routes = () => {
@@ -11,7 +11,7 @@ const Routes = () => {
     <div>
       {/*<AccountPage/>*/}
       <SignInPage/>
-      {/*{SignUpPage}*/}
+      {/* <SignUpPage/> */}
       {/* <UserPage/> */}
       {/* <ChangeAccountPage/> */}
     </div>
