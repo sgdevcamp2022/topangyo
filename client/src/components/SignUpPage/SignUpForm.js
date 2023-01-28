@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import '../../styles/SignUpPage.scss';
 
 const SignUpForm = () => {
@@ -34,6 +35,12 @@ const SignUpForm = () => {
             phoneNumber : registerUser.phoneNumber,
             gender : parseInt(registerUser.gender)
         }
+        console.log(variables);
+
+        axios.post('http://localhost:3500/auth/register', variables)
+        .then((response) => {
+            console.log(response);
+        })
         
     }
 
