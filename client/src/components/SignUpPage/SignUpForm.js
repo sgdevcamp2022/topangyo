@@ -40,7 +40,6 @@ const SignUpForm = () => {
             gender : parseInt(registerUser.gender)
         }
 
-
         axios.post('http://localhost:3500/auth/register', variables)
         .then((response) => {
             if(response) {
@@ -70,10 +69,10 @@ const SignUpForm = () => {
                     className="input-box" 
                     name="id" 
                     type="text" 
-                    //minLength={4} 
+                    minLength={4} 
                     maxLength={20} 
                     placeholder = "ID"
-                    //required
+                    required
                 />
                 <input 
                     onChange={handleChange} 
@@ -84,44 +83,44 @@ const SignUpForm = () => {
                     maxLength={20} 
                     placeholder = "PASSWORD"
                     pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{1,}$"
-                    //required
+                    required
                 />
                 <input 
                     onChange={handleChange}
                     className="input-box" 
                     name="name" 
                     type="text" 
-                    //minLength={1} 
+                    minLength={1} 
                     maxLength={10} 
                     placeholder = "NAME"
-                    //required
+                    required
                 />
                 <input 
                     onChange={handleChange} 
                     className="input-box" 
                     name="nickname" 
                     type="text" 
-                    //minLength={2} 
+                    minLength={2} 
                     maxLength={10} 
                     placeholder = "NICKNAME"
-                    //required
+                    required
                 />
                 <input 
                     onChange={handleChange} 
                     className="input-box" 
                     name="birth" 
                     type="date"
-                    //required
+                    required
                 />
                 <input 
                     onChange={handleChange} 
                     className="input-box" 
                     name="email" 
                     type="email" 
-                    //minLength={4} 
+                    minLength={4} 
                     maxLength={30}
                     placeholder="EMAIL (example@gmail.com)" 
-                    //required
+                    required
                 />
                 <input 
                     onChange={handleChange} 
