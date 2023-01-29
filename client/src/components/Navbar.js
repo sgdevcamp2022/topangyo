@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux';
 
 const Navbar = () => {
 
-  const user = useSelector((state) => state.user)
-  console.log(user);
+  const user = useSelector((state) => state.user);
 
   return (
     <header>

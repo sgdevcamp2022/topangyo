@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, navigate } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import { useSelector, useDispatch } from 'react-redux';
@@ -58,7 +58,6 @@ const SignInForm = () => {
             dispatch(changeGender(decode.userInfo.gender));
         })
         .catch((error) => {
-            console.log(error.response.status);
             switch(error.response.status) {
                 case 400:
                     alert('입력한 input들의 type이 정확하지 않습니다');
@@ -77,10 +76,6 @@ const SignInForm = () => {
                 <input onChange={handleChange} className="input-box" name="id" type="text" required minLength={4} maxLength={30} placeholder = "ID"/>
                 <input onChange={handleChange} className="input-box" name="password" type="password" required minLength={4} maxLength={30} placeholder = "PASSWORD"/>
                 <button type='submit'>Log in</button>
-                <div>{user.accessToken}</div>
-                <div>{user.nickname}</div>
-                <div>{user.id}</div>
-                <div>{user.gender}</div>
             </form>
             <p className = "signUpText">Don't have an account? <span className = "signUpWord">Sign Up</span></p>
             <p className = "forgotPassWordText">forgot Password?</p>

@@ -24,6 +24,7 @@ yarn-error.log*
 
 
 /client/node_modules
+/client/.env
 /server_auth/node_modules
 /server_boilerPlate/node_modules
 /server_user/node_modules
