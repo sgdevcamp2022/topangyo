@@ -1,0 +1,148 @@
+2023-01-25 20:44:58 [DSG] error: uncaughtException: Unexpected token ')'
+C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\routes\auth.js:9
+router.post("/login", loginControllerj. )
+                                        ^
+
+SyntaxError: Unexpected token ')'
+    at Object.compileFunction (node:vm:360:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1055:15)
+    at Module._compile (node:internal/modules/cjs/loader:1090:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)
+    at Module.load (node:internal/modules/cjs/loader:1004:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:839:12)
+    at Module.require (node:internal/modules/cjs/loader:1028:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\server.js:36:18)
+    at Module._compile (node:internal/modules/cjs/loader:1126:14)
+2023-01-25 20:48:55 [DSG] error: uncaughtException: Missing initializer in const declaration
+C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\routes\auth.js:6
+const logoutController [ ]
+      ^^^^^^^^^^^^^^^^
+
+SyntaxError: Missing initializer in const declaration
+    at Object.compileFunction (node:vm:360:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1055:15)
+    at Module._compile (node:internal/modules/cjs/loader:1090:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)
+    at Module.load (node:internal/modules/cjs/loader:1004:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:839:12)
+    at Module.require (node:internal/modules/cjs/loader:1028:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\server.js:36:18)
+    at Module._compile (node:internal/modules/cjs/loader:1126:14)
+2023-01-25 21:05:16 [DSG] error: uncaughtException: Identifier 'router' has already been declared
+C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\routes\auth.js:10
+router.post("/register", registerController.handleNewUserRegist);
+^
+
+SyntaxError: Identifier 'router' has already been declared
+    at Object.compileFunction (node:vm:360:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1055:15)
+    at Module._compile (node:internal/modules/cjs/loader:1090:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)
+    at Module.load (node:internal/modules/cjs/loader:1004:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:839:12)
+    at Module.require (node:internal/modules/cjs/loader:1028:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\server.js:36:18)
+    at Module._compile (node:internal/modules/cjs/loader:1126:14)
+2023-01-25 21:06:04 [DSG] error: uncaughtException: userInfo is not defined
+ReferenceError: userInfo is not defined
+    at handleLogin (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\controllers\loginController.js:50:17)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+2023-01-25 21:06:22 [DSG] error: uncaughtException: userInfo is not defined
+ReferenceError: userInfo is not defined
+    at handleLogin (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\controllers\loginController.js:50:17)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+2023-01-25 21:06:48 [DSG] error: uncaughtException: userInfo is not defined
+ReferenceError: userInfo is not defined
+    at handleLogin (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\controllers\loginController.js:50:17)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+2023-01-25 21:07:09 [DSG] error: uncaughtException: userInfo is not defined
+ReferenceError: userInfo is not defined
+    at handleLogin (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\controllers\loginController.js:50:17)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+2023-01-25 21:08:01 [DSG] error: uncaughtException: userInfo is not defined
+ReferenceError: userInfo is not defined
+    at handleLogin (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\controllers\loginController.js:50:17)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+2023-01-25 21:08:49 [DSG] error: uncaughtException: userInfo is not defined
+ReferenceError: userInfo is not defined
+    at handleLogin (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\controllers\loginController.js:50:17)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+2023-01-25 21:09:42 [DSG] error: uncaughtException: userInfo is not defined
+ReferenceError: userInfo is not defined
+    at handleLogin (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\controllers\loginController.js:50:17)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+2023-01-25 21:12:10 [DSG] error: uncaughtException: Missing initializer in const declaration
+C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\controllers\tokenInfoController.js:12
+  const jwt.decode(token, (err, decoded) => {
+        ^^^
+
+SyntaxError: Missing initializer in const declaration
+    at Object.compileFunction (node:vm:360:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1055:15)
+    at Module._compile (node:internal/modules/cjs/loader:1090:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)
+    at Module.load (node:internal/modules/cjs/loader:1004:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:839:12)
+    at Module.require (node:internal/modules/cjs/loader:1028:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\routes\auth.js:7:29)
+    at Module._compile (node:internal/modules/cjs/loader:1126:14)
+2023-01-25 21:12:15 [DSG] error: uncaughtException: missing ) after argument list
+C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\controllers\tokenInfoController.js:14
+  });
+   ^
+
+SyntaxError: missing ) after argument list
+    at Object.compileFunction (node:vm:360:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1055:15)
+    at Module._compile (node:internal/modules/cjs/loader:1090:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)
+    at Module.load (node:internal/modules/cjs/loader:1004:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:839:12)
+    at Module.require (node:internal/modules/cjs/loader:1028:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\routes\auth.js:7:29)
+    at Module._compile (node:internal/modules/cjs/loader:1126:14)
+2023-01-25 21:20:38 [DSG] error: uncaughtException: jwt expired
+TokenExpiredError: jwt expired
+    at C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\node_modules\jsonwebtoken\verify.js:97:14)
+    at Object.module.exports [as verify] (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\node_modules\jsonwebtoken\verify.js:101:10)
+    at handleTokenInfo (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\controllers\tokenInfoController.js:8:28)
+    at Layer.handle [as handle_request] (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\node_modules\express\lib\router\index.js:346:12)
+2023-01-25 21:23:11 [DSG] error: uncaughtException: Cannot destructure property 'iat' of 'jwt.verify(...)' as it is undefined.
+TypeError: Cannot destructure property 'iat' of 'jwt.verify(...)' as it is undefined.
+    at handleTokenInfo (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\controllers\tokenInfoController.js:8:11)
+    at Layer.handle [as handle_request] (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\node_modules\express\lib\router\index.js:47:12)
+2023-01-25 21:24:50 [DSG] error: uncaughtException: Unexpected token '}'
+C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\controllers\tokenInfoController.js:11
+  });
+  ^
+
+SyntaxError: Unexpected token '}'
+    at Object.compileFunction (node:vm:360:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1055:15)
+    at Module._compile (node:internal/modules/cjs/loader:1090:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)
+    at Module.load (node:internal/modules/cjs/loader:1004:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:839:12)
+    at Module.require (node:internal/modules/cjs/loader:1028:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (C:\Users\meoro\OneDrive\Desktop\WebProgramming\toPangyo\server_auth\routes\auth.js:7:29)
+    at Module._compile (node:internal/modules/cjs/loader:1126:14)

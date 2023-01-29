@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "/Users/myeong/Documents/Develop/WinterDev/topangyo/server_boilerPlate/logs/.7b0622be2e8887d8627bba12b962a92b0a23c36b-audit.json",
+    "files": [
+        {
+            "date": 1674903205134,
+            "name": "/Users/myeong/Documents/Develop/WinterDev/topangyo/server_boilerPlate/logs/2023-01-28.exception.log",
+            "hash": "607c802b97383aae24d5955cc9aa436f20c32e75dadb7db64ce34bd7de6bee56"
+        }
+    ],
+    "hashType": "sha256"
+}
