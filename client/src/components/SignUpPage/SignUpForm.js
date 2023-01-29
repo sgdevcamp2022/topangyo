@@ -4,6 +4,10 @@ import '../../styles/SignUpPage.scss';
 
 const SignUpForm = () => {
 
+    //비밀번호 정규식(나중에 alert창 ui할 때 사용)
+    //var pwCheck = /^(?=.*[a-zA-Z])(?=.*[0-9]).{4,20}$/;
+    //var numCheck = /^\d{3}\d{4}\d{4}$/;
+
     const [registerUser, setRegisterUser] = useState({
         id : "",
         password : "",
@@ -36,12 +40,26 @@ const SignUpForm = () => {
             gender : parseInt(registerUser.gender)
         }
 
+
         axios.post('http://localhost:3500/auth/register', variables)
         .then((response) => {
-            console.log(response);
-            console.log(variables);
+            if(response) {
+                alert('생성 완료하였습니다!');
+            }
         })
-        
+        .catch((error) => {
+            switch(error.response.status) {
+                case 409:
+                    alert('중복된 아이디입니다');
+                    break;
+                case 500:
+                    alert('서버의 오류로 인한 문제로 생성되지 않았습니다');
+                    break;
+                default:
+                    alert('알 수 없는 오류가 발생하였습니다');
+                    break;
+            }
+        })
     }
 
 	return(
@@ -52,9 +70,10 @@ const SignUpForm = () => {
                     className="input-box" 
                     name="id" 
                     type="text" 
-                    minLength={4} 
+                    //minLength={4} 
                     maxLength={20} 
                     placeholder = "ID"
+                    //required
                 />
                 <input 
                     onChange={handleChange} 
@@ -64,46 +83,54 @@ const SignUpForm = () => {
                     minLength={4} 
                     maxLength={20} 
                     placeholder = "PASSWORD"
+                    pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{1,}$"
+                    //required
                 />
                 <input 
                     onChange={handleChange}
                     className="input-box" 
                     name="name" 
                     type="text" 
-                    minLength={1} 
+                    //minLength={1} 
                     maxLength={10} 
                     placeholder = "NAME"
+                    //required
                 />
                 <input 
                     onChange={handleChange} 
                     className="input-box" 
                     name="nickname" 
                     type="text" 
-                    minLength={2} 
+                    //minLength={2} 
                     maxLength={10} 
                     placeholder = "NICKNAME"
+                    //required
                 />
                 <input 
                     onChange={handleChange} 
                     className="input-box" 
                     name="birth" 
                     type="date"
+                    //required
                 />
                 <input 
                     onChange={handleChange} 
                     className="input-box" 
                     name="email" 
                     type="email" 
-                    minLength={4} 
+                    //minLength={4} 
                     maxLength={30}
                     placeholder="EMAIL (example@gmail.com)" 
+                    //required
                 />
                 <input 
                     onChange={handleChange} 
                     className="input-box" 
                     name ="phoneNumber" 
-                    type = "number" 
+                    type="tel"
                     placeholder="phone Number (01012345678)"
+                    pattern='[0-9]{3}[0-9]{4}[0-9]{4}'
+                    required
                 />
                 <>
                     <label htmlFor='men'>
