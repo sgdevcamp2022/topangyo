@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "C:\\Users\\meoro\\OneDrive\\Desktop\\WebProgramming\\toPangyo\\server_boilerPlate\\logs\\error\\.f60194e55d7dba096ac735ef409b181b10484353-audit.json",
+    "files": [
+        {
+            "date": 1674624651149,
+            "name": "C:\\Users\\meoro\\OneDrive\\Desktop\\WebProgramming\\toPangyo\\server_boilerPlate\\logs\\error\\2023-01-25.error.log",
+            "hash": "a6eac39ed8f215216a7ec325b0654e3c8cb12a2bbde32369ea0ea972bab9acae"
+        }
+    ],
+    "hashType": "sha256"
+}
