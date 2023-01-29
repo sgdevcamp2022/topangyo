@@ -40,7 +40,6 @@ const SignUpForm = () => {
             gender : parseInt(registerUser.gender)
         }
 
-
         axios.post('http://localhost:3500/auth/register', variables)
         .then((response) => {
             if(response) {
