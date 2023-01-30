@@ -47,7 +47,9 @@ const SignInForm = () => {
         
 
         //server용
-        axios.post('http://localhost:3500/auth/login', variables)
+        axios.post('http://localhost:3500/auth/login', variables, {
+            withCredentials: true,
+        })
         .then((response) => {
             const token = response.data.accessToken;
             dispatch(changeToken(token))
