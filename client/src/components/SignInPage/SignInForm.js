@@ -34,20 +34,7 @@ const SignInForm = () => {
         
 
         //Mock data용
-        // axios.get('http://localhost:3000/data/sample.json')
-        // .then((response) => {
-        //     const token = response.data.accessToken;
-        //     dispatch(changeToken(token))
-
-        //     const decode = jwt_decode(token);
-        //     dispatch(changeId(decode.userInfo.id));
-        //     dispatch(changeNickname(decode.userInfo.nickname));
-        //     dispatch(changeGender(decode.userInfo.gender));
-        // })
-        
-
-        //server용
-        axios.post('http://localhost:3500/auth/login', variables)
+        axios.get('http://localhost:3000/data/sample.json')
         .then((response) => {
             const token = response.data.accessToken;
             dispatch(changeToken(token))
@@ -57,17 +44,31 @@ const SignInForm = () => {
             dispatch(changeNickname(decode.userInfo.nickname));
             dispatch(changeGender(decode.userInfo.gender));
         })
-        .catch((error) => {
-            console.log(error.response.status);
-            switch(error.response.status) {
-                case 400:
-                    alert('입력한 input들의 type이 정확하지 않습니다');
-                    break;
-                case 500:
-                    alert('아이디 또는 비밀번호가 일치하지 않습니다');
-                    break;
-            }
-        }) 
+        
+
+        //server용
+        // axios.post('http://localhost:3500/auth/login', variables)
+        // .then((response) => {
+        //     const token = response.data.accessToken;
+        //     dispatch(changeToken(token))
+
+        //     const decode = jwt_decode(token);
+        //     dispatch(changeId(decode.userInfo.id));
+        //     dispatch(changeNickname(decode.userInfo.nickname));
+        //     dispatch(changeGender(decode.userInfo.gender));
+        // })
+        // .catch((error) => {
+        //     console.log(error.response.status);
+        //     switch(error.response.status) {
+        //         case 400:
+        //             alert('입력한 input들의 type이 정확하지 않습니다');
+        //             break;
+        //         case 500:
+        //             alert('아이디 또는 비밀번호가 일치하지 않습니다');
+        //             break;
+        //     }
+        // })
+
     }
 
     return (

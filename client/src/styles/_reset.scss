@@ -8,6 +8,10 @@
    box-sizing: border-box;
 }
 
+html, body {
+    overflow: hidden;
+}
+
 @font-face {
     font-family: 'Jua-Regular';
     src: url('../assets/fonts/Jua-Regular.ttf') format('truetype');
