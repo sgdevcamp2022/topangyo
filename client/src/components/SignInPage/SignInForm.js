@@ -1,15 +1,15 @@
-import { useEffect, useState, navigate } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeGender, changeId, changeNickname, changeToken } from '../../store/store';
+import { changeToken } from '../../store/store';
 import '../../styles/SignInPage.scss';
+import { useNavigate } from 'react-router-dom';
 
 const SignInForm = () => {
-
+    const navigate = useNavigate();
+    const myStorage = sessionStorage;
     const dispatch = useDispatch();
 
-    const user = useSelector((state) => state.user);
 
     const [loginUser, setLoginUser] = useState({
         id : "",
@@ -23,6 +23,20 @@ const SignInForm = () => {
         })
     }
 
+    const postFetch = async (variables) => {
+        try {
+            const result = await axios.post('http://localhost:3500/auth/login', variables);
+            const token = result.data.accessToken;
+            dispatch(changeToken(token))
+            myStorage.setItem('access-token', token);
+            //다음 axios 동작 시 헤더에 기본으로 token을 붙여 보낸다.
+            axios.defaults.headers.common['access-token'] = token;
+            navigate('/');
+        } catch(err) {
+            alert(err.message);
+        }
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -30,45 +44,8 @@ const SignInForm = () => {
             id : loginUser.id,
             password : loginUser.password
         }
-        
-        
 
-        //Mock data용
-        // axios.get('http://localhost:3000/data/sample.json')
-        // .then((response) => {
-        //     const token = response.data.accessToken;
-        //     dispatch(changeToken(token))
-
-        //     const decode = jwt_decode(token);
-        //     dispatch(changeId(decode.userInfo.id));
-        //     dispatch(changeNickname(decode.userInfo.nickname));
-        //     dispatch(changeGender(decode.userInfo.gender));
-        // })
-        
-
-        //server용
-        axios.post('http://localhost:3500/auth/login', variables, {
-            withCredentials: true,
-        })
-        .then((response) => {
-            const token = response.data.accessToken;
-            dispatch(changeToken(token))
-
-            const decode = jwt_decode(token);
-            dispatch(changeId(decode.userInfo.id));
-            dispatch(changeNickname(decode.userInfo.nickname));
-            dispatch(changeGender(decode.userInfo.gender));
-        })
-        .catch((error) => {
-            switch(error.response.status) {
-                case 400:
-                    alert('입력한 input들의 type이 정확하지 않습니다');
-                    break;
-                case 500:
-                    alert('아이디 또는 비밀번호가 일치하지 않습니다');
-                    break;
-            }
-        }) 
+        postFetch(variables)
     }
 
     return (

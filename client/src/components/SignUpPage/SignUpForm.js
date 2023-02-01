@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import axios from 'axios';
 import '../../styles/SignUpPage.scss';
+import { useNavigate } from 'react-router-dom';
 
 const SignUpForm = () => {
+    const navigate = useNavigate();
 
     //비밀번호 정규식(나중에 alert창 ui할 때 사용)
     //var pwCheck = /^(?=.*[a-zA-Z])(?=.*[0-9]).{4,20}$/;
@@ -24,7 +26,29 @@ const SignUpForm = () => {
             ...registerUser,
             [e.target.name] : e.target.value,
         })
-    }   
+    }
+
+    const handleSignup = async (variables) => {
+        try {
+            const result = await axios.post('http://localhost:3500/auth/register', variables);
+            if(result) {
+                alert('생성 완료하였습니다!');
+            }
+            navigate('/signin');
+        } catch(err) {
+            switch(err.response.status) {
+                case 409:
+                    alert('중복된 아이디입니다');
+                    break;
+                case 500:
+                    alert('요청 오류로 생성되지 않았습니다');
+                    break;
+                default:
+                    alert('알 수 없는 오류가 발생하였습니다');
+                    break;
+            }
+        }
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -39,26 +63,27 @@ const SignUpForm = () => {
             phoneNumber : registerUser.phoneNumber,
             gender : parseInt(registerUser.gender)
         }
+        handleSignup(variables)
 
-        axios.post('http://localhost:3500/auth/register', variables)
-        .then((response) => {
-            if(response) {
-                alert('생성 완료하였습니다!');
-            }
-        })
-        .catch((error) => {
-            switch(error.response.status) {
-                case 409:
-                    alert('중복된 아이디입니다');
-                    break;
-                case 500:
-                    alert('서버의 오류로 인한 문제로 생성되지 않았습니다');
-                    break;
-                default:
-                    alert('알 수 없는 오류가 발생하였습니다');
-                    break;
-            }
-        })
+        // axios.post('http://localhost:3500/auth/register', variables)
+        // .then((response) => {
+        //     if(response) {
+        //         alert('생성 완료하였습니다!');
+        //     }
+        // })
+        // .catch((error) => {
+        //     switch(error.response.status) {
+        //         case 409:
+        //             alert('중복된 아이디입니다');
+        //             break;
+        //         case 500:
+        //             alert('서버의 오류로 인한 문제로 생성되지 않았습니다');
+        //             break;
+        //         default:
+        //             alert('알 수 없는 오류가 발생하였습니다');
+        //             break;
+        //     }
+        // })
     }
 
 	return(
