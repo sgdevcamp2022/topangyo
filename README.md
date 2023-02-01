@@ -47,9 +47,9 @@
 
 ### 💻 Architecture
 ---
-<p align="center" style="background-color:white;">
+<div align="center" style="background-color:white;">
     <img width="712" alt="image" src="https://user-images.githubusercontent.com/67165016/216052089-e33693cf-d06a-444c-a697-511660697e02.png">
-</p>
+</div>
 
 ### 🛠 Skills
 ---
