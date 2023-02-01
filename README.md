@@ -9,6 +9,7 @@
 
 ## toPangyo
 ### 💫 Member
+---
 - 💁🏻 우명규 <strong style="color : yellow;">FE</strong>
 - 💁🏻 최성민 <strong style="color : yellow;">BE</strong>
 - 💁🏻‍♀️ 류나연 <strong style="color : yellow;">FE</strong>
@@ -16,12 +17,14 @@
 - 💁🏻‍♀️ 전혜지 <strong style="color : yellow;">BE</strong>
 
 ### 💫 Team Goals
+---
 - LCP 2.5초 이내로 최적화하기
 - 정해진 기간 내에 서버를 MSA 아키텍쳐로 구현하기
 
 ## 동세권
 > 동세권 프로젝트의 전체적인 구조입니다.
 ### 📄 기능
+---
 - 매칭
     - 매칭방 CRUD
     - 카테고리 분류
@@ -43,11 +46,13 @@
     - 신청 기능
 
 ### 💻 Architecture
-<p align="center">
+---
+<p align="center" style="background-color:white;">
     <img width="712" alt="image" src="https://user-images.githubusercontent.com/67165016/216052089-e33693cf-d06a-444c-a697-511660697e02.png">
 </p>
 
 ### 🛠 Skills
+---
 - Front-end
     - React.js
     - SCSS
