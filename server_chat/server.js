@@ -11,7 +11,7 @@ const connectDB = require("./config/dbConn");
 const webSocket = require("./socket");
 
 // each server port!
-const PORT = process.env.PORT || 3500;
+const PORT = process.env.PORT || 4000;
 
 // Connect to Database
 connectDB();
@@ -34,7 +34,7 @@ app.use(morganMiddleware);
 
 // routes
 // routes sample
-app.use("/auth", require("./routes/auth"));
+app.use("/chat", require("./routes/chat"));
 
 const server = app.listen(PORT, () =>
   logger.info(`Server running on port ${PORT}`)
