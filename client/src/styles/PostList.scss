@@ -1,0 +1,14 @@
+.postList {
+    display:flex;
+    position: absolute;
+    bottom: 0;
+    right: 50px;
+    z-index: 2;
+    align-items: center;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.postTitle {
+    font-size : 1.3rem;
+}
