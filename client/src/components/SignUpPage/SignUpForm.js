@@ -63,27 +63,7 @@ const SignUpForm = () => {
             phoneNumber : registerUser.phoneNumber,
             gender : parseInt(registerUser.gender)
         }
-        handleSignup(variables)
-
-        // axios.post('http://localhost:3500/auth/register', variables)
-        // .then((response) => {
-        //     if(response) {
-        //         alert('생성 완료하였습니다!');
-        //     }
-        // })
-        // .catch((error) => {
-        //     switch(error.response.status) {
-        //         case 409:
-        //             alert('중복된 아이디입니다');
-        //             break;
-        //         case 500:
-        //             alert('서버의 오류로 인한 문제로 생성되지 않았습니다');
-        //             break;
-        //         default:
-        //             alert('알 수 없는 오류가 발생하였습니다');
-        //             break;
-        //     }
-        // })
+        handleSignup(variables);
     }
 
 	return(

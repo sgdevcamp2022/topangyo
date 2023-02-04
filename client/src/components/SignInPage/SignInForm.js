@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
-import { changeToken } from '../../store/store';
+import { useDispatch } from 'react-redux';
+import { setToken } from '../../store/slice/userslice';
 import '../../styles/SignInPage.scss';
 import { useNavigate } from 'react-router-dom';
 
@@ -26,14 +26,35 @@ const SignInForm = () => {
     const postFetch = async (variables) => {
         try {
             const result = await axios.post('http://localhost:3500/auth/login', variables);
+            if(result.data === '') {
+                throw new SyntaxError('존재하지 않는 사용자');
+            }
             const token = result.data.accessToken;
-            dispatch(changeToken(token))
-            myStorage.setItem('access-token', token);
-            //다음 axios 동작 시 헤더에 기본으로 token을 붙여 보낸다.
-            axios.defaults.headers.common['access-token'] = token;
-            navigate('/');
+            dispatch(setToken(token));
+            myStorage.setItem('AccessToken', token);
+            const myToken = myStorage.getItem('AccessToken');
+            if(myToken) {
+                axios.defaults.headers.common['Authorization'] = myToken;
+                navigate('/');
+            }
         } catch(err) {
-            alert(err.message);
+            if(err instanceof SyntaxError) {
+                alert(err.message);
+            }
+            switch (err.response.status) {
+                case 400:
+                    alert('잘못된 요청');
+                    break;
+                case 403:
+                    alert('권한없음');
+                    break;
+                case 500:
+                    alert('아이디 또는 비밀번호 틀림');
+                    break;
+                default:
+                    alert(err);
+                    break;
+            }
         }
     }
 
@@ -44,8 +65,12 @@ const SignInForm = () => {
             id : loginUser.id,
             password : loginUser.password
         }
+        postFetch(variables);
+    }
 
-        postFetch(variables)
+    const onChangeSignup = (e) => {
+        e.preventDefault();
+        navigate('/signup');
     }
 
     return (
@@ -56,7 +81,7 @@ const SignInForm = () => {
                 <input onChange={handleChange} className="input-box" name="password" type="password" required minLength={4} maxLength={30} placeholder = "PASSWORD"/>
                 <button type='submit'>Log in</button>
             </form>
-            <p className = "signUpText">Don't have an account? <span className = "signUpWord">Sign Up</span></p>
+            <p className = "signUpText">Don't have an account? <button className = "signUpWord" onClick={onChangeSignup}>Sign Up</button></p>
             <p className = "forgotPassWordText">forgot Password?</p>
         </>
     )

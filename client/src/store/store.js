@@ -7,4 +7,3 @@ export default configureStore({
   }
 })
 
-export const { changeToken, changeId, changeNickname, changeGender, changeLocation } = user.actions

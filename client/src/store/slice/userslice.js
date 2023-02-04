@@ -1,34 +1,51 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+const userData = {
+  id : "",
+  nickname : "",
+  name : "",
+  birth : "",
+  gender : 1,
+  phoneNumber : "",
+  email : "",
+  accessToken : "",
+  roles : {
+    admin : 0,
+    guest : 1984,
+    user : 2001
+  },
+  loc : {
+    lat : 33.450701,
+    lng : 126.570667
+  },
+  createdAt : "",
+  updatedAt : ""
+}
+
 const user = createSlice({
     name : 'user',
-    initialState : {
-      id : "",
-      nickname : "",
-      gender : 1,
-      accessToken : "",
-      location : {
-        lat : 33.452613,
-        lng : 126.570888
-      }
-    },
+    initialState : userData,
     reducers : {
-      changeToken(state, token) {
+      setToken(state, token) {
         state.accessToken = token.payload;
       },
-      changeId(state, id) {
-        state.id = id.payload;
+      setUser(state, user) {
+        state.gender = user.payload.gender;
+        state.nickname = user.payload.nickname;
+        state.id = user.payload.id;
+        state.name = user.payload.name;
+        state.phoneNumber = user.payload.phoneNumber;
+        state.birth = user.payload.birth;
+        state.email = user.payload.email;
+        state.createdAt = user.payload.createdAt;
+        state.updatedAt = user.payload.updatedAt;
+        state.roles = user.payload.roles;
       },
-      changeNickname(state, nickname) {
-        state.nickname = nickname.payload;
-      },
-      changeGender(state, gender) {
-        state.gender = gender.payload;
-      },
-      changeLocation(state, location) {
-        state.location = location.payload;
+      setLocation(state, location) {
+        state.loc = location.payload;
       }
     }
 })
 
 export default user;
+export const { setUser, setToken, setLocation } = user.actions

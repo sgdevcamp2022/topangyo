@@ -1,47 +1,20 @@
 import React, { useEffect } from 'react'
 import '../styles/Navbar.scss';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
-import { changeGender, changeId, changeNickname, changeToken } from '../store/store';
-import jwt_decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.user)
-
-  useEffect(() => {
-    const getFetch = async () => {
-      try {
-        const myToken = sessionStorage.getItem('access-token');
-        
-        if(myToken) {
-          axios.defaults.headers.common['access-token'] = myToken;
-          const decode = jwt_decode(myToken);
-          const myId = decode.userInfo.id;
-
-          const result = await axios.get(`http://localhost:3600/user/users/${myId}`);
-          const userInfo = result.data.userInfo;
-          dispatch(changeId(userInfo.id));
-          dispatch(changeNickname(userInfo.nickname));
-          dispatch(changeGender(userInfo.gender));
-        }
-      
-      } catch(err) {
-        alert('아이디 또는 비밀번호가 틀렸습니다!');
-      }
-    }
-    getFetch();
-  }, [user])
 
   const postFetch = async () => {
     try {
-      const myToken = sessionStorage.getItem('access-token');
+      const myToken = sessionStorage.getItem('AccessToken');
       if(myToken) {
         const result = await axios.post('http://localhost:3500/auth/logout');
-        sessionStorage.removeItem('access-token');
+        sessionStorage.removeItem('AccessToken');
         navigate('/');
       }
 
@@ -52,7 +25,6 @@ const Navbar = () => {
 
   const handleLogout = (e) => {
     e.preventDefault();
-
     postFetch();
   }
 
@@ -66,7 +38,7 @@ const Navbar = () => {
         </a>
         
         {
-          !sessionStorage.getItem('access-token') ?
+          !sessionStorage.getItem('AccessToken') ?
           (
             //로그인 하기 전에 보여주는 Navbar
             <a className='signin-button' href='/signin'><button>Log in</button></a>
