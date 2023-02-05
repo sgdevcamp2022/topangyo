@@ -1,9 +1,9 @@
 import React from 'react'
 
-const WritePost = ({setIsModal, isModal}) => {
+const WritePost = ({setIsWriteModal, isWriteModal}) => {
 
     const handleCloseModal = () => {
-        setIsModal(!isModal);
+        setIsWriteModal(!isWriteModal);
         
     }
 
@@ -15,7 +15,8 @@ const WritePost = ({setIsModal, isModal}) => {
     <div
         style={{
             position : 'absolute',
-            zIndex : '999',
+            maxWidth : '400px',
+            zIndex : '20',
             backgroundColor : 'white',
             padding:'20px',
             top : '50%',
