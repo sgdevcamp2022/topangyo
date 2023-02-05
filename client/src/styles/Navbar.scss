@@ -4,6 +4,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px 10%;
+    z-index: 10;
+    position: relative;
 
     li, a, button {
         font-size: 16px;

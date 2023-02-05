@@ -6,6 +6,8 @@ import jwt_decode from 'jwt-decode'
 import axios from 'axios'
 import WritePost from '../components/HomePage/WritePost.js'
 import { useNavigate } from 'react-router-dom'
+import DetailPost from '../components/HomePage/DetailPost.js'
+import MatchingDetail from '../components/HomePage/MatchingDetail.js'
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -13,7 +15,11 @@ const HomePage = () => {
     const user = useSelector((state) => state.user);
     const myStorage = sessionStorage;
 
-    const [isModal, setIsModal] = useState(false);
+    const [isWriteModal, setIsWriteModal] = useState(false);
+    const [isPostModal, setIsPostModal] = useState(false);
+    const [isJoinModal, setIsJoinModal] = useState(false);
+    const [isDetailModal, setIsDetailModal] = useState(false);
+    
 
 
     const UpdateToken = async () => {
@@ -76,16 +82,22 @@ const HomePage = () => {
         isToken();
     }, [user.accessToken])
 
-    const handeOpenModal = () => {
-        setIsModal(!isModal);
+    const handleWriteModal = () => {
+        setIsWriteModal(!isWriteModal);
     }
 
     return (
         <div>
-            <button onClick={handeOpenModal} style={{ zIndex : '2', position : 'absolute', bottom : '20px', left : '20px' }}>버튼</button>
-            <MainMap/>
+            <button onClick={handleWriteModal} style={{ zIndex : '2', position : 'absolute', bottom : '20px', left : '20px' }}>버튼</button>
+            <MainMap setIsPostModal={setIsPostModal} isPostModal={isPostModal} isJoinModal={isJoinModal} setIsDetailModal={setIsDetailModal} isDetailModal={isDetailModal} />
             {
-                isModal && myStorage.getItem('AccessToken') && (<WritePost setIsModal={setIsModal} isModal={isModal} />)
+                isWriteModal && (<WritePost setIsWriteModal={setIsWriteModal} isWriteModal={isWriteModal} />)
+            }
+            {
+                isPostModal && (<DetailPost setIsPostModal={setIsPostModal} isPostModal={isPostModal} setIsJoinModal={setIsJoinModal} isJoinModal={isJoinModal} setIsDetailModal={setIsDetailModal}  />)
+            }
+            {
+                isDetailModal && (<MatchingDetail isDetailModal={isDetailModal} setIsDetailModal={setIsDetailModal}/>)
             }
         </div>
     )

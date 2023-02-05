@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { changeLocation } from '../../store/store';
 import './../../styles/MainMap.scss';
 import PostList from './PostList';
+import DetailPost from "./DetailPost";
+import MatchingDetail from './MatchingDetail';
 
 const {kakao} = window;
 
-const MainMap = () => {
-  
-
-  const user = useSelector(state => state.user)
+const MainMap = ({setIsPostModal, isPostModal, isJoinModal, setIsDetailModal, isDetailModal}) => {
+  const user = useSelector(state => state.user);
+  const myStorage = sessionStorage;
 
   useEffect(() => {
     const container = document.getElementById('map'),
@@ -81,7 +82,7 @@ const MainMap = () => {
 
   return (
     <div id='map'>
-      <PostList/>
+      <PostList setIsPostModal={setIsPostModal} isPostModal={isPostModal} isJoinModal={isJoinModal} setIsDetailModal={setIsDetailModal} isDetailModal={isDetailModal}/>
     </div>
   )
 }
