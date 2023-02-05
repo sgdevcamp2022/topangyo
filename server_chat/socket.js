@@ -10,9 +10,6 @@ module.exports = (server, app) => {
     },
   });
 
-  let currentRoomStatus = [];
-
-
   // chat
   const chat = io.of("/chat");
   chat.on("connection", (socket) => {
@@ -22,6 +19,10 @@ module.exports = (server, app) => {
       console.log("chat disconnect user : socket");
     });
 
+    /**
+     * data : room, roomBefore
+     * 유저를 해당 방에 join시킨다.
+     */
     socket.on("join_room", (data) => {
       if (data.roomBefore !== "") socket.leave(data.roomBefore);
       socket.join(data.room);
@@ -29,15 +30,25 @@ module.exports = (server, app) => {
     });
 
     socket.on("send_msg", (data) => {
-      console.log(data);
       chat.to(data.room).emit("receive_msg", {
-        username: data.username,
+        Id: data.Id,
         message: data.message,
+        currentTime: data.currentTime,
       });
     });
 
     socket.on("check", (data) => {
-      console.log(socket.adapter.rooms);
+      chat
+        .to(data.room)
+        .emit("getUserList", {
+          list: Array.from(socket.adapter.rooms.get(data.room)),
+        });
+    });
+
+    socket.on("test", (data) => {
+      socket.emit("addUserIntoRoomStatus", {
+        id: "user1",
+      });
     });
   });
 
