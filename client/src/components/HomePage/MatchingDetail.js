@@ -3,6 +3,7 @@ import MatchingChat from './MatchingDetail/MatchingChat'
 import MatchingUser from './MatchingDetail/MatchingUser'
 import MatchingPlace from './MatchingDetail/MatchingPlace'
 import MatchingTime from './MatchingDetail/MatchingTime'
+import './../../styles/ChatPage.scss'
 
 const MatchingDetail = ({isDetailModal, setIsDetailModal}) => {
 
@@ -23,31 +24,39 @@ const MatchingDetail = ({isDetailModal, setIsDetailModal}) => {
         }}
     >
         
-        <button onClick={handleCloseJoinModal}>X</button>
-        <h3>매칭 상세</h3>
-        <div
+        <div className = "chatPage">
+            <div className = "chatTitle">
+                <div>모집글제목 </div>
+                <div style = {{display : "flex",  flexDirection : "row" }}>
+                <div style = {{marginRight : "10px"}}>모집상태</div>
+                <button onClick={handleCloseJoinModal}>X</button>
+                </div>
+            </div>
+            <div className='chatTitleInform'>
+                <div>모집인원</div>
+                <div>모집연령대</div>
+                <div>모집성별</div>
+            </div>
+            <div
             style={{
                 overflow : 'hidden',
                 display : 'flex',
                 height : '100%',
-                boxSizing : 'border-box'
+                boxSizing : 'border-box',
+                
             }}
         >
+            
             <MatchingChat />
-            <div
-                style={{
-                    width : '50%',
-                    backgroundColor : 'yellow',
-                    padding : '50px',
-                    boxSizing : 'border-box'
-                }}
-            >
-                <MatchingUser />
-                <MatchingPlace />
-                <MatchingTime />
+            <div id = "line"></div>
+            <div className='chatInform'>
+                    <div className = "InformPerson"><MatchingUser /></div>
+                    <div className = "InformPlace"><MatchingPlace /></div>
+                    <div className = "InformTime"><MatchingTime /></div>
+                    <div className = "InformButton"><button>신청</button><button>나가기</button></div>
+            </div>
             </div>
         </div>
-        
     </div>
   )
 }

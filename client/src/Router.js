@@ -7,6 +7,7 @@ import SignInPage from "./pages/SignInPage";
 import {SignUpPage} from "./pages/SignUpPage";
 import HomePage from './pages/HomePage'
 import {Routes, Route} from 'react-router-dom';
+import ChatPage from './pages/ChatPage';
 
 const Router = () => {
   return (
@@ -18,6 +19,7 @@ const Router = () => {
       <Route path='/account/change' element={<ChangeAccountPage/> } />
       <Route path='/users/:userid' element={<UserPage/>} />
       <Route path='*' element={<div>없는 페이지</div>} />
+      <Route path='/chat' element ={<ChatPage/>}/> {/**채팅방 확인을 위해 임시로 만들어봄*/}
     </Routes>
   )
 }

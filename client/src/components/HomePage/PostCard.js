@@ -1,4 +1,6 @@
 import './../../styles/PostCard.scss';
+import { useNavigate } from 'react-router-dom';
+
 
 const PostCard = ({setIsPostModal, isPostModal}) => {
 

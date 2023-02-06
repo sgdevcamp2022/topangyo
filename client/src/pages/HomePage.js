@@ -82,13 +82,14 @@ const HomePage = () => {
         isToken();
     }, [user.accessToken])
 
+
     const handleWriteModal = () => {
         setIsWriteModal(!isWriteModal);
     }
 
     return (
         <div>
-            <button onClick={handleWriteModal} style={{ zIndex : '2', position : 'absolute', bottom : '20px', left : '20px' }}>버튼</button>
+            {/* <button onClick={handleWriteModal} style={{ zIndex : '2', position : 'absolute', bottom : '20px', left : '20px' }}>버튼</button> */}
             <MainMap setIsPostModal={setIsPostModal} isPostModal={isPostModal} isJoinModal={isJoinModal} setIsDetailModal={setIsDetailModal} isDetailModal={isDetailModal} />
             {
                 isWriteModal && (<WritePost setIsWriteModal={setIsWriteModal} isWriteModal={isWriteModal} />)
@@ -102,5 +103,4 @@ const HomePage = () => {
         </div>
     )
 }
-
 export default HomePage

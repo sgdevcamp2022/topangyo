@@ -1,22 +1,69 @@
+.chatRoom{
+   width : 100%;
+   height: 100%;
+   padding: 10px 20px;
+   display: flex;
+   flex-direction: row;
+}
 
-.chat {
+.chatTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 60px;
+}
+
+.chatTitleInform {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+#line {
+    border-left : #c2c2c2 3px solid; 
+    height : 1200px;
+    float: left;
+}
+
+.chatContainer {
+    width: 90%;
+    
+}
+
+.chatting {
     width: 50%;
 }
 
-.chatOut {
-    background-color: #eaeaea;
-    width : 50%;
-    padding: 10px 20px;
-    border-radius: 18px 18px 18px 0px;
+.sendContainer {
+    margin: 0px 10px;
+    position : fixed;
+    bottom : 4%;
+    width: 50%;
+}
+.chatInput {
+    width : 80%;
+    border: #c2c2c2 1px solid;
+    border-radius: 5px;
+    height: 40px;
 }
 
-.chatInText {
-    background-color: #afcbe7;
-    width : 50%;
-    padding: 10px 20px;
-    border-radius: 18px 18px 0px 18px;
+.chatButton {
+    height : 40px;
 }
 
-.chatInImg {
-    border-radius: 100%;
+.chatInform {
+    width: 50%;
+    padding: 20px 20px;
+    
+}
+.InformPerson {
+    height: 25vh;
+}
+
+.InformPlace {
+    height: 25vh;
+}
+
+.InformTime {
+    height: 25vh;
 }

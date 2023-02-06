@@ -1,4 +1,7 @@
 import React, {useState} from 'react'
+import './../../../styles/ChatPage.scss'
+import ChatOut from '../../ChatPage/ChatOut';
+import ChatIn from '../../ChatPage/ChatIn';
 
 const MatchingChat = () => {
     const [text, setText] = useState('');
@@ -23,38 +26,44 @@ const MatchingChat = () => {
     >
         <div
             style={{
-                height : '95%',
-                maxHeight : '95%',
+                height : '90%',
+                maxHeight : '90%',
                 width : '100%',
                 overflow : 'scroll',
             }}
         >
+              <div className ="chatContainer">
+                            <ChatOut/>
             {
                 //채팅 내용이 남는 공간
                 value.map((data, i) => {
                     return (
-                        <div
-                            style={{
-                                padding : '10px',
-                                backgroundColor : 'gray',
-                                borderRadius : '10px',
-                                margin : '20px 0',
-                                wordBreak : 'break-all'
-                            }}
-                            key ={i}
-                        >{data}</div>
+                        // <div
+                        //     style={{
+                        //         padding : '10px',
+                        //         backgroundColor : 'gray',
+                        //         borderRadius : '10px',
+                        //         margin : '20px 0',
+                        //         wordBreak : 'break-all'
+                        //     }}
+                        //     key ={i}
+                        // >{data}</div>
+                        <ChatIn message = {data} key = {i}/>
                     )
                 })
             }
+            </div>
         </div>
         <div
             style={{
                 display : 'flex',
                 height : '5%',
             }}
-        >
-            <input onChange={onChangeText} value={text} className='input-box' type="text" style={{ width : '90%'}} />
-            <button onClick={handleSubmit} style={{ width : '10%'}}>전송</button>
+        >   
+                <div className = "sendContainer">
+                    <input value = {text} type="text" className="chatInput" onChange={onChangeText}/>
+                    <button className = "chatButton"  onClick={handleSubmit}>전송</button>
+                </div>
         </div>
     </div>
   )
