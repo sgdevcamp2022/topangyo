@@ -1,0 +1,62 @@
+[
+    {
+        "postPK" : 1,
+        "title" : "들어오세요1",
+        "description" : "아무나 들어오삼요1",
+        "author_id" : "Myeonggyu",
+        "category" : "맛집",
+        "memberLimit" : 4,
+        "imageURL" : "",
+        "location_latitude" : 33,
+        "location_longitude" : 127,
+        "meetTime" : "2023-02-07 16:30"
+    },
+    {
+        "postPK" : 2,
+        "title" : "들어오세요2",
+        "description" : "아무나 들어오삼요2",
+        "author_id" : "Myeongsun",
+        "category" : "카페",
+        "memberLimit" : 5,
+        "imageURL" : "",
+        "location_latitude" : 33,
+        "location_longitude" : 127,
+        "meetTime" : "2023-02-07 17:30"
+    },
+    {
+        "postPK" : 3,
+        "title" : "들어오세요3",
+        "description" : "아무나 들어오삼요3",
+        "author_id" : "Myeongsun",
+        "category" : "공부",
+        "memberLimit" : 3,
+        "imageURL" : "",
+        "location_latitude" : 33,
+        "location_longitude" : 127,
+        "meetTime" : "2023-02-07 20:30"
+    },
+    {
+        "postPK" : 4,
+        "title" : "들어오세요4",
+        "description" : "아무나 들어오삼요4",
+        "author_id" : "kakaka",
+        "category" : "카페",
+        "memberLimit" : 4,
+        "imageURL" : "",
+        "location_latitude" : 33,
+        "location_longitude" : 127,
+        "meetTime" : "2023-02-08 12:30"
+    },
+    {
+        "postPK" : 5,
+        "title" : "들어오세요5",
+        "description" : "아무나 들어오삼요5",
+        "author_id" : "ododd",
+        "category" : "취미/여가",
+        "memberLimit" : 8,
+        "imageURL" : "",
+        "location_latitude" : 33,
+        "location_longitude" : 127,
+        "meetTime" : "2023-02-08 17:30"
+    }
+]

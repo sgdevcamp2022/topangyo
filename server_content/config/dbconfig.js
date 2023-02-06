@@ -1,5 +1,5 @@
 module.exports = {
-    host: '127.0.0.1',
+    host: '114.205.87.148',
     username: 'smilegateCAMP',
     password: 'Smi!egaTe0130',
     db: 'smilegate',

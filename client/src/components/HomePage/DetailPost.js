@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DetailPost = ({setIsPostModal, isPostModal, setIsJoinModal, isJoinModal, setIsDetailModal}) => {
+const DetailPost = ({contents, setIsPostModal, isPostModal, setIsJoinModal, isJoinModal, setIsDetailModal}) => {
 
   const handleCloseModal = () => {
     setIsPostModal(!isPostModal);

@@ -1,6 +1,6 @@
 import './../../styles/PostCard.scss';
 
-const PostCard = ({setIsPostModal, isPostModal}) => {
+const PostCard = ({data, setIsPostModal, isPostModal}) => {
 
   const handleOpenModal = () => {
     setIsPostModal(!isPostModal);
@@ -8,10 +8,10 @@ const PostCard = ({setIsPostModal, isPostModal}) => {
   
   return (
     <a className="postCard" onClick={handleOpenModal}>
-      <p className="postTitle">모집글 제목  모집상태</p> 
+      <p className="postTitle">{data.title}</p> 
       <p>모집정보</p>
-      <p>현재인원 / 모집인원</p>
-      <p>만남시간</p>
+      <p>0 / {data.memberLimit}</p>
+      <p>{data.meetTime}</p>
     </a>
   )
 }

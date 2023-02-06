@@ -8,7 +8,7 @@ import MatchingDetail from './MatchingDetail';
 
 const {kakao} = window;
 
-const MainMap = ({setIsPostModal, isPostModal, isJoinModal, setIsDetailModal, isDetailModal}) => {
+const MainMap = ({setIsPostModal, isPostModal, isJoinModal, setIsDetailModal, isDetailModal, contents}) => {
   const user = useSelector(state => state.user);
   const myStorage = sessionStorage;
 
@@ -56,7 +56,7 @@ const MainMap = ({setIsPostModal, isPostModal, isJoinModal, setIsDetailModal, is
     
         // 지도의 중심좌표를 얻어옵니다 
         var latlng = map.getCenter();
-        console.log(latlng); 
+        //console.log(latlng); 
         
         marker.setPosition(latlng); 
         marker.setMap(map);
@@ -82,7 +82,7 @@ const MainMap = ({setIsPostModal, isPostModal, isJoinModal, setIsDetailModal, is
 
   return (
     <div id='map'>
-      <PostList setIsPostModal={setIsPostModal} isPostModal={isPostModal} isJoinModal={isJoinModal} setIsDetailModal={setIsDetailModal} isDetailModal={isDetailModal}/>
+      <PostList setIsPostModal={setIsPostModal} isPostModal={isPostModal} isJoinModal={isJoinModal} setIsDetailModal={setIsDetailModal} isDetailModal={isDetailModal} contents={contents}/>
     </div>
   )
 }
