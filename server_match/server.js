@@ -8,9 +8,10 @@ const morganMiddleware = require("./middlewares/morgan");
 const cookieParser = require("cookie-parser");
 const credentials = require("./middlewares/credentials");
 const connectDB = require("./config/dbConn");
+const webSocket = require("./socket");
 
 // each server port!
-const PORT = process.env.PORT || 3500;
+const PORT = process.env.PORT || 4100;
 
 // Connect to Database
 connectDB();
@@ -33,8 +34,9 @@ app.use(morganMiddleware);
 
 // routes
 // routes sample
-app.use("/auth", require("./routes/auth"));
+app.use("/test", require("./routes/test"));
 
-
-// open server with specific port
-app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
+const server = app.listen(PORT, () =>
+  logger.info(`Server running on port ${PORT}`)
+);
+webSocket(server, app);

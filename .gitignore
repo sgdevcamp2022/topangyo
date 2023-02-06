@@ -24,13 +24,27 @@ yarn-error.log*
 
 
 /client/node_modules
+<<<<<<< HEAD
+/server_auth/node_modules
+/server_boilerPlate/node_modules
+/server_content/node_modules
+=======
 /client/.env
 /server_auth/node_modules
 /server_boilerPlate/node_modules
+>>>>>>> develop
 /server_user/node_modules
 /server_auth/.env
 /server_boilerPlate/.env
 /server_user/.env
+<<<<<<< HEAD
+/server_content/.env
 /server_auth/logs
 /server_boilerPlate/logs
 /server_user/logs
+/server_content/logs
+=======
+/server_auth/logs
+/server_boilerPlate/logs
+/server_user/logs
+>>>>>>> develop
