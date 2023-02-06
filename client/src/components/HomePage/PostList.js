@@ -3,22 +3,28 @@ import {useEffect, useState} from 'react';
 import Toolbar from './Toolbar';
 import MatchingPost from "./MatchingPost";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 
-const PostList = ({setIsPostModal, isPostModal, isJoinModal, setIsDetailModal, isDetailModal, contents}) => {
+const PostList = ({contents}) => {
+  const dispatch = useDispatch();
+  const matching = useSelector((state) => state.matching);
 
   return (
     <div className="postList">
       {
-        isJoinModal && (<MatchingPost setIsDetailModal={setIsDetailModal} isDetailModal={isDetailModal} />)
+        matching.matchingPost.map((matchingData, idx) => {
+          return (
+            <MatchingPost key={idx} matchingData={matchingData}/>
+          )
+        })
       }
       <Toolbar/>
-      
       {
         contents ? 
         (
           contents.map((data, idx) => {
             return (
-              <PostCard key={idx} data={data} setIsPostModal={setIsPostModal} isPostModal={isPostModal}/>
+              <PostCard key={idx} data={data} />
             )
           })
         )

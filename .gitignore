@@ -36,3 +36,6 @@ yarn-error.log*
 /server_boilerPlate/logs
 /server_user/logs
 /server_content/logs
+/server_auth/logs
+/server_boilerPlate/logs
+/server_user/logs

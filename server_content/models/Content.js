@@ -44,6 +44,12 @@ module.exports = (sequelizeConfig, Sequelize) => {
                 type: Sequelize.DATE
                 ,defaultValue: Sequelize.NOW
             },
+            memberLimit:{
+                type: Sequelize.INTEGER
+            },
+            meetTime:{
+                type: Sequelize.DATE
+            },
 
         },
 

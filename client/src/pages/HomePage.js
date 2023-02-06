@@ -10,21 +10,16 @@ import DetailPost from '../components/HomePage/DetailPost.js'
 import MatchingDetail from '../components/HomePage/MatchingDetail.js'
 import PostList from '../components/HomePage/PostList.js'
 import "../styles/PostList.scss";
+import { openModal } from '../store/slice/modalslice.js'
 
 const HomePage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
+    const modal = useSelector((state) => state.modal);
     const myStorage = sessionStorage;
 
     const [contents, setContents] = useState([]);
-
-    const [isWriteModal, setIsWriteModal] = useState(false);
-    const [isPostModal, setIsPostModal] = useState(false);
-    const [isJoinModal, setIsJoinModal] = useState(false);
-    const [isDetailModal, setIsDetailModal] = useState(false);
-    
-
 
     const UpdateToken = async () => {
         myStorage.removeItem('AccessToken');
@@ -85,8 +80,7 @@ const HomePage = () => {
 
     const isContents = async () => {
         try {
-            const getContentData = await axios.get('http://localhost:3000/data/sampleContents.json');
-            //const getContentData = await axios.get(`http://localhost:3700/post/${1}`);
+            const getContentData = await axios.get('http://localhost:3700/post/list?page=1&lat=37.566770151102844&lon=126.97869755044226');
             setContents(getContentData.data)
         } catch(err) {
             console.log(err)
@@ -94,28 +88,25 @@ const HomePage = () => {
     }
 
     useEffect(() => {
+        console.log('렌더링');
         isToken();
         isContents();
-    }, [user.accessToken])
+    }, [user.accessToken, modal.isOpen])
 
     const handleWriteModal = () => {
-        setIsWriteModal(!isWriteModal);
+        dispatch(
+            openModal({
+              modalType : "WritePostModal",
+              isOpen : true,
+            })
+        )
     }
 
     return (
         <div>
             <button onClick={handleWriteModal} style={{ zIndex : '2', position : 'absolute', bottom : '20px', left : '20px' }}>버튼</button>
-            <MainMap setIsPostModal={setIsPostModal} isPostModal={isPostModal} isJoinModal={isJoinModal} setIsDetailModal={setIsDetailModal} isDetailModal={isDetailModal} contents={contents}/>
-            {
-                isWriteModal && (<WritePost setIsWriteModal={setIsWriteModal} isWriteModal={isWriteModal} />)
-            }
-            {
-                isPostModal && (<DetailPost contents={contents} setIsPostModal={setIsPostModal} isPostModal={isPostModal} setIsJoinModal={setIsJoinModal} isJoinModal={isJoinModal} setIsDetailModal={setIsDetailModal}  />)
-            }
-            {
-                isDetailModal && (<MatchingDetail isDetailModal={isDetailModal} setIsDetailModal={setIsDetailModal}/>)
-            }
-            <PostList setIsPostModal={setIsPostModal} isPostModal={isPostModal} isJoinModal={isJoinModal} setIsDetailModal={setIsDetailModal} isDetailModal={isDetailModal} contents={contents}/>
+            <PostList contents={contents} />
+            <MainMap />
         </div>
     )
 }
