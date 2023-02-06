@@ -5,6 +5,7 @@ const Content = db.content;
 const Op = db.sequelize.Op;
 
 exports.createContent = (req, res) => {
+    console.log("imageURL : " +req.body.imageURL);
     // Validate request
     if (!req.body.title) {
         res.status(400).send({
@@ -21,6 +22,18 @@ exports.createContent = (req, res) => {
     else if(!req.body.category){
         res.status(400).send({
             message: 'category is empty!'
+        });
+        return;
+    }
+    else if(!req.body.memberLimit){
+        res.status(400).send({
+            message: 'memberLimit is empty!'
+        });
+        return;
+    }
+    else if(!req.body.meetTime){
+        res.status(400).send({
+            message: 'meetTime is empty!'
         });
         return;
     }
@@ -58,8 +71,10 @@ exports.createContent = (req, res) => {
                 author_name: user.name,
                 author_nickname: user.nickname,
                 author_id: user.id,
+                memberLimit: req.body.memberLimit,
                 category: req.body.category,
-                imageURL: NULL,
+                imageURL: null,
+                meetTime: req.body.meetTime,
                 location_latitude: req.body.location_latitude,
                 location_longitude: req.body.location_longitude,
             };
@@ -72,8 +87,10 @@ exports.createContent = (req, res) => {
                 author_name: user.name,
                 author_nickname: user.nickname,
                 author_id: user.id,
+                memberLimit: req.body.memberLimit,
                 category: req.body.category,
                 imageURL: req.body.imageURL,
+                meetTime: req.body.meetTime,
                 location_latitude: req.body.location_latitude,
                 location_longitude: req.body.location_longitude,
             };
@@ -94,6 +111,4 @@ exports.createContent = (req, res) => {
     .catch(function (error) {
         console.log(error);
     });
-
-
 };

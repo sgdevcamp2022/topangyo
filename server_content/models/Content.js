@@ -29,6 +29,10 @@ module.exports = (sequelizeConfig, Sequelize) => {
                 type: Sequelize.STRING
             },
 
+            memberLimit:{
+                type: Sequelize.INTEGER
+            },
+
             imageURL:{
                 type: Sequelize.STRING
             },
@@ -38,6 +42,10 @@ module.exports = (sequelizeConfig, Sequelize) => {
             },
             location_longitude:{
                 type: Sequelize.DOUBLE
+            },
+
+            meetTime:{
+                type: Sequelize.DATE
             },
 
             createdAt:{
