@@ -39,7 +39,7 @@ const MainMap = ({setIsPostModal, isPostModal, isJoinModal, setIsDetailModal, is
   const user = useSelector(state => state.user);
   const myStorage = sessionStorage;
 
-  useEffect(() => {
+  const map = useEffect(() => {
     const container = document.getElementById('map'),
     options = {
       center : new kakao.maps.LatLng(37.400664, 127.110739),
@@ -100,7 +100,7 @@ const MainMap = ({setIsPostModal, isPostModal, isJoinModal, setIsDetailModal, is
 
   return (
     <>
-    {show && <button onclick = {() => (console.log("hi"))} style={{ color : "white", zIndex : '2', position : 'absolute', right : "46%", margin : "10px", backgroundColor : "#82B0E0", padding : "10px 25px", borderRadius : "10px"}}>해당 위치로 재검색</button>}
+    {show && <button onclick = {() => (map)} style={{ color : "white", zIndex : '2', position : 'absolute', right : "46%", margin : "10px", backgroundColor : "#82B0E0", padding : "10px 25px", borderRadius : "10px"}}>해당 위치로 재검색</button>}
     <div id='map' onMouseDown={() => (setshow(true))}>
       <PostList setIsPostModal={setIsPostModal} isPostModal={isPostModal} isJoinModal={isJoinModal} setIsDetailModal={setIsDetailModal} isDetailModal={isDetailModal}/>
     </div>
