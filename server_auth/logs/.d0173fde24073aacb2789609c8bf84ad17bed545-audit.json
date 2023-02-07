@@ -24,11 +24,14 @@
             "date": 1674910083632,
             "name": "C:\\Users\\meoro\\OneDrive\\Desktop\\WebProgramming\\toPangyo\\server_auth\\logs\\2023-01-28.log",
             "hash": "043a5af26d5ad5059e6ac107b81fd7fa0567f7ce8cbd0a460f86acf13b515e4a"
+<<<<<<< HEAD
         },
         {
             "date": 1675665685955,
             "name": "C:\\Users\\meoro\\OneDrive\\Desktop\\WebProgramming\\toPangyo\\server_auth\\logs\\2023-02-06.log",
             "hash": "69941beb0948737d5c1e10083da2bd45127ecdadf3d244f96f38701d6ccde7d1"
+=======
+>>>>>>> backend
         }
     ],
     "hashType": "sha256"
