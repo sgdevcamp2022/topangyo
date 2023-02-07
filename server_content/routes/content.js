@@ -7,9 +7,12 @@ const HandleGetAllContents = require('../controllers/getAllContentsController');
 const HandleGetSingleContent = require('../controllers/getSingleContentController');
 const HandleUpdateContent = require('../controllers/updateContentController');
 const HandleGetContentByCategory = require('../controllers/getContentByCategory');
-const HandleGetContentByKeyword = require('../controllers/getContentByKeyword');
+const HandleGetJustAllContents = require('../controllers/getJustAllContentsController');
+
+//const HandleGetContentByKeyword = require('../controllers/getContentByKeyword');
 // Retrieve all Contents
 router.get('/post/:list', HandleGetAllContents.getAllContents);
+router.get('/post/all/list', HandleGetJustAllContents.getJustAllContents);
 
 // Retrieve Content by id
 router.get('/post/get/:id', HandleGetSingleContent.getSingleContent);

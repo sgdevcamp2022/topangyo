@@ -2,9 +2,10 @@ module.exports = {
     host: '127.0.0.1',
     username: 'smilegateCAMP',
     password: 'Smi!egaTe0130',
-    db: 'smilegate',
+    db: 'smilegatedb',
     dialect: 'mysql',
-    timezone: '+09:00',
+    timezone: 'Asia/Seoul',
+    dateStrings : 'date',
     pool: {
         max: 5,
         min: 0,
