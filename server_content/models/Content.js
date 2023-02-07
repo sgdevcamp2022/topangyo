@@ -29,6 +29,13 @@ module.exports = (sequelizeConfig, Sequelize) => {
                 type: Sequelize.STRING
             },
 
+<<<<<<< HEAD
+=======
+            memberLimit:{
+                type: Sequelize.INTEGER
+            },
+
+>>>>>>> backend
             imageURL:{
                 type: Sequelize.STRING
             },
@@ -40,6 +47,13 @@ module.exports = (sequelizeConfig, Sequelize) => {
                 type: Sequelize.DOUBLE
             },
 
+<<<<<<< HEAD
+=======
+            meetTime:{
+                type: Sequelize.DATE
+            },
+
+>>>>>>> backend
             createdAt:{
                 type: Sequelize.DATE
                 ,defaultValue: Sequelize.NOW

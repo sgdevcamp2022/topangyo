@@ -22,8 +22,13 @@ exports.getAllContents = (req, res) => {
 
     let condition = {
         attributes: [
+<<<<<<< HEAD
             'postPK', 'title', 'description', 'author_name', 'author_nickname', 'author_id',
             'category', 'imageURL', 'location_latitude', 'location_longitude', 'createdAt',
+=======
+            'postPK', 'title', 'description', 'author_name', 'author_nickname', 'author_id', 'memberLimit',
+            'category', 'imageURL', 'location_latitude', 'location_longitude', 'createdAt', 'meetTime',
+>>>>>>> backend
             [sequelize.literal(haversine), 'distance']
         ],
         having: sequelize.literal(`distance <= ${distance}`),

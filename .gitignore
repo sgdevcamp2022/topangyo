@@ -27,9 +27,12 @@ yarn-error.log*
 /server_auth/node_modules
 /server_boilerPlate/node_modules
 /server_content/node_modules
+<<<<<<< HEAD
 /client/.env
 /server_auth/node_modules
 /server_boilerPlate/node_modules
+=======
+>>>>>>> backend
 /server_user/node_modules
 /server_auth/.env
 /server_boilerPlate/.env
@@ -38,7 +41,11 @@ yarn-error.log*
 /server_auth/logs
 /server_boilerPlate/logs
 /server_user/logs
+<<<<<<< HEAD
 /server_content/logs
 /server_auth/logs
 /server_boilerPlate/logs
 /server_user/logs
+=======
+/server_content/logs
+>>>>>>> backend
