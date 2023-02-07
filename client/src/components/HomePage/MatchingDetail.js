@@ -4,20 +4,43 @@ import MatchingUser from "./MatchingDetail/MatchingUser";
 import MatchingPlace from "./MatchingDetail/MatchingPlace";
 import MatchingTime from "./MatchingDetail/MatchingTime";
 import io from "socket.io-client"; //소켓 import
-const CONNECT_URL = "http://localhost:4000/chat"; // 채팅 소켓 연결
+import { useDispatch, useSelector } from "react-redux";
+import { closeModal } from "../../store/slice/modalslice";
+import axios from 'axios';
+//const CONNECT_URL = "http://localhost:4000/chat"; // 채팅 소켓 연결
+const CONNECT_URL = ""; // 채팅 소켓 연결
 let socket = io.connect(CONNECT_URL); //소켓
 
-const MatchingDetail = ({ isDetailModal, setIsDetailModal }) => {
+const MatchingDetail = () => {
+  const dispatch = useDispatch();
+  const matching = useSelector((state) => state.matching)
+  const modal = useSelector((state) => state.modal);
+  const [post, setPost] = useState({});
+
   const handleCloseJoinModal = () => {
-    setIsDetailModal(!isDetailModal);
+    dispatch(closeModal());
   };
 
   const [room, setRoom] = useState("postId"); // 추후 현재 postId / postTitle로 바꾸기
 
+  const isContents = async () => {
+    try {
+      const getContentData = await axios.get('http://localhost:3700/post/list?page=1&lat=37.566770151102844&lon=126.97869755044226');
+        getContentData.data.map((data, idx) => {
+          if(data.postPK == modal.postPK) {
+            setPost(data);
+          }
+        });
+    } catch(err) {
+        console.log(err)
+    }
+  }
+
   // 접속시 소켓 연결
   useEffect(() => {
     // socket = io.connect(CONNECT_URL);
-    joinRoom();
+    //joinRoom();
+    isContents();
     return () => {
       // 언마운트시 연결 해제 구현해야함
     };
@@ -25,7 +48,7 @@ const MatchingDetail = ({ isDetailModal, setIsDetailModal }) => {
 
   const joinRoom = () => {
     if (room !== "") {
-      socket.emit("join_room", { room });
+      //socket.emit("join_room", { room });
       //   setRoomBefore(room);
     }
   };
@@ -34,22 +57,25 @@ const MatchingDetail = ({ isDetailModal, setIsDetailModal }) => {
     <div
       style={{
         position: "absolute",
-        width: "100%",
-        height: "100%",
-        zIndex: "50",
+        zIndex: "100",
+        width : "100%",
+        height : "100%",
         backgroundColor: "white",
-        padding: "20px",
-        boxSizing: "border-box",
-        bottom: "0",
+        padding: "10px",
+        top: "50%",
+        left: "50%",
+        transform: `translate(-50%, -50%)`,
       }}
     >
       <button onClick={handleCloseJoinModal}>X</button>
       <h3>매칭 상세</h3>
+      <h2>방제목 : {post.title}</h2>
+      <h2>{post.author_nickname}의 방</h2>
       <div
         style={{
           overflow: "hidden",
           display: "flex",
-          height: "100%",
+          height: "80%",
           boxSizing: "border-box",
         }}
       >

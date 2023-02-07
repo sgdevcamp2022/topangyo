@@ -8,19 +8,18 @@ import WritePost from '../components/HomePage/WritePost.js'
 import { useNavigate } from 'react-router-dom'
 import DetailPost from '../components/HomePage/DetailPost.js'
 import MatchingDetail from '../components/HomePage/MatchingDetail.js'
+import PostList from '../components/HomePage/PostList.js'
+import "../styles/PostList.scss";
+import { openModal } from '../store/slice/modalslice.js'
 
 const HomePage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
+    const modal = useSelector((state) => state.modal);
     const myStorage = sessionStorage;
 
-    const [isWriteModal, setIsWriteModal] = useState(false);
-    const [isPostModal, setIsPostModal] = useState(false);
-    const [isJoinModal, setIsJoinModal] = useState(false);
-    const [isDetailModal, setIsDetailModal] = useState(false);
-    
-
+    const [contents, setContents] = useState([]);
 
     const UpdateToken = async () => {
         myStorage.removeItem('AccessToken');
@@ -39,66 +38,75 @@ const HomePage = () => {
     }
 
     const getFetch = async (myId) => {
-        const getData = await axios.get(`http://localhost:3600/user/users/${myId}`)
-        const userInfo = getData.data.userInfo;
+        const getUserData = await axios.get(`http://localhost:3600/user/users/${myId}`)
+        const userInfo = getUserData.data.userInfo;
         dispatch(setUser(userInfo));
     }
 
-    useEffect(() => {
-        const isToken = async () => {
-            try {
-                const myToken = myStorage.getItem('AccessToken');
+    const isToken = async () => {
+        try {
+            const myToken = myStorage.getItem('AccessToken');
+            
+            if(myToken) {
+                axios.defaults.headers.common['Authorization'] = `Bearer ${myToken}`;
+                const tokenStatus = await axios.get('http://localhost:3500/auth/token_info');
                 
-                if(myToken) {
-                    axios.defaults.headers.common['Authorization'] = `Bearer ${myToken}`;
-                    const tokenStatus = await axios.get('http://localhost:3500/auth/token_info');
-                    
-                    dispatch(setToken(myToken));
-                    const decode = jwt_decode(myToken);
-                    const myId = decode.userInfo.id;
-                    getFetch(myId);
-                }
-            } catch(err) {
-                switch (err.response.status) {
-                    case 400:
-                        alert('잘못된 요청');
+                dispatch(setToken(myToken));
+                const decode = jwt_decode(myToken);
+                const myId = decode.userInfo.id;
+                getFetch(myId);
+            }
+        } catch(err) {
+            switch (err.response.status) {
+                case 400:
+                    alert('잘못된 요청');
+                    navigate('/');
+                    break;
+                case 403:
+                    try {
+                        UpdateToken();
+                    } catch(err) {
+                        alert('접근 권한 없음!');
                         navigate('/');
-                        break;
-                    case 403:
-                        try {
-                            UpdateToken();
-                        } catch(err) {
-                            alert('접근 권한 없음!');
-                            navigate('/');
-                        }
-                        break;
-                    default:
-                        alert(err);
-                        navigate('/');
-                        break;
-                }
+                    }
+                    break;
+                default:
+                    alert(err);
+                    navigate('/');
+                    break;
             }
         }
+    }
+
+    const isContents = async () => {
+        try {
+            const getContentData = await axios.get('http://localhost:3700/post/list?page=1&lat=37.566770151102844&lon=126.97869755044226');
+            setContents(getContentData.data)
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        console.log('렌더링');
         isToken();
-    }, [user.accessToken])
+        isContents();
+    }, [user.accessToken, modal.isOpen])
 
     const handleWriteModal = () => {
-        setIsWriteModal(!isWriteModal);
+        dispatch(
+            openModal({
+              modalType : "WritePostModal",
+              isOpen : true,
+            })
+        )
     }
 
     return (
         <div>
             <button onClick={handleWriteModal} style={{ zIndex : '2', position : 'absolute', bottom : '20px', left : '20px' }}>버튼</button>
-            <MainMap setIsPostModal={setIsPostModal} isPostModal={isPostModal} isJoinModal={isJoinModal} setIsDetailModal={setIsDetailModal} isDetailModal={isDetailModal} />
-            {
-                isWriteModal && (<WritePost setIsWriteModal={setIsWriteModal} isWriteModal={isWriteModal} />)
-            }
-            {
-                isPostModal && (<DetailPost setIsPostModal={setIsPostModal} isPostModal={isPostModal} setIsJoinModal={setIsJoinModal} isJoinModal={isJoinModal} setIsDetailModal={setIsDetailModal}  />)
-            }
-            {
-                isDetailModal && (<MatchingDetail isDetailModal={isDetailModal} setIsDetailModal={setIsDetailModal}/>)
-            }
+            <PostList contents={contents} />
+            <MainMap />
         </div>
     )
 }

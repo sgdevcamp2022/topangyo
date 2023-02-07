@@ -29,7 +29,10 @@ exports.createContent = (req, res) => {
         return;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> f9348bdccbdd826398af845784e48a0e5c70ed56
     else if(!req.body.memberLimit){
         res.status(400).send({
             message: 'memberLimit is empty!'
@@ -42,7 +45,10 @@ exports.createContent = (req, res) => {
         });
         return;
     }
+<<<<<<< HEAD
 >>>>>>> backend
+=======
+>>>>>>> f9348bdccbdd826398af845784e48a0e5c70ed56
 
     else if(!req.body.location_latitude){
         res.status(400).send({
@@ -78,6 +84,7 @@ exports.createContent = (req, res) => {
                 author_nickname: user.nickname,
                 author_id: user.id,
 <<<<<<< HEAD
+<<<<<<< HEAD
                 category: req.body.category,
                 imageURL: NULL,
 =======
@@ -86,6 +93,12 @@ exports.createContent = (req, res) => {
                 imageURL: null,
                 meetTime: req.body.meetTime,
 >>>>>>> backend
+=======
+                memberLimit: req.body.memberLimit,
+                category: req.body.category,
+                imageURL: null,
+                meetTime: req.body.meetTime,
+>>>>>>> f9348bdccbdd826398af845784e48a0e5c70ed56
                 location_latitude: req.body.location_latitude,
                 location_longitude: req.body.location_longitude,
             };
@@ -99,14 +112,20 @@ exports.createContent = (req, res) => {
                 author_nickname: user.nickname,
                 author_id: user.id,
 <<<<<<< HEAD
+<<<<<<< HEAD
                 category: req.body.category,
                 imageURL: req.body.imageURL,
 =======
+=======
+>>>>>>> f9348bdccbdd826398af845784e48a0e5c70ed56
                 memberLimit: req.body.memberLimit,
                 category: req.body.category,
                 imageURL: req.body.imageURL,
                 meetTime: req.body.meetTime,
+<<<<<<< HEAD
 >>>>>>> backend
+=======
+>>>>>>> f9348bdccbdd826398af845784e48a0e5c70ed56
                 location_latitude: req.body.location_latitude,
                 location_longitude: req.body.location_longitude,
             };

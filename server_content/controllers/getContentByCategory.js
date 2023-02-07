@@ -25,12 +25,17 @@ exports.getCategoryContents = (req, res) => {
         where: { category : category },
         attributes: [
 <<<<<<< HEAD
+<<<<<<< HEAD
             'postPK', 'title', 'description', 'author_name', 'author_nickname', 'author_id',
             'category', 'imageURL', 'location_latitude', 'location_longitude', 'createdAt',
 =======
             'postPK', 'title', 'description', 'author_name', 'author_nickname', 'author_id', 'memberLimit',
             'category', 'imageURL', 'location_latitude', 'location_longitude', 'createdAt', 'meetTime',
 >>>>>>> backend
+=======
+            'postPK', 'title', 'description', 'author_name', 'author_nickname', 'author_id', 'memberLimit',
+            'category', 'imageURL', 'location_latitude', 'location_longitude', 'createdAt', 'meetTime',
+>>>>>>> f9348bdccbdd826398af845784e48a0e5c70ed56
             [sequelize.literal(haversine), 'distance']
         ],
         having: sequelize.literal(`distance <= ${distance}`),

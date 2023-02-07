@@ -6,6 +6,7 @@ import store from '../src/store/store.js';
 import {BrowserRouter} from 'react-router-dom';
 import axios from 'axios';
 import { CookiesProvider } from 'react-cookie';
+import GlobalModal from './components/GlobalModal';
 
 axios.defaults.withCredentials = true;
 
@@ -14,6 +15,7 @@ root.render(
   <CookiesProvider>
     <BrowserRouter>
       <Provider store={store}>
+        <GlobalModal />
         <App />
       </Provider>
     </BrowserRouter>

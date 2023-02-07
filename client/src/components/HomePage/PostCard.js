@@ -1,17 +1,25 @@
+import { useDispatch } from 'react-redux';
+import { openModal } from '../../store/slice/modalslice';
 import './../../styles/PostCard.scss';
 
-const PostCard = ({setIsPostModal, isPostModal}) => {
+const PostCard = ({data}) => {
+  const dispatch = useDispatch();
 
   const handleOpenModal = () => {
-    setIsPostModal(!isPostModal);
-  }
+    dispatch(
+      openModal({
+        modalType : "DetailPostModal",
+        isOpen : true,
+        postPK : data.postPK,
+      })
+    )
+  };
   
   return (
     <a className="postCard" onClick={handleOpenModal}>
-      <p className="postTitle">모집글 제목  모집상태</p> 
-      <p>모집정보</p>
-      <p>현재인원 / 모집인원</p>
-      <p>만남시간</p>
+      <p className="postTitle">{data.title}</p>
+      <p>0 / {data.memberLimit}</p>
+      <p>{data.meetTime.split('.')[0]}</p>
     </a>
   )
 }

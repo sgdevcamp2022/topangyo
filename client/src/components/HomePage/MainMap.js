@@ -8,13 +8,7 @@ import MatchingDetail from "./MatchingDetail";
 
 const { kakao } = window;
 
-const MainMap = ({
-  setIsPostModal,
-  isPostModal,
-  isJoinModal,
-  setIsDetailModal,
-  isDetailModal,
-}) => {
+const MainMap = () => {
   const user = useSelector((state) => state.user);
   const myStorage = sessionStorage;
 
@@ -56,9 +50,9 @@ const MainMap = ({
       kakao.maps.event.addListener(map, "center_changed", function () {
         // 지도의 중심좌표를 얻어옵니다
         var latlng = map.getCenter();
-        // console.log(latlng);
-
-        marker.setPosition(latlng);
+        //console.log(latlng); 
+        
+        marker.setPosition(latlng); 
         marker.setMap(map);
 
         // 지도에 원을 표시합니다
@@ -81,13 +75,6 @@ const MainMap = ({
 
   return (
     <div id="map">
-      <PostList
-        setIsPostModal={setIsPostModal}
-        isPostModal={isPostModal}
-        isJoinModal={isJoinModal}
-        setIsDetailModal={setIsDetailModal}
-        isDetailModal={isDetailModal}
-      />
     </div>
   );
 };
