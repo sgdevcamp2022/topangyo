@@ -2,13 +2,14 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { haveMatching } from '../../store/slice/matchingslice';
+import { joinMatching } from '../../store/slice/matchingslice';
 import { closeModal, openModal } from '../../store/slice/modalslice';
+import { setCurrentPost } from '../../store/slice/postsslice';
 
 const WritePost = () => {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
-    const navigate = useNavigate();
+    const matching = useSelector((state) => state.matching);
 
     const [writePost, setWritePost] = useState(
       {
@@ -32,27 +33,31 @@ const WritePost = () => {
       dispatch(closeModal());
     }
 
-    const handleJoinPost = (postPK) => {
+    const handleJoinPost = (data) => {
       dispatch(
-        haveMatching(parseInt(postPK))
+        joinMatching(data)
       )
+      dispatch(setCurrentPost(data))
       dispatch(
         openModal({
           modalType : "MatchingDetailModal",
           isOpen : true,
-          postPK : postPK,
+          postPK : data.postPK,
         })
       )
     };
 
     const handleCreatePost = async (variables) => {
-      try { 
-        const result = await axios.post('http://localhost:3700/post/create', variables);
-        if(result) {
-          alert('모집글 작성을 완료하였습니다!');
+      try {
+        if(matching.matchingCount < 3) {
+          const result = await axios.post('http://localhost:3700/post/create', variables);
+          if(result) {
+            alert('모집글 작성을 완료하였습니다!');
+          }
+          handleJoinPost(result.data);
+        } else {
+          alert('매칭 초과로 방을 생성할 수 없습니다!');
         }
-        handleJoinPost(result.data.postPK);
-        handleCloseModal();
       } catch(err) {
         console.log(err);
       }

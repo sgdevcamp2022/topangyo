@@ -2,46 +2,36 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal, openModal } from '../../store/slice/modalslice';
 import axios from 'axios';
-import { haveMatching } from '../../store/slice/matchingslice';
+import { joinMatching } from '../../store/slice/matchingslice';
 
 const DetailPost = () => {
   const dispatch = useDispatch();
-  const modal = useSelector((state) => state.modal);
-  const [post, setPost] = useState({});
+  const getPost = useSelector((state) => state.posts);
+  const matching = useSelector((state) => state.matching);
+
+  const currentPost = getPost.currentPost;
+  const matchingCount = matching.matchingCount;
 
   const handleCloseModal = () => {
     dispatch(closeModal());
   };
 
   const handleJoinPost = () => {
-    dispatch(
-      haveMatching(parseInt(modal.postPK))
-    )
-    dispatch(
-      openModal({
-        modalType : "MatchingDetailModal",
-        isOpen : true,
-        postPK : post.postPK,
-      })
-    )
-  };
-
-  const isContents = async () => {
-    try {
-      const getContentData = await axios.get('http://localhost:3700/post/list?page=1&lat=37.566770151102844&lon=126.97869755044226');
-        getContentData.data.forEach(data => {
-          if(data.postPK == modal.postPK) {
-            setPost(data);
-          }
-        });
-    } catch(err) {
-        console.log(err)
+    if(matchingCount < 3) {
+      dispatch(
+        joinMatching(currentPost)
+      )
+      dispatch(
+        openModal({
+          modalType : "MatchingDetailModal",
+          isOpen : true,
+          postPK : currentPost.postPK,
+        })
+      )
+    } else {
+      alert('더 이상 방을 입장할 수 없습니다!');
     }
-  }
-
-  useEffect(() => {
-    isContents();
-  }, [])
+  };
 
   return (
     <div
@@ -56,12 +46,12 @@ const DetailPost = () => {
       }}
     > 
       <h3>모집 글 상세</h3>
-      <h5>{post.title}</h5>
-      <h5>방장 : {post.author_nickname}</h5>
-      <h5>카테고리 : {post.category}</h5>
-      <h5>모집인원 : {post.memberLimit}</h5>
-      <h5>모임시간 : {post.meetTime}</h5>
-      <h5>{post.description}</h5>
+      <h5>{currentPost.title}</h5>
+      <h5>방장 : {currentPost.author_nickname}</h5>
+      <h5>카테고리 : {currentPost.category}</h5>
+      <h5>모집인원 : {currentPost.memberLimit}</h5>
+      <h5>모임시간 : {currentPost.meetTime}</h5>
+      <h5>{currentPost.description}</h5>
       <button onClick={handleCloseModal}>닫기</button>
       <button onClick={handleJoinPost}>입장</button>
     </div>

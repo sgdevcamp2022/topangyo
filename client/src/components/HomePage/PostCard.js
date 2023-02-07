@@ -1,11 +1,14 @@
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../store/slice/modalslice';
+import { setCurrentPost } from '../../store/slice/postsslice';
 import './../../styles/PostCard.scss';
 
 const PostCard = ({data}) => {
   const dispatch = useDispatch();
 
   const handleOpenModal = () => {
+    dispatch(setCurrentPost(data))
     dispatch(
       openModal({
         modalType : "DetailPostModal",

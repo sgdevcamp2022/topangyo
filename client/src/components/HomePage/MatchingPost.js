@@ -2,47 +2,32 @@ import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { openModal } from '../../store/slice/modalslice';
 import axios from 'axios';
+import { setCurrentPost } from '../../store/slice/postsslice';
 
-const MatchingPost = ({matchingData}) => {
+const MatchingPost = ({data}) => {
     const dispatch = useDispatch();
-    const [post, setPost] = useState({});
+    const getPost = useSelector((state) => state.posts);
 
     const handleOpenModal = () => {
+        dispatch(
+            setCurrentPost(data)
+        )
         dispatch(
             openModal({
                 modalType : "MatchingDetailModal",
                 isOpen : true,
-                postPK : matchingData
+                postPK : data.postPK
             })
         )
     }
-
-    const isContents = async () => {
-        try {
-          const getContentData = await axios.get('http://localhost:3700/post/list?page=1&lat=37.566770151102844&lon=126.97869755044226');
-            getContentData.data.forEach(data => {
-              if(data.postPK == matchingData) {
-                setPost(data);
-              }
-            });
-        } catch(err) {
-            console.log(err)
-        }
-    }
-    
-    useEffect(() => {
-        isContents();
-    }, [])
-
-
         
     return (
     <a className="postCard" onClick={handleOpenModal} style={{
         backgroundColor : 'gray'
     }}>
-        <p className="postTitle">{post.title}</p>
-        <p>0 / {post.memberLimit}</p>
-        <p>{post.meetTime}</p>
+        <p className="postTitle">{data.title}</p>
+        <p>0 / {data.memberLimit}</p>
+        <p>{data.meetTime.split('.')[0]}</p>
     </a>
     )
 }

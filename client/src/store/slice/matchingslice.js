@@ -2,21 +2,23 @@ import { createSlice } from '@reduxjs/toolkit'
 
 
 const initialState = {
-    matchingPost : []
+    matchingPost : [],
+    matchingCount : 0,
 }
 
 const matching = createSlice({
     name : "matching",
     initialState,
     reducers : {
-        haveMatching : (state, actions) => {
+        joinMatching : (state, actions) => {
             state.matchingPost.push(actions.payload);
+            state.matchingCount+=1;
         },
-        notMatching : (state) => {
-            state.matchingPost -= 1;
+        leaveMatching : (state) => {
+            return state.matchingPost;
         }
     },
 });
 
 export default matching;
-export const {haveMatching, notMatching} = matching.actions;
+export const {joinMatching, leaveMatching} = matching.actions;

@@ -13,9 +13,9 @@ let socket = io.connect(CONNECT_URL); //소켓
 
 const MatchingDetail = () => {
   const dispatch = useDispatch();
-  const matching = useSelector((state) => state.matching)
-  const modal = useSelector((state) => state.modal);
-  const [post, setPost] = useState({});
+  const getPost = useSelector((state) => state.posts);
+  const currentPost = getPost.currentPost;
+  const [currentMatching, setCurrentMatching] = useState({});
 
   const handleCloseJoinModal = () => {
     dispatch(closeModal());
@@ -23,24 +23,17 @@ const MatchingDetail = () => {
 
   const [room, setRoom] = useState("postId"); // 추후 현재 postId / postTitle로 바꾸기
 
-  const isContents = async () => {
-    try {
-      const getContentData = await axios.get('http://localhost:3700/post/list?page=1&lat=37.566770151102844&lon=126.97869755044226');
-        getContentData.data.map((data, idx) => {
-          if(data.postPK == modal.postPK) {
-            setPost(data);
-          }
-        });
-    } catch(err) {
-        console.log(err)
-    }
-  }
-
   // 접속시 소켓 연결
   useEffect(() => {
-    // socket = io.connect(CONNECT_URL);
-    //joinRoom();
-    isContents();
+    const isContent = async () => {
+      try {
+        const result = await axios.get(`http://localhost:3700/post/get/${currentPost.postPK}`);
+        setCurrentMatching(result.data);
+      } catch(err) {
+        console.log(err);
+      }
+    }
+    isContent();
     return () => {
       // 언마운트시 연결 해제 구현해야함
     };
@@ -69,8 +62,8 @@ const MatchingDetail = () => {
     >
       <button onClick={handleCloseJoinModal}>X</button>
       <h3>매칭 상세</h3>
-      <h2>방제목 : {post.title}</h2>
-      <h2>{post.author_nickname}의 방</h2>
+      <h2>방제목 : {currentMatching.title}</h2>
+      <h2>{currentMatching.author_nickname}의 방</h2>
       <div
         style={{
           overflow: "hidden",

@@ -19,8 +19,6 @@ const HomePage = () => {
     const modal = useSelector((state) => state.modal);
     const myStorage = sessionStorage;
 
-    const [contents, setContents] = useState([]);
-
     const UpdateToken = async () => {
         myStorage.removeItem('AccessToken');
         const refreshToken = await axios.get('http://localhost:3500/auth/token_refresh');
@@ -78,19 +76,8 @@ const HomePage = () => {
         }
     }
 
-    const isContents = async () => {
-        try {
-            const getContentData = await axios.get('http://localhost:3700/post/list?page=1&lat=37.566770151102844&lon=126.97869755044226');
-            setContents(getContentData.data)
-        } catch(err) {
-            console.log(err)
-        }
-    }
-
     useEffect(() => {
-        console.log('렌더링');
         isToken();
-        isContents();
     }, [user.accessToken, modal.isOpen])
 
     const handleWriteModal = () => {
@@ -105,7 +92,7 @@ const HomePage = () => {
     return (
         <div>
             <button onClick={handleWriteModal} style={{ zIndex : '2', position : 'absolute', bottom : '20px', left : '20px' }}>버튼</button>
-            <PostList contents={contents} />
+            <PostList />
             <MainMap />
         </div>
     )
