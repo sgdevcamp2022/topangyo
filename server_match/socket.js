@@ -11,8 +11,6 @@ module.exports = (server, app) => {
     },
   });
 
-  let currentRoomStatus = [];
-
   // chat
   const chat = io.of("/match");
   chat.on("connection", (socket) => {
