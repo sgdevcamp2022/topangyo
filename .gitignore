@@ -1,0 +1,38 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+/client/node_modules
+/server_auth/node_modules
+/server_boilerPlate/node_modules
+/server_content/node_modules
+/server_user/node_modules
+/server_auth/.env
+/server_boilerPlate/.env
+/server_user/.env
+/server_content/.env
+/server_auth/logs
+/server_boilerPlate/logs
+/server_user/logs
+/server_content/logs
