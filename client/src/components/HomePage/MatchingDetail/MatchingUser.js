@@ -7,16 +7,16 @@ const MatchingUser = (props) => {
     socket.emit("check", { room });
   };
   useEffect(() => {
-    checkRoom();
+    // checkRoom();
     return () => {};
   }, []);
 
-  useEffect(() => {
-    socket.on("getUserList", (data) => {
-      console.log(data.list);
-    });
-    return () => {};
-  }, [socket]);
+  // useEffect(() => {
+  //   socket.on("getUserList", (data) => {
+  //     console.log(data.list);
+  //   });
+  //   return () => {};
+  // }, [socket]);
 
   return <div>MatchingUser</div>;
 };

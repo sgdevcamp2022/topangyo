@@ -9,6 +9,15 @@ const MatchingChat = (props) => {
   const [messageReceived, setMessageReceived] = useState([]); // 받은 메세지
   let date = new Date(); // Date 객체 생성
 
+  useEffect(() => {
+    getPreviousChatHistory();
+    socket.on("chatList", (data) => {
+      setMessageReceived(data.chatList);
+      console.log(data);
+    });
+    return () => {};
+  }, []);
+
   // 메세지 받았을 때
   useEffect(() => {
     socket.on("receive_msg", (data) => {
@@ -26,10 +35,13 @@ const MatchingChat = (props) => {
     setMessage(e.target.value);
   };
 
+  const getPreviousChatHistory = () => {
+    socket.emit("getPreviousChatHistory", { room });
+  };
+
   // 메세지 보낼때
   const sendMessage = (e) => {
     e.preventDefault();
-    setMessage("");
     socket.emit("send_msg", {
       Id: id,
       message,
@@ -38,6 +50,7 @@ const MatchingChat = (props) => {
         getMinutes(date) < 10 ? `0${getMinutes(date)}` : getMinutes(date)
       }`,
     });
+    setMessage("");
   };
 
   return (

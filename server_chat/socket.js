@@ -21,9 +21,11 @@ module.exports = (server, app) => {
     });
 
     socket.on("join_room", (data) => {
-      if (data.roomBefore !== "") socket.leave(data.roomBefore);
       socket.join(data.room);
-      console.log("user join ", data);
+    });
+
+    socket.on("leave_room", (data) => {
+      socket.leave(data.room);
     });
 
     socket.on("send_msg", async (data) => {
@@ -53,11 +55,10 @@ module.exports = (server, app) => {
     socket.on("getPreviousChatHistory", async (data) => {
       try {
         const prevChatHistory = await ChatRoom.findOne({ room: data.room });
-        if (prevChatHistory !== null) {
+        if (prevChatHistory !== null)
           chat
             .to(socket.id)
             .emit("chatList", { chatList: prevChatHistory.chat });
-        }
       } catch (error) {
         console.error(error);
       }
