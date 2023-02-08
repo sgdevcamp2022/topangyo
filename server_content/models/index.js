@@ -1,9 +1,6 @@
 const dbConfig = require('../config/dbconfig');
 const Sequelize = require('sequelize');
-<<<<<<< HEAD
-=======
 const dbconfig = require('../config/dbconfig');
->>>>>>> backend
 
 const sequelizeConfig = new Sequelize(
     dbConfig.db,
@@ -12,10 +9,6 @@ const sequelizeConfig = new Sequelize(
     {
         host: dbConfig.host,
         dialect: dbConfig.dialect,
-<<<<<<< HEAD
-        timezone: dbConfig.timezone,
-        operatorsAliases: false,
-=======
         timezone: dbconfig.timezone,
         operatorsAliases: false,
         dialectOptions: {
@@ -23,7 +16,6 @@ const sequelizeConfig = new Sequelize(
             dateStrings: true,
             typeCast: true,
           },
->>>>>>> backend
         pool: {
             max: dbConfig.pool.max,
             min: dbConfig.pool.min,
