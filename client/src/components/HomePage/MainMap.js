@@ -105,7 +105,7 @@ const MainMap = ({setIsPostModal, isPostModal, isJoinModal, setIsDetailModal, is
 
   const mapClick = () => {
     setShow(true);
-    kakao.maps.event.trigger(marker, 'custom_action', '사용자 이벤트')
+    kakao.maps.event.trigger(marker, 'custom_action')
   }
 
   return (
