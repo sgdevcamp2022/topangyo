@@ -1,21 +1,26 @@
-const data = require("../data");
 const ChatRoom = require("../models/ChatRoom");
+const Matching = require("../models/Matching");
 
 const handleTest = async (req, res) => {
   const { room, Id } = req.body;
 
   try {
-    const check = data.currentMatchingStatus.filter(
-      (element) => element.room === room
-    );
-    if (check.length === 0) {
-      const obj = { room, members: [Id] };
-      data.currentMatchingStatus.push(obj);
+    const check = await Matching.findOne({ room: toString(room) });
+    if (!check) {
+      Promise.all([
+        Matching.create({
+          room,
+          host: Id,
+          members: [Id],
+          applyUser: [],
+          chatUser: [Id],
+        }),
+        ChatRoom.create({
+          room,
+          host: Id,
+        }),
+      ]);
     }
-    const result = await ChatRoom.create({
-      room,
-      host: Id,
-    });
     res.sendStatus(200);
   } catch (error) {
     console.error(error);

@@ -2,6 +2,7 @@ const socketIO = require("socket.io");
 const allowedOrigins = require("./config/allowedOrigins");
 const { Chat } = require("./models/Chat");
 const ChatRoom = require("./models/ChatRoom");
+const Matching = require("./models/Matching");
 
 module.exports = (server, app) => {
   const io = socketIO(server, {
@@ -20,12 +21,24 @@ module.exports = (server, app) => {
       console.log("chat disconnect user : socket");
     });
 
-    socket.on("join_room", (data) => {
-      socket.join(data.room);
+    socket.on("join_room", async (data) => {
+      try {
+        socket.join(data.room);
+        const result = await Matching.updateOne(
+          { room: data.room },
+          { $addToSet: { chatUser: { $each: [data.id] } } }
+        );
+      } catch (error) {}
     });
 
-    socket.on("leave_room", (data) => {
-      socket.leave(data.room);
+    socket.on("leave_room", async (data) => {
+      try {
+        socket.leave(data.room);
+        const result = await Matching.updateOne(
+          { room: data.room },
+          { $pull: { chatUser: { $eq: `${data.id}` } } }
+        );
+      } catch (error) {}
     });
 
     socket.on("send_msg", async (data) => {
@@ -64,16 +77,17 @@ module.exports = (server, app) => {
       }
     });
 
-    socket.on("check", (data) => {
-      chat.to(data.room).emit("getUserList", {
-        list: Array.from(socket.adapter.rooms.get(data.room)),
-      });
-    });
-
-    socket.on("test", (data) => {
-      socket.emit("addUserIntoRoomStatus", {
-        id: "user1",
-      });
+    socket.on("checkRoom", async (data) => {
+      const userList = await Matching.findOne(
+        { room: data.room },
+        { chatUser: 1, _id: 0 }
+      );
+      if (userList) {
+        chat.to(data.room).emit("getUserList", {
+          userList: userList.chatUser,
+        });
+      }
+      console.log(socket.adapter.rooms);
     });
   });
 

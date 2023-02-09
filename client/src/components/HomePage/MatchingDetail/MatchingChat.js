@@ -9,11 +9,12 @@ const MatchingChat = (props) => {
   const [messageReceived, setMessageReceived] = useState([]); // 받은 메세지
   let date = new Date(); // Date 객체 생성
 
+  // 페이지 진입 시 이전채팅을 받는다.
+  // chatList에서 메세지리시브에 저장한다.
   useEffect(() => {
     getPreviousChatHistory();
     socket.on("chatList", (data) => {
       setMessageReceived(data.chatList);
-      console.log(data);
     });
     return () => {};
   }, []);
@@ -29,12 +30,13 @@ const MatchingChat = (props) => {
       // console.log(content);
       setMessageReceived((current) => [...current, content]);
     });
-  }, [socket]);
+  }, []);
 
   const onChangeText = (e) => {
     setMessage(e.target.value);
   };
 
+  // 이전 채팅을 받는 함수.
   const getPreviousChatHistory = () => {
     socket.emit("getPreviousChatHistory", { room });
   };

@@ -5,7 +5,8 @@ let data = {
      * {
      *  roomId : 'roomId', // room number
      *  members : ['user1', 'user2'], // applyAcceptedUser
-     *  apply['user3','user4] //sendApplyUser
+     *  applyUser : ['user3','user4], //sendApplyUser
+     *  chatUser : ['user1,2,3,4'] //currentChatingUser
      * }
      */
   ],

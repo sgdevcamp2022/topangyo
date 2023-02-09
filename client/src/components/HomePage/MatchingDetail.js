@@ -7,14 +7,15 @@ import io from "socket.io-client"; //소켓 import
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../store/slice/modalslice";
 import axios from "axios";
-const CONNECT_URL_SOCKET = "http://localhost:4000/chat"; // 채팅 소켓 연결
-// const CONNECT_URL = ""; // 채팅 소켓 연결
-let socket = io.connect(CONNECT_URL_SOCKET); //소켓
+const CONNECT_URL_SOCKET = "http://localhost:4000/chat"; // 소켓 주소
+const socket = io.connect(CONNECT_URL_SOCKET); // 채팅 소켓 연결
 
 const MatchingDetail = () => {
   const dispatch = useDispatch();
   const getPost = useSelector((state) => state.posts);
   const currentPost = getPost.currentPost;
+
+  const { id, nickname } = useSelector((state) => state.user); // 현재 로그인 유저 정보 가져오는 디스트럭팅 문법
   const [currentMatching, setCurrentMatching] = useState({});
   const [room, setRoom] = useState(currentPost.postPK); // 추후 현재 postId / postTitle로 바꾸기
 
@@ -23,7 +24,6 @@ const MatchingDetail = () => {
   };
 
   useEffect(() => {
-    joinRoom(); //
     const isContent = async () => {
       try {
         const result = await axios.get(
@@ -35,16 +35,22 @@ const MatchingDetail = () => {
       }
     };
     isContent();
+    joinRoom(); // room 연결
+
     return () => {
-      socket.emit("leave_room", { room });
+      leaveRoom(); // 언마운트시 room 끊기
     };
   }, []);
 
   // 방입장
   const joinRoom = () => {
     if (room !== 0) {
-      socket.emit("join_room", { room });
+      socket.emit("join_room", { room, id });
     }
+  };
+  // 방퇴장
+  const leaveRoom = () => {
+    socket.emit("leave_room", { room, id });
   };
 
   return (
@@ -82,7 +88,12 @@ const MatchingDetail = () => {
             boxSizing: "border-box",
           }}
         >
-          <MatchingUser socket={socket} room={room} />
+          <MatchingUser
+            socket={socket}
+            room={room}
+            joinRoom={joinRoom}
+            leaveRoom={leaveRoom}
+          />
           <MatchingPlace />
           <MatchingTime />
         </div>
