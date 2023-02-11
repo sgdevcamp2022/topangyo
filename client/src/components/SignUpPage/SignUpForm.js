@@ -76,7 +76,7 @@ const SignUpForm = () => {
                     type="text" 
                     minLength={4} 
                     maxLength={20} 
-                    placeholder = "ID"
+                    placeholder="ID"
                     required
                 />
                 <input 
@@ -86,7 +86,7 @@ const SignUpForm = () => {
                     type="password" 
                     minLength={4} 
                     maxLength={20} 
-                    placeholder = "PASSWORD"
+                    placeholder="PASSWORD"
                     pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{1,}$"
                     required
                 />
@@ -97,7 +97,7 @@ const SignUpForm = () => {
                     type="text" 
                     minLength={1} 
                     maxLength={10} 
-                    placeholder = "NAME"
+                    placeholder="NAME"
                     required
                 />
                 <input 
@@ -107,7 +107,7 @@ const SignUpForm = () => {
                     type="text" 
                     minLength={2} 
                     maxLength={10} 
-                    placeholder = "NICKNAME"
+                    placeholder="NICKNAME"
                     required
                 />
                 <input 
@@ -161,7 +161,7 @@ const SignUpForm = () => {
                 </>
                 <button type='submit'>Sign Up</button>
             </form>
-            <p className = "signInText">Already have an account? <span className = "signInWord">Sign In</span></p>
+            <p className="signInText">Already have an account? <span className="signInWord">Sign In</span></p>
         </>
     );
 }

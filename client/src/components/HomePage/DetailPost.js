@@ -1,4 +1,5 @@
 import React from 'react'
+import './../../styles/DetailPost.scss';
 
 const DetailPost = ({setIsPostModal, isPostModal, setIsJoinModal, isJoinModal, setIsDetailModal}) => {
 
@@ -13,17 +14,7 @@ const DetailPost = ({setIsPostModal, isPostModal, setIsJoinModal, isJoinModal, s
   }
 
 return (
-<div
-    style={{
-        position : 'absolute',
-        zIndex : '100',
-        backgroundColor : 'white',
-        padding:'20px',
-        top : '50%',
-        left : '50%',
-        transform:`translate(-50%, -50%)`
-    }}
->
+<div className='detailPost'>
     <h3>모집 글 상세</h3>
     <h3>제목</h3>
     <h3>방 정보</h3>

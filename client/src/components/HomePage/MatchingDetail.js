@@ -3,7 +3,7 @@ import MatchingChat from './MatchingDetail/MatchingChat'
 import MatchingUser from './MatchingDetail/MatchingUser'
 import MatchingPlace from './MatchingDetail/MatchingPlace'
 import MatchingTime from './MatchingDetail/MatchingTime'
-import './../../styles/ChatPage.scss'
+import './../../styles/MatchingChat.scss'
 
 const MatchingDetail = ({isDetailModal, setIsDetailModal}) => {
 
@@ -24,11 +24,11 @@ const MatchingDetail = ({isDetailModal, setIsDetailModal}) => {
         }}
     >
         
-        <div className = "chatPage">
-            <div className = "chatTitle">
+        <div className="chatPage">
+            <div className="chatTitle">
                 <div>모집글제목 </div>
-                <div style = {{display : "flex",  flexDirection : "row" }}>
-                <div style = {{marginRight : "10px"}}>모집상태</div>
+                <div style={{display : "flex",  flexDirection : "row" }}>
+                <div style={{marginRight : "10px"}}>모집상태</div>
                 <button onClick={handleCloseJoinModal}>X</button>
                 </div>
             </div>
@@ -48,12 +48,12 @@ const MatchingDetail = ({isDetailModal, setIsDetailModal}) => {
         >
             
             <MatchingChat />
-            <div id = "line"></div>
+            <div id="line"></div>
             <div className='chatInform'>
-                    <div className = "InformPerson"><MatchingUser /></div>
-                    <div className = "InformPlace"><MatchingPlace /></div>
-                    <div className = "InformTime"><MatchingTime /></div>
-                    <div className = "InformButton"><button>신청</button><button>나가기</button></div>
+                    <div className="InformPerson"><MatchingUser /></div>
+                    <div className="InformPlace"><MatchingPlace /></div>
+                    <div className="InformTime"><MatchingTime /></div>
+                    <div className="InformButton"><button>신청</button><button>나가기</button></div>
             </div>
             </div>
         </div>

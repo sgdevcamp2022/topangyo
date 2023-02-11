@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Profile from '../components/AccountPage/Profile'
 import History from '../components/AccountPage/History'
 import Friends from '../components/AccountPage/Friends'

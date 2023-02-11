@@ -9,7 +9,7 @@ export function Button({text}) {
                 borderRadius: "7px",
                 backgroundColor : "#4B89DC",
                 color : "black"
-            }} className= "button">
+            }} className="button">
                 {text}
             </div>
         </>

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import './../../../styles/ChatPage.scss'
+import './../../../styles/MatchingChat.scss'
 import ChatOut from '../../ChatPage/ChatOut';
 import ChatIn from '../../ChatPage/ChatIn';
 
@@ -33,7 +33,7 @@ const MatchingChat = () => {
             }}
         >
               <div className ="chatContainer">
-                            <ChatOut/>
+                            <ChatIn/>
             {
                 //채팅 내용이 남는 공간
                 value.map((data, i) => {
@@ -48,7 +48,7 @@ const MatchingChat = () => {
                         //     }}
                         //     key ={i}
                         // >{data}</div>
-                        <ChatIn message = {data} key = {i}/>
+                        <ChatOut message = {data} key = {i}/>
                     )
                 })
             }
@@ -60,9 +60,9 @@ const MatchingChat = () => {
                 height : '5%',
             }}
         >   
-                <div className = "sendContainer">
-                    <input value = {text} type="text" className="chatInput" onChange={onChangeText}/>
-                    <button className = "chatButton"  onClick={handleSubmit}>전송</button>
+                <div className="sendContainer">
+                    <input value={text} type="text" className="chatInput" onChange={onChangeText}/>
+                    <button className="chatButton"  onClick={handleSubmit}>전송</button>
                 </div>
         </div>
     </div>

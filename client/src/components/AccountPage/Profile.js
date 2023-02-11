@@ -20,9 +20,9 @@ const Profile = () => {
             <div className='profile-user-box'>
                 <h4 className='profile-user-nickname'>{user.nickname}</h4>
                 <h4 className='profile-user-nickname'>{user.name}</h4>
-                <h5 className='profile-user-about'>{user.birth} / { user.gender === 1 ? '남' : '여'}</h5>
+                <h5 className='profile-user-about'>{user.birth} / {user.gender=== 1?'남':'여'}</h5>
                 <h5 className='profile-user-about'>가입 일자 : {user.createdAt.split('T')[0] }</h5>
-                <h5 className='profile-user-about'>최근 접속 일자 : {user.updatedAt.split('T')[0] }</h5>
+                <h5 className='profile-user-about'>최근 접속 일자 : {user.updatedAt.split('T')[0]}</h5>
             </div>
         </div>
         <button className='profile-edit-btn' onClick={handleChangeAccount}>회원 정보 수정</button>

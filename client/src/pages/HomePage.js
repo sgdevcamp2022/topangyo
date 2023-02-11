@@ -8,6 +8,8 @@ import WritePost from '../components/HomePage/WritePost.js'
 import { useNavigate } from 'react-router-dom'
 import DetailPost from '../components/HomePage/DetailPost.js'
 import MatchingDetail from '../components/HomePage/MatchingDetail.js'
+import './../styles/HomePage.scss'
+
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -89,7 +91,7 @@ const HomePage = () => {
 
     return (
         <div>
-            <button onClick={handleWriteModal} style={{ zIndex : '2', position : 'absolute', bottom : '20px', left : '20px' }}>글쓰기✏️</button>
+            <button onClick={handleWriteModal} className = "writeButton">글쓰기✏️</button>
             <MainMap setIsPostModal={setIsPostModal} isPostModal={isPostModal} isJoinModal={isJoinModal} setIsDetailModal={setIsDetailModal} isDetailModal={isDetailModal} />
             {
                 isWriteModal && (<WritePost setIsWriteModal={setIsWriteModal} isWriteModal={isWriteModal} />)

@@ -6,3 +6,14 @@
     bottom: 0;
     overflow: hidden;
 }
+
+.locationButton {
+    color : white;
+    z-index : 2;
+    position : absolute;
+    right : 46%;
+    margin : 10px;
+    background-color : #82B0E0;
+    padding : 10px 25px;
+    border-radius : 10px;
+}

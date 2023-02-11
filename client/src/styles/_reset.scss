@@ -14,7 +14,8 @@ html, body {
 
 @font-face {
     font-family: 'Jua-Regular';
-    src: url('../assets/fonts/Jua-Regular.ttf') format('truetype');
+    src:url('../assets/fonts/Jua-Regular.woff2') format('woff2'),
+        url('../assets/fonts/Jua-Regular.ttf') format('truetype');
 }
 
 a {
