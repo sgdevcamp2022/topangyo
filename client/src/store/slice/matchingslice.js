@@ -14,9 +14,10 @@ const matching = createSlice({
             state.matchingPost.push(actions.payload);
             state.matchingCount+=1;
         },
-        leaveMatching : (state) => {
-            return state.matchingPost;
-        }
+        leaveMatching : (state, actions) => {
+            state.matchingPost.splice(actions.payload,1);
+            state.matchingCount-=1;
+        },
     },
 });
 

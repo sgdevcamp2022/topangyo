@@ -81,8 +81,8 @@ const SignInForm = () => {
                 <input onChange={handleChange} className="input-box" name="password" type="password" required minLength={4} maxLength={30} placeholder = "PASSWORD"/>
                 <button type='submit'>Log in</button>
             </form>
-            <p className = "signUpText">Don't have an account? <button className = "signUpWord" onClick={onChangeSignup}>Sign Up</button></p>
-            <p className = "forgotPassWordText">forgot Password?</p>
+            <p className="signUpText">Don't have an account? <button className = "signUpWord" onClick={onChangeSignup}>Sign Up</button></p>
+            <p className="forgotPassWordText">forgot Password?</p>
         </>
     )
 }

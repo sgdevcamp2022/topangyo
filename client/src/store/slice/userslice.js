@@ -15,8 +15,8 @@ const initialState = {
     user : 2001
   },
   loc : {
-    lat : 33.450701,
-    lng : 126.570667
+    lat : 37.400664,
+    lon : 127.110739
   },
   createdAt : "",
   updatedAt : ""
@@ -42,7 +42,8 @@ const user = createSlice({
         state.roles = user.payload.roles;
       },
       setLocation(state, location) {
-        state.loc = location.payload;
+        state.loc.lat = location.payload.lat;
+        state.loc.lon = location.payload.lon;
       }
     }
 })

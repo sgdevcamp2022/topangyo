@@ -72,8 +72,8 @@ const WritePost = () => {
         author_id : user.id,
         imageURL : "",
         category : writePost.category,
-        location_latitude : 37.56656286858539,
-        location_longitude : 126.97840331502479,
+        location_latitude : user.loc.lat,
+        location_longitude : user.loc.lon,
         meetTime : `${writePost.meetDate}T${writePost.meetTime}`,
         memberLimit : parseInt(writePost.memberLimit),
       }
@@ -130,10 +130,28 @@ const WritePost = () => {
             <option 
               defaultValue 
               value="hobby"
-            >취미/여가</option>
+            >취미</option>
             <option 
               value="restaurant"
             >맛집</option>
+            <option 
+              value="cafe"
+            >카페</option>
+            <option 
+              value="sports"
+            >스포츠/레저</option>
+            <option 
+              value="study"
+            >공부</option>
+            <option 
+              value="shopping"
+            >쇼핑</option>
+            <option 
+              value="meeting"
+            >소모임</option>
+            <option 
+              value="etc"
+            >기타</option>
           </select>
           <input 
             onChange={handleChange} 

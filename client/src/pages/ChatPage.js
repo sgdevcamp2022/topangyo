@@ -14,7 +14,7 @@ const ChatPage = () => {
                 <div>안녕하세요</div>
             </div>
             <div className ="chatIn">
-                <img src = "" className='chatInImg'/>
+                {/* <img src="" className='chatInImg'/> */}
                 <div className = "chatInText">반가워요</div>
             </div>
         </div>

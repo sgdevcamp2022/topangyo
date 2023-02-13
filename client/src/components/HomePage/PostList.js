@@ -6,16 +6,18 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../../store/slice/postsslice";
 
-const PostList = () => {
+const PostList = ({page, setPage}) => {
   const dispatch = useDispatch();
   const matching = useSelector((state) => state.matching);
   const posts = useSelector((state) => state.posts);
+  const user = useSelector((state) => state.user);
 
-  const [page, setPage] = useState(1);
+  const searchLat = user.loc.lat;
+  const searchLon = user.loc.lon;
   
   const isContents = async () => {
     try {
-      const getContentData = await axios.get(`http://localhost:3700/post/list?page=${page}&lat=37.566770151102844&lon=126.97869755044226`);
+      const getContentData = await axios.get(`http://localhost:3700/post/list?page=${page}&lat=${searchLat}&lon=${searchLon}`);
       const getPosts = getContentData.data;
       dispatch(setPosts(getPosts));
     } catch(err) {
@@ -25,7 +27,7 @@ const PostList = () => {
 
   useEffect(() => {
     isContents();
-  }, [matching.matchingPost, page])
+  }, [matching.matchingPost, page, user.loc])
 
   const onClickPrev = (e) => {
     e.preventDefault();
@@ -50,7 +52,7 @@ const PostList = () => {
           )
         })
       }
-      <Toolbar/>
+      <Toolbar page={page} setPage={setPage}/>
       {
         posts.postList.map((data, idx) => {
           return (

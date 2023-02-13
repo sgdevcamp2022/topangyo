@@ -37,52 +37,49 @@ const AccountPage = () => {
     dispatch(setUser(userInfo));
   }
 
-  useEffect(() => {
-    const isToken = async () => {
-      try {
+  const isToken = async () => {
+    try {
         const myToken = myStorage.getItem('AccessToken');
         
         if(myToken) {
-            axios.defaults.headers.common['Authorization'] = `Bearer ${myToken}`;
-            const tokenStatus = await axios.get('http://localhost:3500/auth/token_info');
-            console.log(tokenStatus);
-            
-            dispatch(setToken(myToken));
-            const decode = jwt_decode(myToken);
-            const myId = decode.userInfo.id;
-            getFetch(myId);
+          axios.defaults.headers.common['Authorization'] = `Bearer ${myToken}`;
+          const tokenStatus = await axios.get('http://localhost:3500/auth/token_info');
+          
+          dispatch(setToken(myToken));
+          const decode = jwt_decode(myToken);
+          const myId = decode.userInfo.id;
+          getFetch(myId);
         } else {
           throw new Error('로그인 되지 않은 사용자');
         }
-      } catch(err) {
-        if(err instanceof Error) {
-          alert(err.message);
+    } catch(err) {
+      if(err instanceof Error) {
+        alert(err.message);
+        navigate('/');
+      }
+      switch (err.response.status) {
+        case 400:
+          alert('잘못된 요청');
           navigate('/');
-        }
-        else {
-          switch (err.response.status) {
-            case 400:
-                alert('잘못된 요청');
-                navigate('/');
-                break;
-            case 403:
-                try {
-                  UpdateToken();
-                } catch(err) {
-                  alert('접근 권한 없음!');
-                  navigate('/');
-                }
-                break;
-            default:
-                alert(err);
-                navigate('/');
-                break;
+          break;
+        case 403:
+          try {
+              UpdateToken();
+          } catch(err) {
+              alert('접근 권한 없음!');
+              navigate('/');
           }
-        }
+          break;
+        default:
+          navigate('/account');
+          break;
       }
     }
+  }
+
+  useEffect(() => {
     isToken();
-  }, [user.accessToken])
+  }, [user.accessToken, user.name, user.nickname])
 
 
   return (

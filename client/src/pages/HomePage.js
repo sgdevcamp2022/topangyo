@@ -4,13 +4,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setUser, setToken } from '../store/slice/userslice'
 import jwt_decode from 'jwt-decode'
 import axios from 'axios'
-import WritePost from '../components/HomePage/WritePost.js'
 import { useNavigate } from 'react-router-dom'
-import DetailPost from '../components/HomePage/DetailPost.js'
-import MatchingDetail from '../components/HomePage/MatchingDetail.js'
 import PostList from '../components/HomePage/PostList.js'
 import "../styles/PostList.scss";
-import { openModal } from '../store/slice/modalslice.js'
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -18,6 +14,7 @@ const HomePage = () => {
     const user = useSelector((state) => state.user);
     const modal = useSelector((state) => state.modal);
     const myStorage = sessionStorage;
+    const [page, setPage] = useState(1);
 
     const UpdateToken = async () => {
         myStorage.removeItem('AccessToken');
@@ -80,20 +77,13 @@ const HomePage = () => {
         isToken();
     }, [user.accessToken, modal.isOpen])
 
-    const handleWriteModal = () => {
-        dispatch(
-            openModal({
-              modalType : "WritePostModal",
-              isOpen : true,
-            })
-        )
-    }
+
+
 
     return (
         <div>
-            <button onClick={handleWriteModal} style={{ zIndex : '2', position : 'absolute', bottom : '20px', left : '20px' }}>버튼</button>
-            <PostList />
-            <MainMap />
+            <PostList page={page} setPage={setPage} />
+            <MainMap setPage={setPage}/>
         </div>
     )
 }

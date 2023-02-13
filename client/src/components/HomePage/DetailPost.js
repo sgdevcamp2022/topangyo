@@ -1,23 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal, openModal } from '../../store/slice/modalslice';
-import axios from 'axios';
 import { joinMatching } from '../../store/slice/matchingslice';
 
 const DetailPost = () => {
   const dispatch = useDispatch();
   const getPost = useSelector((state) => state.posts);
   const matching = useSelector((state) => state.matching);
+  const [duplicate, setDuplicate] = useState(true);
 
   const currentPost = getPost.currentPost;
   const matchingCount = matching.matchingCount;
+
+  const handleDuplicate = () => {
+    matching.matchingPost.map((data, idx) => {
+      if(data.postPK === getPost.currentPost.postPK) {
+        setDuplicate(false);
+      }
+    })
+  }
 
   const handleCloseModal = () => {
     dispatch(closeModal());
   };
 
   const handleJoinPost = () => {
-    if(matchingCount < 3) {
+    if(matchingCount < 3 && duplicate) {
       dispatch(
         joinMatching(currentPost)
       )
@@ -32,6 +40,10 @@ const DetailPost = () => {
       alert('더 이상 방을 입장할 수 없습니다!');
     }
   };
+
+  useEffect(() => {
+    handleDuplicate();
+  }, [])
 
   return (
     <div
