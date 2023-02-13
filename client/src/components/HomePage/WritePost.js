@@ -1,95 +1,109 @@
-import axios from 'axios';
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom';
-import { joinMatching } from '../../store/slice/matchingslice';
-import { closeModal, openModal } from '../../store/slice/modalslice';
-import { setCurrentPost } from '../../store/slice/postsslice';
+import axios from "axios";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { joinMatching } from "../../store/slice/matchingslice";
+import { closeModal, openModal } from "../../store/slice/modalslice";
+import { setCurrentPost } from "../../store/slice/postsslice";
 
 const WritePost = () => {
-    const dispatch = useDispatch();
-    const user = useSelector((state) => state.user);
-    const matching = useSelector((state) => state.matching);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const matching = useSelector((state) => state.matching);
 
-    const [writePost, setWritePost] = useState(
-      {
-        title : "",
-        description : "",
-        category : "hobby",
-        meetDate : "",
-        meetTime : "",
-        memberLimit : 2,
-      }
-    );
+  const [writePost, setWritePost] = useState({
+    title: "",
+    description: "",
+    category: "hobby",
+    meetDate: "",
+    meetTime: "",
+    memberLimit: 2,
+  });
 
-    const handleChange = (e) => {
-      setWritePost({
-        ...writePost,
-        [e.target.name] : e.target.value,
+  const handleChange = (e) => {
+    setWritePost({
+      ...writePost,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleCloseModal = () => {
+    dispatch(closeModal());
+  };
+
+  const handleJoinPost = (data) => {
+    dispatch(joinMatching(data));
+    dispatch(setCurrentPost(data));
+    dispatch(
+      openModal({
+        modalType: "MatchingDetailModal",
+        isOpen: true,
+        postPK: data.postPK,
       })
-    }
+    );
+  };
 
-    const handleCloseModal = () => {
-      dispatch(closeModal());
-    }
-
-    const handleJoinPost = (data) => {
-      dispatch(
-        joinMatching(data)
-      )
-      dispatch(setCurrentPost(data))
-      dispatch(
-        openModal({
-          modalType : "MatchingDetailModal",
-          isOpen : true,
-          postPK : data.postPK,
-        })
-      )
-    };
-
-    const handleCreatePost = async (variables) => {
-      try {
-        if(matching.matchingCount < 3) {
-          const result = await axios.post('http://localhost:3700/post/create', variables);
-          if(result) {
-            alert('모집글 작성을 완료하였습니다!');
-          }
-          handleJoinPost(result.data);
-        } else {
-          alert('매칭 초과로 방을 생성할 수 없습니다!');
+  const handleCreatePost = async (variables) => {
+    try {
+      if (matching.matchingCount < 3) {
+        const result = await axios.post(
+          "http://localhost:3700/post/create",
+          variables
+        );
+        if (result) {
+          alert("모집글 작성을 완료하였습니다!");
         }
-      } catch(err) {
-        console.log(err);
-      }
-    }
+        // 새로운 매치 CMS에 넣기(postPK result값 맞는지 확인하기)
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      
-      const variables = {
-        title : writePost.title,
-        description : writePost.description,
-        author_id : user.id,
-        imageURL : "",
-        category : writePost.category,
-        location_latitude : user.loc.lat,
-        location_longitude : user.loc.lon,
-        meetTime : `${writePost.meetDate}T${writePost.meetTime}`,
-        memberLimit : parseInt(writePost.memberLimit),
+        handleCreateNewMatch(result.data.postPK);
+        handleJoinPost(result.data);
+      } else {
+        alert("매칭 초과로 방을 생성할 수 없습니다!");
       }
-      handleCreatePost(variables);
+    } catch (err) {
+      console.log(err);
     }
+  };
+
+  // 새로운 매칭방 만들기
+  const handleCreateNewMatch = async (postId) => {
+    try {
+      const result = await axios.post("http://localhost:4100/test", {
+        room: postId,
+        Id: user.id,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const variables = {
+      title: writePost.title,
+      description: writePost.description,
+      author_id: user.id,
+      imageURL: "",
+      category: writePost.category,
+      location_latitude: user.loc.lat,
+      location_longitude: user.loc.lon,
+      meetTime: `${writePost.meetDate}T${writePost.meetTime}`,
+      memberLimit: parseInt(writePost.memberLimit),
+    };
+    handleCreatePost(variables);
+  };
 
   return (
     <div
       style={{
-          position: "absolute",
-          zIndex: "100",
-          backgroundColor: "white",
-          padding: "50px",
-          top: "50%",
-          left: "50%",
-          transform: `translate(-50%, -50%)`,
+        position: "absolute",
+        zIndex: "100",
+        backgroundColor: "white",
+        padding: "50px",
+        top: "50%",
+        left: "50%",
+        transform: `translate(-50%, -50%)`,
       }}
     >
         <h3>모집 글 작성</h3>
@@ -182,7 +196,7 @@ const WritePost = () => {
           <button type='submit'>생성</button>
         </form>
     </div>
-  )
-}
+  );
+};
 
-export default WritePost
+export default WritePost;
