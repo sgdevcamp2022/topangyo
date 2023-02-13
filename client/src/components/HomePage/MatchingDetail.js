@@ -19,6 +19,9 @@ const MatchingDetail = () => {
   const [currentMatching, setCurrentMatching] = useState({});
   const [room, setRoom] = useState(currentPost.postPK); // 추후 현재 postId / postTitle로 바꾸기
 
+  const [applyUser, setApplyUser] = useState([]); // 신청 유저
+  const [matchedMembers, setMatchedMembers] = useState([]); // 매칭확정유저
+
   const handleCloseJoinModal = () => {
     dispatch(closeModal());
   };
@@ -48,9 +51,40 @@ const MatchingDetail = () => {
       socket.emit("join_room", { room, id });
     }
   };
+
   // 방퇴장
   const leaveRoom = () => {
     socket.emit("leave_room", { room, id });
+  };
+
+  // 신청(물어봐서 ㅇㅋ한사람만 신청하도록 변경하기,
+  const sendApplyment = () => {
+    socket.emit("applyment", { room, id });
+  };
+
+  // 신청 취소
+  const cancleApplyment = () => {
+    socket.emit("cancleApplyment", { room, id });
+  };
+
+  // 매칭 취소
+  const cancleMatching = (id) => {
+    socket.emit("cancleMatcing", { room, id });
+  };
+
+  // 이름 적절히 바꿀 것
+  // 현재 상태에 따라 filtering하여서 밑에 버튼을 바꾼다.
+  const btn = () => {
+    if (
+      currentPost.author_id !== id &&
+      applyUser?.includes(id) === false &&
+      matchedMembers?.includes(id) === false
+    )
+      return <button onClick={sendApplyment}>신청</button>;
+    if (currentPost.author_id !== id && applyUser?.includes(id) === true)
+      return <button onClick={cancleApplyment}>신청취소</button>;
+    if (currentPost.author_id !== id && matchedMembers?.includes(id) === true)
+      return <button onClick={() => cancleMatching(id)}>매칭취소</button>;
   };
 
   return (
@@ -91,11 +125,17 @@ const MatchingDetail = () => {
           <MatchingUser
             socket={socket}
             room={room}
-            joinRoom={joinRoom}
-            leaveRoom={leaveRoom}
+            id={id}
+            currentPost={currentPost}
+            applyUser={applyUser}
+            setApplyUser={setApplyUser}
+            matchedMembers={matchedMembers}
+            setMatchedMembers={setMatchedMembers}
+            cancleMatching={cancleMatching}
           />
           <MatchingPlace />
           <MatchingTime />
+          {btn()}
         </div>
       </div>
     </div>

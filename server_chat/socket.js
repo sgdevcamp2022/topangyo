@@ -77,17 +77,104 @@ module.exports = (server, app) => {
       }
     });
 
-    socket.on("checkRoom", async (data) => {
+    socket.on("getChatUser", async (data) => {
       const userList = await Matching.findOne(
         { room: data.room },
         { chatUser: 1, _id: 0 }
       );
       if (userList) {
-        chat.to(data.room).emit("getUserList", {
-          userList: userList.chatUser,
+        chat.to(data.room).emit("getChatUserList", {
+          chatUser: userList.chatUser,
         });
       }
-      console.log(socket.adapter.rooms);
+    });
+
+    socket.on("getApplyAndMatchedUser", async (data) => {
+      try {
+        const userList = await Matching.findOne({ room: data.room });
+        // if (userList.host === data.id) {
+        chat.to(data.room).emit("getApplyAndMatchedUserList", {
+          applyUser: userList.applyUser,
+          matchedMembers: userList.members,
+        });
+        // }
+      } catch (error) {
+        console.error(error);
+      }
+    });
+
+    socket.on("applyment", async (data) => {
+      try {
+        // 가능하다면 추후에 방장인 경우 검증하기
+        // 신청을 이미 했는지 검증하기
+        const applyList = await Matching.findOneAndUpdate(
+          { room: data.room },
+          { $addToSet: { applyUser: { $each: [data.id] } } },
+          { new: true }
+        );
+        chat.to(data.room).emit("getApplyAndMatchedUserList", {
+          applyUser: applyList.applyUser,
+          matchedMembers: applyList.members,
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    });
+
+    //신청 수락
+    socket.on("acceptApplyUser", async (data) => {
+      const acceptUserToMembers = await Matching.findOneAndUpdate(
+        { room: data.room },
+        {
+          $pull: { applyUser: { $eq: `${data.id}` } },
+          $addToSet: { members: { $each: [data.id] } },
+        },
+        { new: true }
+      );
+      chat.to(data.room).emit("getApplyAndMatchedUserList", {
+        applyUser: acceptUserToMembers.applyUser,
+        matchedMembers: acceptUserToMembers.members,
+      });
+    });
+
+    // 신청 거절
+    socket.on("declineApplyUser", async (data) => {
+      const declineApplyUser = await Matching.findOneAndUpdate(
+        { room: data.room },
+        { $pull: { applyUser: { $eq: `${data.id}` } } },
+        { new: true }
+      );
+      chat.to(data.room).emit("getApplyAndMatchedUserList", {
+        applyUser: declineApplyUser.applyUser,
+        matchedMembers: declineApplyUser.members,
+      });
+    });
+
+    socket.on("cancleApplyment", async (data) => {
+      const cancleApply = await Matching.findOneAndUpdate(
+        { room: data.room },
+        { $pull: { applyUser: { $eq: `${data.id}` } } },
+        { new: true }
+      );
+      chat.to(data.room).emit("getApplyAndMatchedUserList", {
+        applyUser: cancleApply.applyUser,
+        matchedMembers: cancleApply.members,
+      });
+    });
+
+    socket.on("cancleMatcing", async (data) => {
+      const cancleMatching = await Matching.findOne({ room: data.room });
+      // if (cancleMatching.host !== data.id) {
+      const filterdMatchMembers = cancleMatching.members.filter(
+        (user) => user !== data.id
+      );
+      cancleMatching.members = filterdMatchMembers;
+      await cancleMatching.save();
+      // }
+      chat.to(data.room).emit("getApplyAndMatchedUserList", {
+        applyUser: cancleMatching.applyUser,
+        matchedMembers: cancleMatching.members,
+      });
     });
   });
 

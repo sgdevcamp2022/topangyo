@@ -1,5 +1,5 @@
 module.exports = {
-  host: "114.205.87.148",
+  host: "smilegateinstance.cjdo7bhd55cs.ap-northeast-1.rds.amazonaws.com",
   username: "smilegateCAMP",
   password: "Smi!egaTe0130",
   db: "smilegate",
