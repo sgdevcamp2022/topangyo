@@ -176,6 +176,28 @@ module.exports = (server, app) => {
         matchedMembers: cancleMatching.members,
       });
     });
+
+    socket.on("setPlace" , async (data) => {
+      const foundMatching = await Matching.findOneAndUpdate({room : data.room},
+        {place : data.place},
+        {new:true}
+        );
+        chat.to(data.room).emit("getPlaceInfo", {
+          plcae : foundMatching.place
+        })
+    })
+
+    socket.on("setMeetingDate", async (data) => {
+      const foundMatching = await Matching.findOneAndUpdate({room: data.room},
+        {meetingDate : data.meetingDate},
+        {new:true})
+        chat.to(data.room).emit("getMeetingDate", {
+          meetingDate : foundMatching.meetingDate
+        })
+    })
+
+
+
   });
 
   // end of code

@@ -1,7 +1,7 @@
 const ChatRoom = require("../models/ChatRoom");
 const Matching = require("../models/Matching");
 
-const handleTest = async (req, res) => {
+const handleCreateMatch = async (req, res) => {
   const { room, Id } = req.body;
 
   try {
@@ -14,6 +14,7 @@ const handleTest = async (req, res) => {
           members: [Id],
           applyUser: [],
           chatUser: [Id],
+          matchingStatus: "proceed",
         }),
         ChatRoom.create({
           room,
@@ -27,7 +28,7 @@ const handleTest = async (req, res) => {
   }
 };
 
-module.exports = { handleTest };
+module.exports = { handleCreateMatch };
 
 /**
  * 매칭 모델을 추후

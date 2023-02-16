@@ -6,7 +6,7 @@ const MatchingSchema = new Schema(
       type: String,
     },
     host: {
-      type: String
+      type: String,
     },
     members: {
       type: [],
@@ -21,7 +21,15 @@ const MatchingSchema = new Schema(
       type: String,
     },
     place: {
-      type: String,
+      place_name: {
+        type: String,
+      },
+      address_name: {
+        type: String,
+      },
+      place_url: {
+        type: String,
+      },
     },
     meetingDate: {
       type: String,
