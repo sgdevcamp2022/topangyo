@@ -61,8 +61,10 @@ exports.getAllContents = (req, res) => {
     Content
         .findAll(condition)
         .then(data => {
-            data.unshift({"allPageNum": allSize});
-            res.send(data);
+            var result = {"allPageNum": allSize, "raws": data};
+            // data.unshift({"allPageNum": allSize});
+            // res.send(data);
+            res.send(result);
         })
         .catch(err => {
             res.status(500).send({

@@ -18,8 +18,8 @@ const PostList = ({page, setPage}) => {
   const isContents = async () => {
     try {
       const getContentData = await axios.get(`http://localhost:3700/post/list?page=${page}&lat=${searchLat}&lon=${searchLon}`);
+      console.log(getContentData);
       const getPosts = getContentData.data;
-      console.log(getPosts);
       dispatch(setPosts(getPosts));
     } catch(err) {
       console.log(err)

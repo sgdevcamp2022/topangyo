@@ -9,6 +9,8 @@ const HandleUpdateContent = require('../controllers/updateContentController');
 const HandleGetContentByCategory = require('../controllers/getContentByCategory');
 const HandleGetJustAllContents = require('../controllers/getJustAllContentsController');
 const HandleGetContentByKeyword = require('../controllers/getContentByKeyword');
+const HandleGetContentById = require('../controllers/getContentById');
+
 // Retrieve all Contents
 router.get('/post/:list', HandleGetAllContents.getAllContents);
 router.get('/post/all/list', HandleGetJustAllContents.getJustAllContents);
@@ -37,5 +39,10 @@ router
 router
   .route('/post/delete/:id')
   .delete(verifyJwtToken, HandleDeleteContent.deleteContent)
+
+  //create Content
+router
+  .route('/post/userid/:list')
+  .get(verifyJwtToken, HandleGetContentById.getUsetidContents)
 
 module.exports = router;
