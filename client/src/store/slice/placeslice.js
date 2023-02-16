@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 
 const initialState = {
-    placeSearch : true,
+    placeSearch : false,
     placeObject : null,
     placeList : null,
     currentPlace : {},
