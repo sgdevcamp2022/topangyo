@@ -43,18 +43,17 @@ exports.getKeywordContents = (req, res) => {
         ],
         having: sequelize.literal(`distance <= ${distance}`),
         order: [["createdAt", "DESC"]],
-        limit: pageSize,
-        offset: pageSize * (pageNum - 1)
     }
 
     Content
         .findAll(condition)
         .then(data => {
           var allSize = 0;
-            if(data.length != 0){
-                allSize = Math.floor(data.length/pageSize + 1);
-            }
-          var result = {"allPageNum": allSize, "raws": data};
+          if(data.length != 0){
+            allSize = Math.floor((data.length-1)/pageSize + 1);
+          }
+          const result_data = data.slice(pageSize * (pageNum - 1), pageSize * (pageNum - 1) + pageSize);
+          var result = {"allPageNum": allSize, "raws": result_data};
           // data.unshift({"allPageNum": allSize});
           // res.send(data);
           res.send(result);

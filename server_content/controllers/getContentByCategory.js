@@ -30,8 +30,6 @@ exports.getCategoryContents = (req, res) => {
         ],
         having: sequelize.literal(`distance <= ${distance}`),
         order: [["createdAt", "DESC"]],
-        limit: pageSize,
-        offset: pageSize * (pageNum - 1)
     }
 
     Content
@@ -39,9 +37,10 @@ exports.getCategoryContents = (req, res) => {
         .then(data => {
             var allSize = 0;
             if(data.length != 0){
-                allSize = Math.floor(data.length/pageSize + 1);
+                allSize = Math.floor((data.length-1)/pageSize + 1);
             }
-            var result = {"allPageNum": allSize, "raws": data};
+            const result_data = data.slice(pageSize * (pageNum - 1), pageSize * (pageNum - 1) + pageSize);
+            var result = {"allPageNum": allSize, "raws": result_data};
             res.send(result);
         })
         .catch(err => {

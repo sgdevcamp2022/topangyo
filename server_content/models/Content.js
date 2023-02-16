@@ -47,6 +47,15 @@ module.exports = (sequelizeConfig, Sequelize) => {
             meetTime:{
                 type: Sequelize.DATE
             },
+            
+            recruitStatus:{
+                type: Sequelize.BOOLEAN,
+                defaultValue: false,
+            },
+            matchingStatus:{
+                type: Sequelize.BOOLEAN,
+                defaultValue: false,
+            },
 
             createdAt:{
                 type: Sequelize.DATE

@@ -16,8 +16,6 @@ exports.getUsetidContents = (req, res) => {
             'category', 'imageURL', 'location_latitude', 'location_longitude', 'createdAt', 'meetTime',
         ],
         order: [["createdAt", "DESC"]],
-        limit: pageSize,
-        offset: pageSize * (pageNum - 1)
     }
 
     Content
@@ -25,9 +23,10 @@ exports.getUsetidContents = (req, res) => {
         .then(data => {
             var allSize = 0;
             if(data.length != 0){
-                allSize = Math.floor(data.length/pageSize + 1);
+                allSize = Math.floor((data.length-1)/pageSize + 1);
             }
-            var result = {"allPageNum": allSize, "raws": data};
+            const result_data = data.slice(pageSize * (pageNum - 1), pageSize * (pageNum - 1) + pageSize);
+            var result = {"allPageNum": allSize, "raws": result_data};
             // data.unshift({"allPageNum": allSize});
             // res.send(data);
             res.send(result);
