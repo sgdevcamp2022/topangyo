@@ -68,7 +68,7 @@ const WritePost = () => {
   // 새로운 매칭방 만들기
   const handleCreateNewMatch = async (postId) => {
     try {
-      const result = await axios.post("http://localhost:4100/test", {
+      const result = await axios.post("http://localhost:4100/match", {
         room: postId,
         Id: user.id,
       });
