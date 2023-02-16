@@ -4,7 +4,7 @@ const Op = db.sequelize.Op;
 
 exports.getJustAllContents = (req, res) => {
     Content
-        .findAll({
+        .findAndCountAll({
             order : [["createdAt", "DESC"]],
         })
         .then(data => {

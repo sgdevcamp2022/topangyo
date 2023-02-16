@@ -8,8 +8,7 @@ const HandleGetSingleContent = require('../controllers/getSingleContentControlle
 const HandleUpdateContent = require('../controllers/updateContentController');
 const HandleGetContentByCategory = require('../controllers/getContentByCategory');
 const HandleGetJustAllContents = require('../controllers/getJustAllContentsController');
-
-//const HandleGetContentByKeyword = require('../controllers/getContentByKeyword');
+const HandleGetContentByKeyword = require('../controllers/getContentByKeyword');
 // Retrieve all Contents
 router.get('/post/:list', HandleGetAllContents.getAllContents);
 router.get('/post/all/list', HandleGetJustAllContents.getJustAllContents);
@@ -21,7 +20,7 @@ router.get('/post/get/:id', HandleGetSingleContent.getSingleContent);
 router.get('/post/content/:list', HandleGetContentByCategory.getCategoryContents);
 
 // // Retrieve Keyword by id
-//router.get('/post/keyword/:list', HandleGetContentByKeyword.getKeywordContents);
+router.get('/post/keyword/:list', HandleGetContentByKeyword.getKeywordContents);
 
 //verifyJwtToken
 //create Content

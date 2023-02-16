@@ -1,8 +1,8 @@
 module.exports = {
-    host: '127.0.0.1',
+    host: 'db-fapub.pub-cdb.ntruss.com',
     username: 'smilegateCAMP',
     password: 'Smi!egaTe0130',
-    db: 'smilegatedb',
+    db: 'dsgsmile',
     dialect: 'mysql',
     timezone: 'Asia/Seoul',
     dateStrings : 'date',
