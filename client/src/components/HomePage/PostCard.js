@@ -22,7 +22,7 @@ const PostCard = ({ data }) => {
     <a className="postCard" onClick={handleOpenModal}>
       <p className="postTitle">{data.title}</p>
       <p>0 / {data.memberLimit}</p>
-      {/* <p>{data?.meetTime.split(".")[0]}</p> */}
+      <p>{data.meetTime.split(".")[0]}</p>
     </a>
   );
 };

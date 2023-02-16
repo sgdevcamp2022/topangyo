@@ -11,6 +11,7 @@ const PostList = ({page, setPage}) => {
   const matching = useSelector((state) => state.matching);
   const posts = useSelector((state) => state.posts);
   const user = useSelector((state) => state.user);
+  const [maxPage, setMaxPage] = useState(1);
 
   const searchLat = user.loc.lat;
   const searchLon = user.loc.lon;
@@ -18,8 +19,12 @@ const PostList = ({page, setPage}) => {
   const isContents = async () => {
     try {
       const getContentData = await axios.get(`http://localhost:3700/post/list?page=${page}&lat=${searchLat}&lon=${searchLon}`);
-      console.log(getContentData);
-      const getPosts = getContentData.data;
+      console.log(getContentData.data);
+      const getPostPage = getContentData.data.allPageNum;
+      if(getPostPage !== 0) {
+        setMaxPage(getPostPage);
+      }
+      const getPosts = getContentData.data.raws;
       dispatch(setPosts(getPosts));
     } catch(err) {
       console.log(err)
@@ -28,7 +33,7 @@ const PostList = ({page, setPage}) => {
 
   useEffect(() => {
     isContents();
-  }, [matching.matchingPost, page, user.loc])
+  }, [matching.matchingPost, page, user.loc, maxPage])
 
   const onClickPrev = (e) => {
     e.preventDefault();
@@ -39,7 +44,7 @@ const PostList = ({page, setPage}) => {
 
   const onClickNext = (e) => {
     e.preventDefault();
-    if(page < 5) {
+    if(page < maxPage) {
       setPage(page+1);
     }
   }

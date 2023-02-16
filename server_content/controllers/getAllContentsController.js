@@ -36,7 +36,7 @@ exports.getAllContents = (req, res) => {
         .findAll(conditionforcount)
         .then(data => {
             allSize = Math.floor(data.length/pageSize + 1);
-            //console.log(allSize);
+            // console.log("1 : ", allSize);
         })
         .catch(err => {
             res.status(500).send({
@@ -64,6 +64,7 @@ exports.getAllContents = (req, res) => {
             var result = {"allPageNum": allSize, "raws": data};
             // data.unshift({"allPageNum": allSize});
             // res.send(data);
+            // console.log("2 : ",allSize);
             res.send(result);
         })
         .catch(err => {
