@@ -20,44 +20,6 @@ exports.getKeywordContents = (req, res) => {
         )
     )`;
 
-    let allSize = 0;
-
-    let conditionforcount = {
-        raw: true,
-        where: {
-            [Op.or]: [
-              {
-                title: {
-                  [Op.like]: `%${keyword}%`,
-                },
-              },
-              {
-                description: {
-                  [Op.like]: `%${keyword}%`,
-                },
-              },
-            ],
-          },
-        attributes: [
-            'postPK', 'title', 'description', 'author_name', 'author_nickname', 'author_id', 'memberLimit',
-            'category', 'imageURL', 'location_latitude', 'location_longitude', 'createdAt', 'meetTime',
-            [sequelize.literal(haversine), 'distance']
-        ],
-        having: sequelize.literal(`distance <= ${distance}`)
-    }
-
-    Content
-        .findAll(conditionforcount)
-        .then(data => {
-            allSize = Math.floor(data.length / pageSize + 1);
-            //console.log(allSize);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || 'Retrieve all content failure.'
-            });
-        });
-
     let condition = {
         raw: true,
         where: {
@@ -88,6 +50,10 @@ exports.getKeywordContents = (req, res) => {
     Content
         .findAll(condition)
         .then(data => {
+          var allSize = 0;
+            if(data.length != 0){
+                allSize = Math.floor(data.length/pageSize + 1);
+            }
           var result = {"allPageNum": allSize, "raws": data};
           // data.unshift({"allPageNum": allSize});
           // res.send(data);
