@@ -10,6 +10,12 @@ const Toolbar = ({page, setPage}) => {
 
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const [isSearch, setIsSearch] = useState(false);
+  const [isCategory, setIsCategory] = useState(false);
+  const [isPostList, setIsPostList] = useState(false);
+  const [displaySearch, setDisplaySearch] = useState('none');
+  const [displayCategory, setDisplayCategory] = useState('none');
+  const [displayPostList, setDisplayPostList] = useState('none');
 
   const [categories, setCategories] = useState([
     {
@@ -72,9 +78,35 @@ const Toolbar = ({page, setPage}) => {
     }
   }
 
-  const onChangeSearch = (e) => {
-    //모집글 검색기능
-    console.log(e.target.value);
+  const onChangeCategory = () => {
+    if(isCategory) {
+      setDisplayCategory('none');
+      setIsCategory(false);
+    } else {
+      setDisplayCategory('block');
+      setIsCategory(true);
+    }
+  }
+
+  const onChangeSearch = () => {
+    if(isSearch) {
+      setDisplaySearch('none');
+      setIsSearch(false);
+    } else {
+      setDisplaySearch('block');
+      setIsSearch(true);
+    }
+  }
+
+  const onChangePostList = () => {
+    // if(isPostList) {
+    //   setDisplayPostList('none');
+    //   setIsPostList(false);
+    // } else {
+    //   setDisplayPostList('block');
+    //   setIsPostList(true);
+    // }
+    console.log('포스트리스트 접기');
   }
 
   useEffect(() => {
@@ -84,15 +116,16 @@ const Toolbar = ({page, setPage}) => {
   return (
     <div className="toolBar">
       <div style={{
-        display : 'flex'
+        display : isSearch
       }}>
-        <button className="toolbarButton">🔍︎</button>
-        <button className="toolbarButton">카테고리</button>
-        <button className="toolbarButton">∨</button>
+        <button className="toolbarButton" onClick={onChangeSearch}>🔍︎</button>
+        <button className="toolbarButton" onClick={onChangeCategory}>카테고리</button>
+        <button className="toolbarButton" onClick={onChangePostList}>∨</button>
       </div>
       
       <div style={{
-        margin : '10px'
+        margin : '10px',
+        display : displaySearch,
       }}>
         <input
           placeholder="Search"
@@ -108,7 +141,8 @@ const Toolbar = ({page, setPage}) => {
       </div>
 
       <div style={{
-        margin : '5px'
+        margin : '5px',
+        display : displayCategory,
       }}>
         {
           categories.map((category, idx) => {

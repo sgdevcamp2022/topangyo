@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { joinMatching } from "../../store/slice/matchingslice";
@@ -10,6 +10,7 @@ const WritePost = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const matching = useSelector((state) => state.matching);
+  const myStorage = sessionStorage;
 
   const [writePost, setWritePost] = useState({
     title: "",
@@ -93,6 +94,27 @@ const WritePost = () => {
     };
     handleCreatePost(variables);
   };
+
+  const isToken = async () => {
+    try {
+      const myToken = myStorage.getItem('AccessToken');
+      if(myToken) {
+
+      } else {
+        throw new Error('로그인을 먼저 해주세요!');
+      }
+    } catch(err) {
+      if(err instanceof Error) {
+        alert(err.message);
+        handleCloseModal();
+      }
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    isToken();
+  })
 
   return (
     <div

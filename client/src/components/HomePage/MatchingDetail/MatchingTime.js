@@ -2,7 +2,9 @@ import React from 'react'
 
 const MatchingTime = () => {
   return (
-    <div>MatchingTime</div>
+    <div style={{ flexGrow : '1', }}>
+      MatchingTime
+    </div>
   )
 }
 

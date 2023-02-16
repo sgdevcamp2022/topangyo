@@ -62,7 +62,7 @@ const MatchingUser = (props) => {
   };
 
   return (
-    <div>
+    <div style={{ flexGrow : '1', }}>
       <p>chatUser</p>
       {chatUser?.map((element, idx) => {
         return <p key={idx}>{element}</p>;

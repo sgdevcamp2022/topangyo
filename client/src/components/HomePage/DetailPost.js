@@ -8,6 +8,7 @@ const DetailPost = () => {
   const getPost = useSelector((state) => state.posts);
   const matching = useSelector((state) => state.matching);
   const [duplicate, setDuplicate] = useState(true);
+  const myStorage = sessionStorage;
 
   const currentPost = getPost.currentPost;
   const matchingCount = matching.matchingCount;
@@ -40,8 +41,26 @@ const DetailPost = () => {
       alert('더 이상 방을 입장할 수 없습니다!');
     }
   };
+  
+  const isToken = async () => {
+    try {
+      const myToken = myStorage.getItem('AccessToken');
+      if(myToken) {
+
+      } else {
+        throw new Error('로그인을 먼저 해주세요!');
+      }
+    } catch(err) {
+      if(err instanceof Error) {
+        alert(err.message);
+        handleCloseModal();
+      }
+      console.log(err);
+    }
+  }
 
   useEffect(() => {
+    isToken();
     handleDuplicate();
   }, [])
 
