@@ -3,47 +3,19 @@ const db = require('../models/index');
 const Content = db.content;
 const Op = db.sequelize.Op;
 
-exports.getKeywordContents = (req, res) => {
+exports.getUsetidContents = (req, res) => {
     const pageSize = 5;
-    const distance = 1;
     let pageNum = req.query.page;
-    let keyword = req.query.keyword;
-    let lat = parseFloat(req.query.lat);
-    let lon = parseFloat(req.query.lon);
-
-    const haversine = `(
-        6371 * acos(
-        cos(radians(${lat}))
-        * cos(radians(location_latitude))
-        * cos(radians(location_longitude) - radians(${lon}))
-        + sin(radians(${lat})) * sin(radians(location_latitude))
-        )
-    )`;
-
+    let user_id = req.query.id; 
     let allSize = 0;
 
     let conditionforcount = {
         raw: true,
-        where: {
-            [Op.or]: [
-              {
-                title: {
-                  [Op.like]: `%${keyword}%`,
-                },
-              },
-              {
-                description: {
-                  [Op.like]: `%${keyword}%`,
-                },
-              },
-            ],
-          },
+        where: { author_id: user_id },
         attributes: [
             'postPK', 'title', 'description', 'author_name', 'author_nickname', 'author_id', 'memberLimit',
             'category', 'imageURL', 'location_latitude', 'location_longitude', 'createdAt', 'meetTime',
-            [sequelize.literal(haversine), 'distance']
         ],
-        having: sequelize.literal(`distance <= ${distance}`)
     }
 
     Content
@@ -60,26 +32,11 @@ exports.getKeywordContents = (req, res) => {
 
     let condition = {
         raw: true,
-        where: {
-            [Op.or]: [
-              {
-                title: {
-                  [Op.like]: `%${keyword}%`,
-                },
-              },
-              {
-                description: {
-                  [Op.like]: `%${keyword}%`,
-                },
-              },
-            ],
-          },
+        where: { author_id: user_id },
         attributes: [
             'postPK', 'title', 'description', 'author_name', 'author_nickname', 'author_id', 'memberLimit',
             'category', 'imageURL', 'location_latitude', 'location_longitude', 'createdAt', 'meetTime',
-            [sequelize.literal(haversine), 'distance']
         ],
-        having: sequelize.literal(`distance <= ${distance}`),
         order: [["createdAt", "DESC"]],
         limit: pageSize,
         offset: pageSize * (pageNum - 1)
@@ -88,10 +45,10 @@ exports.getKeywordContents = (req, res) => {
     Content
         .findAll(condition)
         .then(data => {
-          var result = {"allPageNum": allSize, "raws": data};
-          // data.unshift({"allPageNum": allSize});
-          // res.send(data);
-          res.send(result);
+            var result = {"allPageNum": allSize, "raws": data};
+            // data.unshift({"allPageNum": allSize});
+            // res.send(data);
+            res.send(result);
         })
         .catch(err => {
             res.status(500).send({
