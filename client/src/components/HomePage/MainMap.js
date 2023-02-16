@@ -10,7 +10,7 @@ import PlaceItem from "./PlaceItem.js";
 const MainMap = ({setPage}) => {
   const dispatch = useDispatch();
   const { kakao } = window;
-  const myStorage = sessionStorage;
+  const myStorage = localStorage;
 
   //reducer
   const user = useSelector((state) => state.user);
@@ -220,12 +220,10 @@ const MainMap = ({setPage}) => {
     if(map) {
       map.setCenter(locPosition);
       kakao.maps.event.addListener(map, 'center_changed', () => {
-        if(placeSearch === false) {
-          moveMarker.setPosition(map.getCenter());
-          moveMarker.setMap(map);
-          dispatch(setMovePosition(moveMarker.getPosition()));
-          dispatch(setCurrentPosition(currentMarker.getPosition()));
-        }
+        moveMarker.setPosition(map.getCenter());
+        moveMarker.setMap(map);
+        dispatch(setMovePosition(moveMarker.getPosition()));
+        dispatch(setCurrentPosition(currentMarker.getPosition()));
       })
     }
   }

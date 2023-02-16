@@ -8,13 +8,14 @@ import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user)
+  const myStorage = localStorage;
 
   const postFetch = async () => {
     try {
-      const myToken = sessionStorage.getItem('AccessToken');
+      const myToken = myStorage.getItem('AccessToken');
       if(myToken) {
         const result = await axios.post('http://localhost:3500/auth/logout');
-        sessionStorage.removeItem('AccessToken');
+        myStorage.removeItem('AccessToken');
         navigate('/');
       }
 
@@ -38,7 +39,7 @@ const Navbar = () => {
         </a>
         
         {
-          !sessionStorage.getItem('AccessToken') ?
+          !myStorage.getItem('AccessToken') ?
           (
             //로그인 하기 전에 보여주는 Navbar
             <a className='signin-button' href='/signin'><button>Log in</button></a>

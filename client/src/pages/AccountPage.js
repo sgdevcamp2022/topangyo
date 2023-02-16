@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom'
 const AccountPage = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const myStorage = sessionStorage;
+  const myStorage = localStorage;
   const navigate = useNavigate();
 
   const UpdateToken = async () => {

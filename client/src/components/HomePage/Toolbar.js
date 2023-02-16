@@ -65,12 +65,12 @@ const Toolbar = ({page, setPage}) => {
     const category = e.target.value;
     if(category === 'all') {
       const getContentData = await axios.get(`http://localhost:3700/post/list?page=${page}&lat=${searchLat}&lon=${searchLon}`);
-      const getPosts = getContentData.data;
+      const getPosts = getContentData.data.raws;
       dispatch(setPosts(getPosts));
     } else {
       try {
         const getContentData = await axios.get(`http://localhost:3700/post/content/list?page=${page}&category=${category}&lat=${searchLat}&lon=${searchLon}`)
-        const getPosts = getContentData.data;
+        const getPosts = getContentData.data.raws;
         dispatch(setPosts(getPosts));
       } catch(err) {
         console.log(err)

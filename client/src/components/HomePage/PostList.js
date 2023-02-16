@@ -11,7 +11,10 @@ const PostList = ({page, setPage}) => {
   const matching = useSelector((state) => state.matching);
   const posts = useSelector((state) => state.posts);
   const user = useSelector((state) => state.user);
+  const place = useSelector((state) => state.place);
   const [maxPage, setMaxPage] = useState(1);
+  const myStorage = localStorage;
+  const getMatchingPost = JSON.parse(myStorage.getItem('matchingPost'));
 
   const searchLat = user.loc.lat;
   const searchLon = user.loc.lon;
@@ -19,7 +22,6 @@ const PostList = ({page, setPage}) => {
   const isContents = async () => {
     try {
       const getContentData = await axios.get(`http://localhost:3700/post/list?page=${page}&lat=${searchLat}&lon=${searchLon}`);
-      console.log(getContentData.data);
       const getPostPage = getContentData.data.allPageNum;
       if(getPostPage !== 0) {
         setMaxPage(getPostPage);
@@ -33,7 +35,7 @@ const PostList = ({page, setPage}) => {
 
   useEffect(() => {
     isContents();
-  }, [matching.matchingPost, page, user.loc, maxPage])
+  }, [matching.matchingCount, page, user.loc, maxPage])
 
   const onClickPrev = (e) => {
     e.preventDefault();
@@ -52,25 +54,50 @@ const PostList = ({page, setPage}) => {
   return (
     <div className="postList">
       {
-        matching.matchingPost.map((data, idx) => {
-          return (
-            <MatchingPost key={idx} data={data}/>
-          )
-        })
+        myStorage.getItem('AccessToken') && !place.placeSearch ?
+        (
+          getMatchingPost?.map((data, idx) => {
+            return (
+              <MatchingPost key={idx} data={data}/>
+            )
+          })
+        )
+        :
+        null
       }
-      <Toolbar page={page} setPage={setPage}/>
       {
-        posts.postList.map((data, idx) => {
-          return (
-            <PostCard key={idx} data={data} />
-          )
-        })
+        !place.placeSearch ?
+        (
+          <Toolbar page={page} setPage={setPage}/>
+        )
+        :
+        null
       }
-      <div style={{
-        display : 'flex',
-      }}>
-        <button onClick={onClickPrev}>이전</button><button onClick={onClickNext}>다음</button>
-      </div>
+      {
+        !place.placeSearch ?
+        (
+          posts.postList.map((data, idx) => {
+            return (
+              <PostCard key={idx} data={data} />
+            )
+          })
+        )
+        :
+        null
+      }
+      {
+        !place.placeSearch ?
+        (
+          <div style={{
+            display : 'flex',
+          }}>
+            <button onClick={onClickPrev}>이전</button><button onClick={onClickNext}>다음</button>
+          </div>
+        )
+        :
+        null
+      }
+      
     </div>
   );
 }

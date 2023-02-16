@@ -8,14 +8,15 @@ const DetailPost = () => {
   const getPost = useSelector((state) => state.posts);
   const matching = useSelector((state) => state.matching);
   const [duplicate, setDuplicate] = useState(true);
-  const myStorage = sessionStorage;
+  const myStorage = localStorage;
+  const getMatchingPost = JSON.parse(myStorage.getItem('matchingPost'));
 
   const currentPost = getPost.currentPost;
-  const matchingCount = matching.matchingCount;
+  var matchingCount = getMatchingPost?.length;
 
   const handleDuplicate = () => {
-    matching.matchingPost.map((data, idx) => {
-      if(data.postPK === getPost.currentPost.postPK) {
+    getMatchingPost?.map((data, idx) => {
+      if(data.postPK === currentPost.postPK) {
         setDuplicate(false);
       }
     })
@@ -26,10 +27,11 @@ const DetailPost = () => {
   };
 
   const handleJoinPost = () => {
+    if(matchingCount === undefined) {
+      matchingCount = 0;
+    }
     if(matchingCount < 3 && duplicate) {
-      dispatch(
-        joinMatching(currentPost)
-      )
+      dispatch(joinMatching());
       dispatch(
         openModal({
           modalType : "MatchingDetailModal",
@@ -37,6 +39,12 @@ const DetailPost = () => {
           postPK : currentPost.postPK,
         })
       )
+      if(myStorage.getItem('matchingPost') === null) {
+        myStorage.setItem('matchingPost', JSON.stringify([currentPost]));
+      } else {
+        myStorage.setItem('matchingPost', JSON.stringify([currentPost, ...JSON.parse(myStorage.getItem('matchingPost'))]));
+      }
+      
     } else {
       alert('더 이상 방을 입장할 수 없습니다!');
     }

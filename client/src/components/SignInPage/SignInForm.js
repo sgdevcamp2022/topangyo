@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const SignInForm = () => {
     const navigate = useNavigate();
-    const myStorage = sessionStorage;
+    const myStorage = localStorage;
     const dispatch = useDispatch();
 
 

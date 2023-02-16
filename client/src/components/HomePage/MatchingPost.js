@@ -6,7 +6,8 @@ import { setCurrentPost } from '../../store/slice/postsslice';
 
 const MatchingPost = ({data}) => {
     const dispatch = useDispatch();
-    const getPost = useSelector((state) => state.posts);
+    const posts = useSelector((state) => state.posts);
+    
 
     const handleOpenModal = () => {
         dispatch(

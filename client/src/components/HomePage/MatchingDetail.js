@@ -7,22 +7,31 @@ import io from "socket.io-client"; //소켓 import
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../store/slice/modalslice";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { setPlaceSearch } from "../../store/slice/placeslice";
 //const CONNECT_URL_SOCKET = "http://localhost:4000/chat"; // 소켓 주소
 const socket = io.connect(''); // 채팅 소켓 연결
 
 const MatchingDetail = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const getPost = useSelector((state) => state.posts);
   const currentPost = getPost.currentPost;
+  const myStorage = localStorage;
+  const getMatchingPost = JSON.parse(myStorage.getItem('matchingPost'));
+  var matchingCount = getMatchingPost?.length;
 
-  const { id, nickname } = useSelector((state) => state.user); // 현재 로그인 유저 정보 가져오는 디스트럭팅 문법
+  const { id } = useSelector((state) => state.user); // 현재 로그인 유저 정보 가져오는 디스트럭팅 문법
   const [currentMatching, setCurrentMatching] = useState({});
   const [room, setRoom] = useState(currentPost.postPK); // 추후 현재 postId / postTitle로 바꾸기
 
   const [applyUser, setApplyUser] = useState([]); // 신청 유저
   const [matchedMembers, setMatchedMembers] = useState([]); // 매칭확정유저
 
+
+
   const handleCloseModal = () => {
+    dispatch(setPlaceSearch(false));
     dispatch(closeModal());
   };
 
@@ -71,6 +80,16 @@ const MatchingDetail = () => {
   const cancleMatching = (id) => {
     socket.emit("cancleMatcing", { room, id });
   };
+
+  const handleLeaveRoom = () => {
+    getMatchingPost.map((data, idx) => {
+      if(data.postPK == currentPost.postPK) {
+        getMatchingPost.splice(idx,1);
+        myStorage.setItem('matchingPost', JSON.stringify(getMatchingPost))
+      }
+    })
+    handleCloseModal();
+  }
 
   // 이름 적절히 바꿀 것
   // 현재 상태에 따라 filtering하여서 밑에 버튼을 바꾼다.
@@ -140,7 +159,7 @@ const MatchingDetail = () => {
           {btn()}
         </div>
       </div>
-      <button>매칭방 나가기</button>
+      <button onClick={handleLeaveRoom}>매칭방 나가기</button>
     </div>
   );
 };

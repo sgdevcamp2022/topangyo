@@ -10,7 +10,7 @@ const WritePost = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const matching = useSelector((state) => state.matching);
-  const myStorage = sessionStorage;
+  const myStorage = localStorage;
 
   const [writePost, setWritePost] = useState({
     title: "",
@@ -33,7 +33,7 @@ const WritePost = () => {
   };
 
   const handleJoinPost = (data) => {
-    dispatch(joinMatching(data));
+    dispatch(joinMatching());
     dispatch(setCurrentPost(data));
     dispatch(
       openModal({
@@ -42,6 +42,11 @@ const WritePost = () => {
         postPK: data.postPK,
       })
     );
+    if(myStorage.getItem('matchingPost') === null) {
+      myStorage.setItem('matchingPost', JSON.stringify([data]));
+    } else {
+      myStorage.setItem('matchingPost', JSON.stringify([data, ...JSON.parse(myStorage.getItem('matchingPost'))]));
+    }
   };
 
   const handleCreatePost = async (variables) => {
