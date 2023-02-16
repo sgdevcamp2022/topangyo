@@ -1,13 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 
-const MatchingPlace = () => {
-  return (
-    <div style={{ flexGrow : '1', }}>
-      장소
-      <hr/>
-      <button>장소 등록</button>
-    </div>
-  )
-}
+const MatchingPlace = (props) => {
+  const {socket,id,room} = props
+  const [place, setPlace] = useState({
+    place: {
+      place_name: "",
+      address_name: "",
+      place_url: "",
+    },
+  });
 
-export default MatchingPlace
+  useEffect(() => {
+    socket.on("getPlaceInfo", (data) => {
+      setPlace(data.place);
+    });
+  }, []);
+
+  // 버튼 눌렀을때
+  const getPlace = () => {
+    // socket.emit("setPlace", {room, place})
+  };
+
+  return <div>MatchingPlace</div>;
+};
+
+export default MatchingPlace;
