@@ -2,7 +2,7 @@ import React from 'react'
 
 const MatchingUser = () => {
   return (
-    <div>MatchingUser</div>
+    <div>참여자</div>
   )
 }
 

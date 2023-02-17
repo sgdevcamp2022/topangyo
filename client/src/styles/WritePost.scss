@@ -1,0 +1,37 @@
+.writepost-container {
+    position : absolute ;
+    max-width : 400px;
+    z-index : 20;
+    background-color : white;
+    padding : 30px;
+    top : 50%;
+    left : 50%;
+    transform : translate(-50%, -50%);
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.description {
+    height : 150px;
+}
+
+.writepost-button {
+    width: 300px;
+    margin-top: 5px;
+    height: 35px;
+}
+
+.writepost-title {
+    display: flex;
+    font-size: 1.3rem;
+    font-family: 'bold';
+    justify-content: space-between;
+    margin-bottom: 5px;
+    width: 95%;
+}
+
+#writepost-line{
+    width : 300px;
+    margin-bottom: 20px;
+}
+

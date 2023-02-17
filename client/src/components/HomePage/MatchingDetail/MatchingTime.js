@@ -2,7 +2,7 @@ import React from 'react'
 
 const MatchingTime = () => {
   return (
-    <div>MatchingTime</div>
+    <div>시간</div>
   )
 }
 

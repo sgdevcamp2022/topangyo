@@ -5,9 +5,9 @@ const ChatOut = ({message}) => {
 
   return(
     
-    <div className='chat'> 
-          <div className ="chatOut">
-           <div className = "chatOutText">{message}</div>
+    <div className='chatout'> 
+          <div className ="chatout-container">
+           <div className = "chatout-text">{message}</div>
          </div>
      </div>
 

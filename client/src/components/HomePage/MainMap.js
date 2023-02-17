@@ -7,7 +7,7 @@ const {kakao} = window;
 
 const imageSrc = 'https://ifh.cc/g/jXtyB6.png', // 마커이미지의 주소입니다    
     imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
-    imageOption = {offset: new kakao.maps.Point(20, 20)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+    imageOption = {offset: new kakao.maps.Point(15, 0)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
           
 const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
     markerPosition = new kakao.maps.LatLng(37.54699, 127.09598); // 마커가 표시될 위치입니다
@@ -26,9 +26,9 @@ const circle = new kakao.maps.Circle({
     fillOpacity: 0.2  // 채우기 불투명도 입니다   
 }); 
 
-const imageSrc2 = 'https://ifh.cc/g/jXR5By.png',
+const imageSrc2 = 'https://i.imgur.com/j4Hek5N.png',
     imageSize2 = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
-    imageOption2 = {offset: new kakao.maps.Point(20, 20)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+    imageOption2 = {offset: new kakao.maps.Point(15, 0)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
 const markerImage2 = new kakao.maps.MarkerImage(imageSrc2, imageSize2, imageOption2),
     markerPosition2 = new kakao.maps.LatLng(37.54699, 127.09598); // 마커가 표시될 위치입니다
@@ -40,13 +40,6 @@ const tempMarker = new kakao.maps.Marker({
 const MainMap = ({setIsPostModal, isPostModal, isJoinModal, setIsDetailModal, isDetailModal}) => {
   const user = useSelector(state => state.user);
   const myStorage = sessionStorage;
-
-//   const mapinit = useEffect(() => {
-//   const script = document.createElement("script");
-//   script.src = "https://unpkg.com/lodash//dapi.kakao.com/v2/maps/sdk.js?appkey=%REACT_APP_KAKAO_MAP%";
-//   script.async = true;
-//   document.body.appendChild(script);
-// });
 
   const map = useEffect(() => {
     const container = document.getElementById('map'),
@@ -62,6 +55,17 @@ const MainMap = ({setIsPostModal, isPostModal, isJoinModal, setIsDetailModal, is
       lon = position.coords.longitude; // 경도
       
       let locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+      
+      // 장소 검색 객체를 생성합니다
+      const places = new kakao.maps.services.Places(); 
+
+      const callback = function(result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            console.log(result);
+        }
+      };
+
+      places.keywordSearch('판교 치킨', callback);
 
       // 마커와 인포윈도우를 표시합니다
       displayMarker(locPosition);
@@ -109,7 +113,7 @@ const MainMap = ({setIsPostModal, isPostModal, isJoinModal, setIsDetailModal, is
       // 지도에 원을 표시합니다 
       circle.setPosition(locPosition);
       circle.setMap(map); 
-      
+    
 
       // 지도 중심좌표를 접속위치로 변경합니다
       map.setCenter(locPosition);      
@@ -134,7 +138,7 @@ const MainMap = ({setIsPostModal, isPostModal, isJoinModal, setIsDetailModal, is
 
   return (
     <>
-    {show && <button onClick = {() => (map)} className = "locationButton">해당 위치로 재검색</button>}
+    {show && <button onClick = {() => (map)} className = "location-button">해당 위치로 재검색</button>}
     <div id='map' onMouseDown={mapClick}>
       <PostList setIsPostModal={setIsPostModal} isPostModal={isPostModal} isJoinModal={isJoinModal} setIsDetailModal={setIsDetailModal} isDetailModal={isDetailModal}/>
     </div>

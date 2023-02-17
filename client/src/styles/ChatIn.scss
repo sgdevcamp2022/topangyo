@@ -1,17 +1,23 @@
-.chat {
+.chat-in {
     width: 100%;
     display: flex;
     flex-direction: row;
-
+    margin: 15px 0px;
 }
 
-.chatInImg {
+.chatin-img {
     border-radius: 100%;
     width: 30px;
     height: 30px;
 }
 
-.chatInText {
+
+.id {
+    margin-left: 10px;
+    font-size: 0.8rem;
+}
+
+.chatin-text {
     background-color: #eaeaea;
     width : calc(100%-30px);
     padding: 10px 20px;

@@ -10,7 +10,6 @@ import DetailPost from '../components/HomePage/DetailPost.js'
 import MatchingDetail from '../components/HomePage/MatchingDetail.js'
 import './../styles/HomePage.scss'
 
-
 const HomePage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -91,7 +90,7 @@ const HomePage = () => {
 
     return (
         <div>
-            <button onClick={handleWriteModal} className = "writeButton">글쓰기✏️</button>
+            <button onClick={handleWriteModal} className = "write-button">글쓰기✏️</button>
             <MainMap setIsPostModal={setIsPostModal} isPostModal={isPostModal} isJoinModal={isJoinModal} setIsDetailModal={setIsDetailModal} isDetailModal={isDetailModal} />
             {
                 isWriteModal && (<WritePost setIsWriteModal={setIsWriteModal} isWriteModal={isWriteModal} />)

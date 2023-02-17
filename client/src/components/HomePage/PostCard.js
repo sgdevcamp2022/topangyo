@@ -1,6 +1,6 @@
 import './../../styles/PostCard.scss';
 import { useNavigate } from 'react-router-dom';
-
+import PostState from './PostState';
 
 const PostCard = ({setIsPostModal, isPostModal}) => {
 
@@ -9,11 +9,16 @@ const PostCard = ({setIsPostModal, isPostModal}) => {
   }
   
   return (
-    <a className="postCard" onClick={handleOpenModal}>
-      <p className="postTitle">모집글 제목  모집상태</p> 
-      <p>모집정보</p>
-      <p>현재인원 / 모집인원</p>
-      <p>만남시간</p>
+    <a className="postcard" onClick={handleOpenModal}>
+      <div className = "postcard-main">
+        <div className="postcard-title">🎳 고깃집 혼밥 같이 할 사람? 같이 먹어요요요뉸노
+        </div>
+      </div>
+      <div className='postcard-inform'>
+        <p className='postcard-category'>2002년 00월 00일 13:00분</p> 
+        <p className='postcard-time'></p>
+      </div>
+      <p className='postcard-participate'> 3 / 10명<PostState/></p> 
     </a>
   )
 }

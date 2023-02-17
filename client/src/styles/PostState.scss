@@ -1,0 +1,15 @@
+.poststate {
+    font-size: 0.8rem;
+    background-color: #90b9ff;
+
+    //모집 중 색 : background-color : #90b9ff
+    //모집 완료 색 :background-color : #7d7d7d;
+
+    border-radius: 10px 10px / 10px 10px;
+    font-family: bold;
+    color: white;
+    width : 60px; 
+    padding: 3px 3px;
+    text-align: center;
+    float:right;
+}

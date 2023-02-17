@@ -7,13 +7,13 @@
     overflow: hidden;
 }
 
-.locationButton {
+.location-button {
+    width : 155px;
     color : white;
     z-index : 2;
     position : absolute;
-    right : 46%;
-    margin : 10px;
-    background-color : #82B0E0;
+    right : calc(50% - 155px/2);
+    margin-top : 13px;
     padding : 10px 25px;
     border-radius : 10px;
 }

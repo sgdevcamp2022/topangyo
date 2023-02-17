@@ -18,52 +18,30 @@ const MatchingChat = () => {
     }
 
   return (
-    <div
-        style={{
-            width : '50%',
-            padding : '50px',
-        }}
-    >
-        <div
-            style={{
-                height : '90%',
-                maxHeight : '90%',
-                width : '100%',
-                overflow : 'scroll',
-            }}
-        >
-              <div className ="chatContainer">
-                            <ChatIn/>
-            {
-                //채팅 내용이 남는 공간
-                value.map((data, i) => {
-                    return (
-                        // <div
-                        //     style={{
-                        //         padding : '10px',
-                        //         backgroundColor : 'gray',
-                        //         borderRadius : '10px',
-                        //         margin : '20px 0',
-                        //         wordBreak : 'break-all'
-                        //     }}
-                        //     key ={i}
-                        // >{data}</div>
-                        <ChatOut message = {data} key = {i}/>
-                    )
-                })
-            }
+    <div className='matchingchat'>
+        <div className='matchingchat-container'>
+            <div className ="ballon-container">
+                <ChatIn/>
+                <ChatIn/>
+                { //채팅 내용이 남는 공간
+                    value.map((data, i) => {
+                        return (
+                            <div
+                                style={{
+                                    clear : 'right',
+                                    wordBreak : 'break-all'
+                                }}
+                                key ={i}>
+                                <ChatOut message = {data}/>
+                            </div>
+                        )  
+                    })
+                }
             </div>
-        </div>
-        <div
-            style={{
-                display : 'flex',
-                height : '5%',
-            }}
-        >   
-                <div className="sendContainer">
-                    <input value={text} type="text" className="chatInput" onChange={onChangeText}/>
-                    <button className="chatButton"  onClick={handleSubmit}>전송</button>
-                </div>
+        </div> 
+        <div className="send-container">
+            <input value={text} type="text" className="chat-input" onChange={onChangeText}/>
+            <button className="chat-submit-button"  onClick={handleSubmit}>전송</button>
         </div>
     </div>
   )

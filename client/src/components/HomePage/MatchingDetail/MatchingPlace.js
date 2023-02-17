@@ -2,7 +2,7 @@ import React from 'react'
 
 const MatchingPlace = () => {
   return (
-    <div>MatchingPlace</div>
+    <div>장소</div>
   )
 }
 

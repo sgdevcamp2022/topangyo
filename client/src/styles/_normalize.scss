@@ -1,4 +1,6 @@
 //커스텀 스타일을 기본으로 설정해놓고 싶은 공간
+@use "_varaibles.scss";
+
 
 .container {
     display: flex;
@@ -24,8 +26,37 @@ button {
     background-color: #8EB4E3;
     border-radius: 5px;
     transition: all 0.3s ease 0s;
+    font-family: 'bold';
 }
 
 button:hover {
-    background-color: #6892FF;
+    background-color:  #6294d1;
 }
+
+
+
+.input-box {
+    padding: 10px;
+    font-size: 1rem;
+    width: 300px;
+    border: 0.5px solid silver;
+    border-radius: 5px;
+    box-shadow: 0 4px 4px -4px rgb(172, 172, 172);
+    height : 45px;
+    margin-bottom: 5px;
+}
+
+.x{
+    padding : 0px;
+    background: none;
+}
+
+.x-img {
+    width: 15px;
+    height: 15px;
+}
+
+.x:hover {
+    background : none;
+}
+

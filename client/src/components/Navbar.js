@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
+
 const Navbar = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user)
@@ -34,14 +35,14 @@ const Navbar = () => {
     <header>
         <a className='logo-box' href='/'>
             <img alt='logo' className='logo' src='images/logo/DSG_white_logo.png' />
-            <h3>DSG</h3> 
+            <div id ="logo-title">동세권</div> 
         </a>
         
         {
           !sessionStorage.getItem('AccessToken') ?
           (
             //로그인 하기 전에 보여주는 Navbar
-            <a className='signin-button' href='/signin'><button>Log in</button></a>
+            <a className='signin-button' href='/signin'><button className = "log-button">Log in</button></a>
           )
           :
           (
@@ -51,7 +52,7 @@ const Navbar = () => {
                 <img alt='userImage' className='user-icon' src='images/user/user_image.png' />
                 <h4>{user.nickname}</h4>
               </a>
-              <button onClick={handleLogout}>로그아웃</button>
+              <button class="log-button" onClick={handleLogout}>로그아웃</button>
             </div>
           )
         }

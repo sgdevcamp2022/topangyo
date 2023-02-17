@@ -4,7 +4,7 @@
 * {
    margin: 0;
    padding: 0;
-   font-family: 'Jua-Regular';
+   font-family: 'normal';
    box-sizing: border-box;
 }
 
@@ -13,9 +13,39 @@ html, body {
 }
 
 @font-face {
-    font-family: 'Jua-Regular';
-    src:url('../assets/fonts/Jua-Regular.woff2') format('woff2'),
-        url('../assets/fonts/Jua-Regular.ttf') format('truetype');
+    font-family: 'normal';
+    font-weight: 500;
+    font-style: normal;
+    src:url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Medium.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Medium.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Medium.ttf') format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'bold';
+    font-weight: 800;
+    font-style: normal;
+    src:url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-ExtraBold.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-ExtraBold.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-ExtraBold.ttf') format("truetype");
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: 'title';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeSe_hyun.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'title2';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 a {
@@ -44,4 +74,3 @@ ol {
     padding: 0;
     list-style: none;
 }
-

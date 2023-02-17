@@ -1,0 +1,55 @@
+.signin {
+    margin-top : 40px;
+    text-align: center;
+}
+
+.signin-title {
+    font-size: 3rem;
+    font-family: 'title';
+}
+
+.sigin-long-title {
+    font-family: 'title';
+    color : #8EB4E3;
+    font-size: 1.2rem;
+}
+
+
+.login-box {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+
+
+.logbutton {
+    margin-top: 15px;
+    height: 40px;
+}
+
+.signup-text {
+    font-size: 1rem;
+}
+
+.signup-word {
+    color : #6892FF;
+    font-size: 1.1rem;
+    font-weight: bolder;
+    background-color: white;
+    padding:0;
+    margin-left: 10px;
+    margin-bottom: 7px;
+}
+
+.signup-word:hover {
+    background-color: white;
+}
+
+
+.forgotPassWordText {
+    color: #90b9ff;
+    text-decoration : underline;
+}
+

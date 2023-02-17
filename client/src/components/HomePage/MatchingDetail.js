@@ -11,50 +11,31 @@ const MatchingDetail = ({isDetailModal, setIsDetailModal}) => {
         setIsDetailModal(!isDetailModal)
     }
   return (
-    <div
-        style={{
-            position : 'absolute',
-            width : '100%',
-            height : '100%',
-            zIndex : '50',
-            backgroundColor : 'white',
-            padding:'20px',
-            boxSizing : 'border-box',
-            bottom :'0',
-        }}
-    >
-        
-        <div className="chatPage">
-            <div className="chatTitle">
-                <div>모집글제목 </div>
-                <div style={{display : "flex",  flexDirection : "row" }}>
-                <div style={{marginRight : "10px"}}>모집상태</div>
-                <button onClick={handleCloseJoinModal}>X</button>
+    <div className='chatpage'>
+        <div className='chatpage-container'>
+            <div className="chat-main">
+                <div className='chat-first-text'>
+                    <div className='chat-title'>모집글제목 </div>
+                    <div> 모집상태</div>
+                    <button className = "x" onClick={handleCloseJoinModal}><img className = "x-img" src = {process.env.PUBLIC_URL + '/images/close.png'} ></img></button>
+                </div>
+                <div className='chat-second-text'>
+                    <div>모집인원</div>
+                    <div>모집연령대</div>
+                    <div>모집성별</div>
                 </div>
             </div>
-            <div className='chatTitleInform'>
-                <div>모집인원</div>
-                <div>모집연령대</div>
-                <div>모집성별</div>
-            </div>
-            <div
-            style={{
-                overflow : 'hidden',
-                display : 'flex',
-                height : '100%',
-                boxSizing : 'border-box',
-                
-            }}
-        >
-            
-            <MatchingChat />
-            <div id="line"></div>
-            <div className='chatInform'>
-                    <div className="InformPerson"><MatchingUser /></div>
-                    <div className="InformPlace"><MatchingPlace /></div>
-                    <div className="InformTime"><MatchingTime /></div>
-                    <div className="InformButton"><button>신청</button><button>나가기</button></div>
-            </div>
+            <div className='chating'>
+                <MatchingChat />
+                <div id="chat-column-line"></div>
+                <div className='chat-inform'>
+                    <div className='inform'>
+                        <div className="inform-person"><MatchingUser /></div>
+                        <div className="inform-place"><MatchingPlace /></div>
+                        <div className="inform-time"><MatchingTime /></div>
+                    </div>
+                    <div className="inform-button"><button className='application'>신청</button><button className='out'>나가기</button></div>
+                </div>
             </div>
         </div>
     </div>
