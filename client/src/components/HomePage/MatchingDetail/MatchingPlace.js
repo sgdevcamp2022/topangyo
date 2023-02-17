@@ -40,6 +40,7 @@ const MatchingPlace = (props) => {
     dispatch(setPlaceSearch(true));
     dispatch(closeModal());
     // socket.emit("setPlace", {room, place})
+    
   };
 
   return (

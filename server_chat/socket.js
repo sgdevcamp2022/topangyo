@@ -94,7 +94,7 @@ module.exports = (server, app) => {
         const userList = await Matching.findOne({ room: data.room });
         // if (userList.host === data.id) {
         chat.to(data.room).emit("getApplyAndMatchedUserList", {
-          applyUser: userList.applyUser,
+          applyUser: userList?.applyUser,
           matchedMembers: userList.members,
         });
         // }
@@ -177,27 +177,27 @@ module.exports = (server, app) => {
       });
     });
 
-    socket.on("setPlace" , async (data) => {
-      const foundMatching = await Matching.findOneAndUpdate({room : data.room},
-        {place : data.place},
-        {new:true}
-        );
-        chat.to(data.room).emit("getPlaceInfo", {
-          plcae : foundMatching.place
-        })
-    })
+    socket.on("setPlace", async (data) => {
+      const foundMatching = await Matching.findOneAndUpdate(
+        { room: data.room },
+        { place: data.place },
+        { new: true }
+      );
+      chat.to(data.room).emit("getPlaceInfo", {
+        place: foundMatching.place,
+      });
+    });
 
     socket.on("setMeetingDate", async (data) => {
-      const foundMatching = await Matching.findOneAndUpdate({room: data.room},
-        {meetingDate : data.meetingDate},
-        {new:true})
-        chat.to(data.room).emit("getMeetingDate", {
-          meetingDate : foundMatching.meetingDate
-        })
-    })
-
-
-
+      const foundMatching = await Matching.findOneAndUpdate(
+        { room: data.room },
+        { meetingDate: data.meetingDate },
+        { new: true }
+      );
+      chat.to(data.room).emit("getMeetingDate", {
+        meetingDate: foundMatching.meetingDate,
+      });
+    });
   });
 
   // end of code
