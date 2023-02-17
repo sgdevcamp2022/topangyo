@@ -1,5 +1,8 @@
 const mock = require("../../mock");
+<<<<<<< HEAD
+=======
 const ChatRoom = require("../models/ChatRoom");
+>>>>>>> backend
 
 const handleTest = async (req, res) => {
   const { room, Id } = req.body;

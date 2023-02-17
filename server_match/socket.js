@@ -1,7 +1,8 @@
 const socketIO = require("socket.io");
 const allowedOrigins = require("./config/allowedOrigins");
+const Matching = require("./models/Matching");
 const logger = require("./config/logger");
-const data = require("./data");
+
 
 module.exports = (server, app) => {
   const io = socketIO(server, {
@@ -14,7 +15,7 @@ module.exports = (server, app) => {
   // chat
   const chat = io.of("/match");
   chat.on("connection", (socket) => {
-    console.log("chat 입장 user : socket");
+    console.log("match 입장 user : socket");
 
     socket.on("disconnect", () => {
       console.log("chat disconnect user : socket");
@@ -22,7 +23,7 @@ module.exports = (server, app) => {
 
     // data.room, data.Id
     socket.on("addUserIntoRoomStatus", (data) => {
-      console.log(data);
+      
     });
   });
 
