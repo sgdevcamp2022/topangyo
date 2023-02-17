@@ -5,6 +5,11 @@ const initialState = {
     modalType : "",
     isOpen : false,
     postPK : 0,
+    place : {
+        place_name: "",
+        address_name: "",
+        place_url: "",
+    }
 }
 
 const modal = createSlice({
@@ -16,10 +21,11 @@ const modal = createSlice({
             state.modalType = modalType.modalType;
             state.isOpen = true;
             state.postPK = modalType.postPK;
+            state.place = modalType.place;
         },
         closeModal : (state) => {
             state.isOpen = false;
-        },
+        }
     },
 });
 

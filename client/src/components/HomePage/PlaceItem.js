@@ -9,28 +9,29 @@ const PlaceItem = ({data, idx}) => {
   
 
     const handleSelectPlace = (e) => {
-        e.preventDefault();
-        console.log(data);
-        console.log(data.place_name);
-        console.log(data.road_address_name);
-        console.log(data.place_url);
-        dispatch(
-            openModal({
-              modalType : "MatchingDetailModal",
-              isOpen : true,
-              postPK : currentPost.postPK,
-            })
-          )
+      e.preventDefault();
+      dispatch(
+        openModal({
+          modalType : "MatchingDetailModal",
+          isOpen : true,
+          postPK : currentPost.postPK,
+          place : {
+            place_name: data.place_name,
+            address_name: data.road_address_name,
+            place_url: data.place_url,
+          }
+        })
+      )
     }
     
   return (
     <a className="info" href={data.place_url} target="_blank" style={{ display:'flex', justifyContent : 'space-between' }}>
-        <div>
-            <h4>{data.place_name}</h4>
-            <p>{data.category_group_name}</p>
-            <p>{data.road_address_name}</p>
-        </div>
-        <button onClick={handleSelectPlace}>선택</button>
+      <div>
+          <h4>{data.place_name}</h4>
+          <p>{data.category_group_name}</p>
+          <p>{data.road_address_name}</p>
+      </div>
+      <button onClick={handleSelectPlace}>선택</button>
     </a>
     )
 }

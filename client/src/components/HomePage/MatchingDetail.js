@@ -9,17 +9,16 @@ import { closeModal } from "../../store/slice/modalslice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { setPlaceSearch } from "../../store/slice/placeslice";
-//const CONNECT_URL_SOCKET = "http://localhost:4000/chat"; // 소켓 주소
-const socket = io.connect(''); // 채팅 소켓 연결
+const CONNECT_URL_SOCKET = "http://localhost:4000/chat"; // 소켓 주소
+const socket = io.connect(CONNECT_URL_SOCKET); // 채팅 소켓 연결
 
 const MatchingDetail = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const getPost = useSelector((state) => state.posts);
   const currentPost = getPost.currentPost;
+
   const myStorage = localStorage;
   const getMatchingPost = JSON.parse(myStorage.getItem('matchingPost'));
-  var matchingCount = getMatchingPost?.length;
 
   const { id } = useSelector((state) => state.user); // 현재 로그인 유저 정보 가져오는 디스트럭팅 문법
   const [currentMatching, setCurrentMatching] = useState({});
