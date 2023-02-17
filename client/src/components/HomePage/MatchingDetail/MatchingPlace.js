@@ -19,6 +19,7 @@ const MatchingPlace = (props) => {
   // 버튼 눌렀을때
   const getPlace = () => {
     // socket.emit("setPlace", {room, place})
+    
   };
 
   return <div>MatchingPlace</div>;
