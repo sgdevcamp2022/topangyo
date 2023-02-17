@@ -153,7 +153,7 @@ const MatchingDetail = () => {
             setMatchedMembers={setMatchedMembers}
             cancleMatching={cancleMatching}
           />
-          <MatchingPlace socket={socket} room={room} id={id} />
+          <MatchingPlace socket={socket} room={room} id={id} currentPost={currentPost} />
           <MatchingTime socket={socket} room={room} id={id} />
           {btn()}
         </div>

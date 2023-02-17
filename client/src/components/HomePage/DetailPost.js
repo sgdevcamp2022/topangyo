@@ -12,7 +12,7 @@ const DetailPost = () => {
   const getMatchingPost = JSON.parse(myStorage.getItem('matchingPost'));
 
   const currentPost = getPost.currentPost;
-  var matchingCount = getMatchingPost?.length;
+  let matchingCount = getMatchingPost?.length;
 
   const handleDuplicate = () => {
     getMatchingPost?.map((data, idx) => {

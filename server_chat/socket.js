@@ -95,7 +95,7 @@ module.exports = (server, app) => {
         // if (userList.host === data.id) {
         chat.to(data.room).emit("getApplyAndMatchedUserList", {
           applyUser: userList?.applyUser,
-          matchedMembers: userList.members,
+          matchedMembers: userList?.members,
         });
         // }
       } catch (error) {
@@ -180,9 +180,10 @@ module.exports = (server, app) => {
     socket.on("setPlace", async (data) => {
       const foundMatching = await Matching.findOneAndUpdate(
         { room: data.room },
-        { place: data.place },
+        { place: data.place.place },
         { new: true }
       );
+
       chat.to(data.room).emit("getPlaceInfo", {
         place: foundMatching.place,
       });
