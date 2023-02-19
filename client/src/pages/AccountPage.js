@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import Profile from '../components/AccountPage/Profile'
 import Alert from '../components/AccountPage/Alert'
 import History from '../components/AccountPage/History'
-import Friends from '../components/AccountPage/Friends'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import { setUser, setToken } from '../store/slice/userslice'
@@ -89,8 +88,6 @@ const AccountPage = () => {
       <Alert/>
       <hr/>
       <History/>
-      <hr/>
-      <Friends/>
     </div>
   )
 }

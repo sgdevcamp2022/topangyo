@@ -12,9 +12,9 @@
     flex-direction: column;
     position: absolute;
     left: 50px;
-    max-height: 300px;
+    max-height: 40%;
     overflow-y: scroll;
-    top : 300px;
+    top : 30vh;
     z-index: 2;
     background-color: rgba(255, 255, 255, 0.5);
 }
@@ -112,4 +112,26 @@
 
 .category-image {
     margin: 5px;
+}
+
+.write-button {
+    z-index : 2;
+    position : absolute;
+    bottom : 40px;
+    left : 10%; 
+    padding: 15px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0px 0px 5px gray;
+}
+
+.modal-background {
+    position: absolute;
+    z-index: 20;
+    width: 100%;
+    height: 100%;
+    background-color: #717171a2;
 }

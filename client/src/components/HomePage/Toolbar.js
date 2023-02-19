@@ -5,9 +5,6 @@ import { setPosts } from "../../store/slice/postsslice";
 import "./../../styles/Toolbar.scss";
 
 const Toolbar = ({page, setPage}) => {
-  // const categories = ['🎳 취미', '🍴 맛집', '☕ 카페', '🛹 스포츠/레저', '📕 공부', '🛍 쇼핑', '👨‍👩‍👧‍👦 소모임', '🙌🏻 기타'];
-  
-
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [isSearch, setIsSearch] = useState(false);
@@ -109,6 +106,16 @@ const Toolbar = ({page, setPage}) => {
     console.log('포스트리스트 접기');
   }
 
+  const handleChangeKeyword = async (e) => {
+    if(isSearch) {
+      try {
+        const getContentData = await axios.get(`http://localhost:3700/post/content/list?page=${page}&keyword=test&lat=${searchLat}&lon=${searchLon}`)
+      } catch(err) {
+        console.log(err);
+      }
+    }
+  }
+
   useEffect(() => {
     setPage(1);
   }, [])
@@ -116,7 +123,7 @@ const Toolbar = ({page, setPage}) => {
   return (
     <div className="toolBar">
       <div style={{
-        display : isSearch
+        display : isSearch,
       }}>
         <button className="toolbarButton" onClick={onChangeSearch}>🔍︎</button>
         <button className="toolbarButton" onClick={onChangeCategory}>카테고리</button>
@@ -129,7 +136,7 @@ const Toolbar = ({page, setPage}) => {
       }}>
         <input
           placeholder="Search"
-          onChange={onChangeSearch}
+          onChange={handleChangeKeyword}
           style={{
             padding : '5px',
             backgroundColor : 'white',
@@ -137,6 +144,7 @@ const Toolbar = ({page, setPage}) => {
             borderRadius : '50px',
             padding : '10px 20px',
             boxSizing : 'border-box',
+            boxShadow : '0px 0px 3px gray',
         }} type='text' />
       </div>
 
@@ -155,7 +163,8 @@ const Toolbar = ({page, setPage}) => {
                   margin : '5px',
                   padding : '5px 20px',
                   borderRadius : '20px',
-                  display : 'inline-block'
+                  display : 'inline-block',
+                  boxShadow : '0px 0px 3px gray',
               }}>{category.text}</button>
             )
           })

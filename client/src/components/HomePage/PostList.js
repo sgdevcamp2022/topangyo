@@ -35,7 +35,7 @@ const PostList = ({page, setPage}) => {
 
   useEffect(() => {
     isContents();
-  }, [matching.matchingCount, page, user.loc, maxPage])
+  }, [getMatchingPost.length, page, user.loc, maxPage])
 
   const onClickPrev = (e) => {
     e.preventDefault();
@@ -53,18 +53,20 @@ const PostList = ({page, setPage}) => {
  
   return (
     <div className="postList">
-      {
-        myStorage.getItem('AccessToken') && !place.placeSearch ?
-        (
-          getMatchingPost?.map((data, idx) => {
-            return (
-              <MatchingPost key={idx} data={data}/>
-            )
-          })
-        )
-        :
-        null
-      }
+      <div className="matching-post">
+        {
+          myStorage.getItem('AccessToken') && !place.placeSearch ?
+          (
+            getMatchingPost?.map((data, idx) => {
+              return (
+                <MatchingPost key={idx} data={data}/>
+              )
+            })
+          )
+          :
+          null
+        }
+      </div>
       {
         !place.placeSearch ?
         (
@@ -90,8 +92,11 @@ const PostList = ({page, setPage}) => {
         (
           <div style={{
             display : 'flex',
+            justifyContent : 'space-between',
+            marginBottom : '10px'
           }}>
-            <button onClick={onClickPrev}>이전</button><button onClick={onClickNext}>다음</button>
+            <button className="pagination-btn" onClick={onClickPrev}><img width="15px" src="https://cdn-icons-png.flaticon.com/512/130/130882.png" alt="prevImage" /></button>
+            <button className="pagination-btn" onClick={onClickNext}><img width="15px" src="https://cdn-icons-png.flaticon.com/512/130/130884.png" alt="nextImage" /></button>
           </div>
         )
         :

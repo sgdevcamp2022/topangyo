@@ -10,7 +10,6 @@ import PlaceItem from "./PlaceItem.js";
 const MainMap = ({setPage}) => {
   const dispatch = useDispatch();
   const { kakao } = window;
-  const myStorage = localStorage;
 
   //reducer
   const user = useSelector((state) => state.user);
@@ -33,7 +32,6 @@ const MainMap = ({setPage}) => {
 
   const [show, setShow] = useState(false);
   const [keyword, setKeyword] = useState("");
-  const [category, setCategory] = useState("");
   
 
   
@@ -275,20 +273,6 @@ const MainMap = ({setPage}) => {
     )
   }
 
-
-  
-
-  const handleCurrentPosition = (e) => {
-    e.preventDefault();
-    setShow(false);
-    var lat = currentPosition.Ma;
-    var lon = currentPosition.La;
-
-    var moveCurrentPosition = new kakao.maps.LatLng(lat, lon);
-    map.panTo(moveCurrentPosition);
-    
-  }
-
   const handleGetPlaces = () => {
     place.keywordSearch(keyword, placesSearchCB);
   }
@@ -379,9 +363,8 @@ const MainMap = ({setPage}) => {
       :
       null
     }
-      <button onClick={handleWriteModal} style={{ zIndex : '2', position : 'absolute', bottom : '20px', left : '20px' }}>글쓰기✏️</button>
-      <button onClick={handleCurrentPosition} style={{ zIndex : '2', position : 'absolute', bottom : '20px', left : '200px' }}>검색 위치로 돌아가기</button>
-      {show && (placeSearch === false) && <button onClick={handleClickRescan} style={{ color : "white", zIndex : '2', position : 'absolute', right : "46%", margin : "10px", backgroundColor : "#82B0E0", padding : "10px 25px", borderRadius : "10px"}}>해당 위치로 재검색</button>}
+      <button onClick={handleWriteModal} className="write-button"><img alt="writeImage" width="30px" src="https://cdn-icons-png.flaticon.com/512/1001/1001259.png" /></button>
+      {show && (placeSearch === false) && <button onClick={handleClickRescan} style={{ color : "white", zIndex : '2', position : 'absolute', right : "46%", margin : "10px", backgroundColor : "#82B0E0", padding : "10px 25px", borderRadius : "10px", boxShadow:'0px 0px 3px gray'}}>해당 위치로 재검색</button>}
       <div id="map" onMouseDown={mapClick}></div>
     </>
   );

@@ -8,7 +8,6 @@ const ChangeAccountPage = () => {
   const [nickname, setNickname] = useState(user.nickname);
   const [name, setName] = useState(user.name);
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onChangeAccount = async () => {

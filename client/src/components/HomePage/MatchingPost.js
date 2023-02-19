@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { openModal } from '../../store/slice/modalslice';
-import axios from 'axios';
 import { setCurrentPost } from '../../store/slice/postsslice';
+import PostState from './PostState';
 
 const MatchingPost = ({data}) => {
     const dispatch = useDispatch();
-    const posts = useSelector((state) => state.posts);
+    const category = useSelector((state) => state.category);
     
 
     const handleOpenModal = () => {
@@ -23,13 +23,28 @@ const MatchingPost = ({data}) => {
     }
         
     return (
-    <a className="postCard" onClick={handleOpenModal} style={{
-        backgroundColor : 'gray'
-    }}>
-        <p className="postTitle">{data.title}</p>
-        <p>0 / {data.memberLimit}</p>
-        <p>{data.meetTime.split('.')[0]}</p>
-    </a>
+        <a className="postcard non-matching" onClick={handleOpenModal}>
+        <div className = "postcard-main">
+          <div className="postcard-title">
+            {
+              category.map((categoryData, idx) => {
+                if(data.category === categoryData.category) {
+                  return (
+                    <span key={idx}>{categoryData.text.slice(0, 2)}</span>
+                  )
+                }
+              })
+            }
+            {data.title}
+          </div>
+        </div>
+        <div className='postcard-inform'>
+          <p>{data.author_nickname}</p>
+          <p className='postcard-category'>{data.category}</p> 
+          <p className='postcard-time'>{data.meetTime.split(".")[0]}</p>
+        </div>
+        <span className='postcard-participate'> 3 / {data.memberLimit}명 <PostState /></span>  
+      </a>
     )
 }
 

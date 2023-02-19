@@ -13,9 +13,7 @@ const HomePage = () => {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
     const modal = useSelector((state) => state.modal);
-    const matching = useSelector((state) => state.matching);
-
-    const matchingPost = matching.matchingPost;
+    
     const myStorage = localStorage;
     const [page, setPage] = useState(1);
 
@@ -76,16 +74,8 @@ const HomePage = () => {
         }
     }
 
-    // const isMatching = () => {
-    //     try {
-
-    //     } catch(err)
-    //     //myStorage.setItem('matchingPost', JSON.stringify(matchingPost));
-    // }
-
     useEffect(() => {
         isToken();
-        //isMatching();
     }, [user.accessToken, modal.isOpen])
 
 

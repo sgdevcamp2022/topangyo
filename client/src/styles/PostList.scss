@@ -6,10 +6,34 @@
     z-index: 2;
     align-items: center;
     flex-direction: column;
-    overflow: auto;
     max-width: 320px;
 }
 
 .postTitle {
     font-size : 1.3rem;
+}
+
+.pagination-btn {
+    padding:10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    background-color: white;
+    box-shadow: 0px 0px 3px gray;
+    transition: all 0.2s;
+}
+
+.pagination-btn:hover {
+    box-shadow: 0px 0px 10px gray;
+}
+
+.matching-post {
+    max-height: 350px;
+    overflow-y: scroll;
+}
+
+.matching-post::-webkit-scrollbar {
+    display: none;
 }

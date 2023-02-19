@@ -74,16 +74,19 @@ const SignInForm = () => {
     }
 
     return (
-        <>
-            <h1>동세권</h1>
+        <div class = "signin">
+            <div className='sigin-long-title'>우리 동네 세권</div>
+            <div className='signin-title'>동세권</div>
             <form className="login-box" onSubmit={handleSubmit}>
                 <input onChange={handleChange} className="input-box" name="id" type="text" required minLength={4} maxLength={30} placeholder = "ID"/>
                 <input onChange={handleChange} className="input-box" name="password" type="password" required minLength={4} maxLength={30} placeholder = "PASSWORD"/>
-                <button type='submit'>Log in</button>
+                <button type='submit' className = "logbutton">Log in</button>
             </form>
-            <p className="signUpText">Don't have an account? <button className = "signUpWord" onClick={onChangeSignup}>Sign Up</button></p>
-            <p className="forgotPassWordText">forgot Password?</p>
-        </>
+            <div>
+            <p className = "signup-text">Don't have an account? <button className = "signup-word" onClick={onChangeSignup}>Sign Up</button></p>
+            </div>
+            <p className = "forgotPassWordText">forgot Password?</p>
+        </div>
     )
 }
 

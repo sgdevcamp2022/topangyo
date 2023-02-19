@@ -2,17 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal, openModal } from '../../store/slice/modalslice';
 import { joinMatching } from '../../store/slice/matchingslice';
+import '../../styles/DetailPost.scss';
 
 const DetailPost = () => {
   const dispatch = useDispatch();
   const getPost = useSelector((state) => state.posts);
-  const matching = useSelector((state) => state.matching);
   const [duplicate, setDuplicate] = useState(true);
-  const myStorage = localStorage;
+  const category = useSelector((state) => state.category);
+  const myStorage = localStorage; 
   const getMatchingPost = JSON.parse(myStorage.getItem('matchingPost'));
 
   const currentPost = getPost.currentPost;
-  var matchingCount = getMatchingPost?.length;
+  const matchingCount = getMatchingPost?.length;
 
   const handleDuplicate = () => {
     getMatchingPost?.map((data, idx) => {
@@ -73,26 +74,33 @@ const DetailPost = () => {
   }, [])
 
   return (
-    <div
-      style={{
-          position: "absolute",
-          zIndex: "100",
-          backgroundColor: "white",
-          padding: "50px",
-          top: "50%",
-          left: "50%",
-          transform: `translate(-50%, -50%)`,
-      }}
-    > 
-      <h3>모집 글 상세</h3>
-      <h5>{currentPost.title}</h5>
-      <h5>방장 : {currentPost.author_nickname}</h5>
-      <h5>카테고리 : {currentPost.category}</h5>
-      <h5>모집인원 : {currentPost.memberLimit}</h5>
-      <h5>모임시간 : {currentPost.meetTime}</h5>
-      <h5>{currentPost.description}</h5>
-      <button onClick={handleCloseModal}>닫기</button>
-      <button onClick={handleJoinPost}>입장</button>
+    <div className='detailpost'>
+      <div className='detailpost-main'>
+        <div className='detailpost-title'>
+          {
+            category.map((categoryData, idx) => {
+              if(currentPost.category === categoryData.category) {
+                return (
+                  <span key={idx}>{categoryData.text.slice(0, 2)}</span>
+                )
+              }
+            })
+          }
+          {currentPost.title}
+        </div>
+        <img alt='cancelImage' width="15px" className="x-img" src='images/close.png' onClick={handleCloseModal}/>
+      </div>
+      <hr id = "detailpost-line"/>
+      <div className='detailpost-detail'>
+        <div className='detailpost-inform'>
+          <div className='detailpost-item'>{currentPost.author_nickname}</div>
+          <div className='detailpost-item'>{currentPost.category}</div> 
+          <div className='detailpost-item'>{currentPost.meetTime} </div>
+          <div className='detailpost-item'> 0 / {currentPost.memberLimit}명 </div>
+        </div>
+        <div className = "detailpost-description">{currentPost.description}</div>
+      </div>
+      <button className = "detailpost-button" onClick={handleJoinPost}>입장</button>
     </div>
   );
 };

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { getYear, getMonth, getDate, getHours, getMinutes } from "date-fns"; // 시간 설정을 위한 라이브러리
+import ChatOut from "./ChatOut";
+import ChatIn from "./ChatIn";
 
 const MatchingChat = (props) => {
   const { socket, room } = props; //socket & room
@@ -36,7 +38,7 @@ const MatchingChat = (props) => {
     setMessage(e.target.value);
   };
 
-  // 이전 채팅을 받는 함수.
+  // 이전 채팅을 받는 함수
   const getPreviousChatHistory = () => {
     socket.emit("getPreviousChatHistory", { room });
   };
@@ -56,57 +58,40 @@ const MatchingChat = (props) => {
   };
 
   return (
-    <div
-      style={{
-        width: "50%",
-        padding: "50px",
-      }}
-    >
-      <div
-        style={{
-          height: "95%",
-          maxHeight: "95%",
-          width: "100%",
-          overflow: "scroll",
-        }}
-      >
-        {
-          //채팅 내용이 남는 공간
-          messageReceived.map((element, i) => {
-            return (
-              <div
-                style={{
-                  padding: "10px",
-                  backgroundColor: "gray",
-                  borderRadius: "10px",
-                  margin: "20px 0",
-                  wordBreak: "break-all",
+    <div className='matchingchat'>
+      <div className='matchingchat-container'>
+        <div className ="ballon-container">
+          {/* <ChatIn/>
+          <ChatIn/> */}
+          { //채팅 내용이 남는 공간
+            messageReceived.map((element, i) => {
+              return (
+                <div
+                  style={{
+                    clear : 'right',
+                    wordBreak : 'break-all'
                 }}
-                key={i}
-              >
-                {element.Id} : {element.message} : {element.currentTime}
-              </div>
-            );
-          })
-        }
+                  key ={i}>
+                    {
+                      element.Id === id ?
+                      (
+                        <ChatOut element={element}/>
+                      )
+                      :
+                      (
+                        <ChatIn element={element}/>
+                      )
+                    }
+                </div>
+              )  
+            })
+          }
+        </div>
+      </div> 
+      <div className="send-container">
+        <input value={message} type="text" className="chat-input" onChange={onChangeText}/>
+        <button className="chat-submit-button"  onClick={sendMessage}>전송</button>
       </div>
-      <form
-        style={{
-          display: "flex",
-          height: "5%",
-        }}
-      >
-        <input
-          onChange={onChangeText}
-          className="input-box"
-          type="text"
-          style={{ width: "90%" }}
-          value={message}
-        />
-        <button tpye="submit" onClick={sendMessage} style={{ width: "10%" }}>
-          전송
-        </button>
-      </form>
     </div>
   );
 };

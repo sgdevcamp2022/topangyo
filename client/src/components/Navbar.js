@@ -33,29 +33,29 @@ const Navbar = () => {
 
   return (
     <header>
-        <a className='logo-box' href='/'>
-            <img alt='logo' className='logo' src='images/logo/DSG_white_logo.png' />
-            <h3>DSG</h3> 
-        </a>
-        
-        {
-          !myStorage.getItem('AccessToken') ?
-          (
-            //로그인 하기 전에 보여주는 Navbar
-            <a className='signin-button' href='/signin'><button>Log in</button></a>
-          )
-          :
-          (
-            //로그인 했을 때 보여주는 Navbar
-            <div className='user-box'>
-              <a className='user-box' href='/account'>
-                <img alt='userImage' className='user-icon' src='images/user/user_image.png' />
-                <h4>{user.nickname}</h4>
-              </a>
-              <button onClick={handleLogout}>로그아웃</button>
-            </div>
-          )
-        }
+      <a className='logo-box' href='/'>
+          <img alt='logo' className='logo' src='images/logo/DSG_white_logo.png' />
+          <div id ="logo-title">동세권</div> 
+      </a>
+      
+      {
+        !myStorage.getItem('AccessToken') ?
+        (
+          //로그인 하기 전에 보여주는 Navbar
+          <a className='signin-button' href='/signin'><button className = "log-button">Log in</button></a>
+        )
+        :
+        (
+          //로그인 했을 때 보여주는 Navbar
+          <div className='user-box'>
+            <a className='user-account' href='/account'>
+              <img alt='userImage' className='user-icon' src='images/user/user_image.png' />
+              <h4>{user.nickname}</h4>
+            </a>
+            <button className="log-button" onClick={handleLogout}>로그아웃</button>
+          </div>
+        )
+      }
     </header>
   )
 }

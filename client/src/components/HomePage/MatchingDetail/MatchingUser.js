@@ -63,33 +63,69 @@ const MatchingUser = (props) => {
 
   return (
     <div style={{ flexGrow : '1', }}>
-      <p>chatUser</p>
-      {chatUser?.map((element, idx) => {
-        return <p key={idx}>{element}</p>;
-      })}
-
-      <p>applyUserList</p>
-      {currentPost.author_id === id &&
+      <h3>입장한 유저</h3>
+      <hr />
+      {
+        chatUser?.map((element, idx) => {
+          return (
+            <div key={idx} className='user-card'>
+              <div className='user-container'>
+                <img alt='userImage' className='user-icon' src='images/user/user_image.png' />{element}
+              </div>
+            </div>
+          )
+        })
+      }
+      {
+        currentPost.author_id === id ?
+        (
+          <>
+            <h3>매칭 신청한 유저</h3>
+            <hr />
+          </>
+        )
+        :
+        null
+      }
+      {
+        currentPost.author_id === id &&
         applyUser?.map((element, idx) => {
           return (
-            <div key={idx}>
-              <p>{element}</p>
-              <button onClick={() => acceptApplyUser(element)}>수락</button>
-              <button onClick={() => declineApplyUser(element)}>거절</button>
+            <div key={idx} className='user-card'>
+              <div className='user-container'>
+                <img alt='userImage' className='user-icon' src='images/user/user_image.png' />{element}
+              </div>
+                <div>
+                  <button onClick={() => acceptApplyUser(element)}>수락</button>
+                  <button onClick={() => declineApplyUser(element)}>거절</button>
+                </div>
             </div>
           );
-        })}
-
-      <p>matchedMembersList</p>
-      {matchedMembers.includes(id) && // 내가 들어가있으면서
-      currentPost.author_id === id // 내가 호스트이면
+        })
+      }
+      {
+        matchedMembers.includes(id) ?
+        (
+          <>
+            <h3>매칭된 유저</h3>
+            <hr />
+          </>
+        )
+        :
+        null
+      }
+      {
+        matchedMembers.includes(id) && // 내가 들어가있으면서
+        currentPost.author_id === id // 내가 호스트이면
         ? matchedMembers?.map((element, idx) => {
             return (
-              <div key={idx}>
-                <p>{element}</p>
+              <div key={idx} className='user-card'>
+                <div className='user-container'>
+                <img alt='userImage' className='user-icon' src='images/user/user_image.png' />{element}
+                </div>
                 {element !== id ? (
                   <button onClick={() => cancleMatching(element)}>
-                    매칭취소
+                  매칭취소
                   </button>
                 ) : null}
               </div>
@@ -98,12 +134,15 @@ const MatchingUser = (props) => {
         : matchedMembers.includes(id)
         ? matchedMembers?.map((element, idx) => {
             return (
-              <div key={idx}>
-                <p>{element}</p>
+              <div key={idx} className='user-card'>
+                <div className='user-container'>
+                <img alt='userImage' className='user-icon' src='images/user/user_image.png' />{element}
+                </div>
               </div>
             );
           })
-        : null}
+        : null
+      }
     </div>
   );
 };

@@ -3,6 +3,7 @@ import DetailPost from './HomePage/DetailPost'
 import { useSelector, useDispatch } from 'react-redux';
 import WritePost from './HomePage/WritePost';
 import MatchingDetail from './HomePage/MatchingDetail';
+import { closeModal } from '../store/slice/modalslice';
 
 const MODAL_TYPES = {
     DetailPostModal : 'DetailPostModal',
@@ -40,7 +41,7 @@ const GlobalModal = () => {
     }
 
   return (
-    <div>
+    <div className='modal-background'>
        {renderModal()}
     </div>
   )

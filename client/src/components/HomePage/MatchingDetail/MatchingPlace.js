@@ -45,7 +45,9 @@ const MatchingPlace = (props) => {
 
   return (
     <div>
-
+      <hr style={{
+        margin : '10px 0',
+      }} />
       <button onClick={selectPlace}>장소 선택</button>  
     </div>
   )

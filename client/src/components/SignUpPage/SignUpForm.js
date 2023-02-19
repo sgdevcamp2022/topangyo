@@ -6,10 +6,6 @@ import { useNavigate } from 'react-router-dom';
 const SignUpForm = () => {
     const navigate = useNavigate();
 
-    //비밀번호 정규식(나중에 alert창 ui할 때 사용)
-    //var pwCheck = /^(?=.*[a-zA-Z])(?=.*[0-9]).{4,20}$/;
-    //var numCheck = /^\d{3}\d{4}\d{4}$/;
-
     const [registerUser, setRegisterUser] = useState({
         id : "",
         password : "",
@@ -66,77 +62,84 @@ const SignUpForm = () => {
         handleSignup(variables);
     }
 
+    const onChangeSignin = (e) => {
+        e.preventDefault();
+        navigate('/signin');
+    }
+
 	return(
-        <>
-            <form className="signup-box" onSubmit={handleSubmit}>
-                <input 
-                    onChange={handleChange} 
-                    className="input-box" 
-                    name="id" 
-                    type="text" 
-                    minLength={4} 
-                    maxLength={20} 
-                    placeholder = "ID"
-                    required
-                />
-                <input 
-                    onChange={handleChange} 
-                    className="input-box" 
-                    name="password" 
-                    type="password" 
-                    minLength={4} 
-                    maxLength={20} 
-                    placeholder = "PASSWORD"
-                    pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{1,}$"
-                    required
-                />
-                <input 
-                    onChange={handleChange}
-                    className="input-box" 
-                    name="name" 
-                    type="text" 
-                    minLength={1} 
-                    maxLength={10} 
-                    placeholder = "NAME"
-                    required
-                />
-                <input 
-                    onChange={handleChange} 
-                    className="input-box" 
-                    name="nickname" 
-                    type="text" 
-                    minLength={2} 
-                    maxLength={10} 
-                    placeholder = "NICKNAME"
-                    required
-                />
-                <input 
-                    onChange={handleChange} 
-                    className="input-box" 
-                    name="birth" 
-                    type="date"
-                    required
-                />
-                <input 
-                    onChange={handleChange} 
-                    className="input-box" 
-                    name="email" 
-                    type="email" 
-                    minLength={4} 
-                    maxLength={30}
-                    placeholder="EMAIL (example@gmail.com)" 
-                    required
-                />
-                <input 
-                    onChange={handleChange} 
-                    className="input-box" 
-                    name ="phoneNumber" 
-                    type="tel"
-                    placeholder="phone Number (01012345678)"
-                    pattern='[0-9]{3}[0-9]{4}[0-9]{4}'
-                    required
-                />
-                <>
+        <div className='signup'>
+            <div className='signup-title'>회원가입</div>
+                <form className="signup-box" 
+                    onSubmit={handleSubmit}>
+                    <input 
+                        onChange={handleChange} 
+                        className="input-box" 
+                        name="id" 
+                        type="text" 
+                        minLength={4} 
+                        maxLength={20} 
+                        placeholder="ID"
+                        required
+                    />
+                    <input 
+                        onChange={handleChange} 
+                        className="input-box" 
+                        name="password" 
+                        type="password" 
+                        minLength={4} 
+                        maxLength={20} 
+                        placeholder="PASSWORD"
+                        pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{1,}$"
+                        required
+                    />
+                    <input 
+                        onChange={handleChange}
+                        className="input-box" 
+                        name="name" 
+                        type="text" 
+                        minLength={1} 
+                        maxLength={10} 
+                        placeholder="NAME"
+                        required
+                    />
+                    <input 
+                        onChange={handleChange} 
+                        className="input-box" 
+                        name="nickname" 
+                        type="text" 
+                        minLength={2} 
+                        maxLength={10} 
+                        placeholder="NICKNAME"
+                        required
+                    />
+                    <input 
+                        onChange={handleChange} 
+                        className="input-box" 
+                        name="birth" 
+                        type="date"
+                        required
+                    />
+                    <input 
+                        onChange={handleChange} 
+                        className="input-box" 
+                        name="email" 
+                        type="email" 
+                        minLength={4} 
+                        maxLength={30}
+                        placeholder="EMAIL (example@gmail.com)" 
+                        required
+                    />
+                    <input 
+                        onChange={handleChange} 
+                        className="input-box" 
+                        name ="phoneNumber" 
+                        type="tel"
+                        placeholder="phone Number (01012345678)"
+                        pattern='[0-9]{3}[0-9]{4}[0-9]{4}'
+                        required
+                    />
+                <div className = "gender-form">
                     <label htmlFor='men'>
                         <input 
                             onChange={handleChange} 
@@ -146,7 +149,7 @@ const SignUpForm = () => {
                             value="1"
                             defaultChecked
                         />
-                        남자
+                         {" "}남자
                     </label>
                     <label htmlFor='women'>
                         <input 
@@ -156,13 +159,13 @@ const SignUpForm = () => {
                             name='gender' 
                             value="2"
                         />
-                        여자
+                         {" "}여자
                     </label>
-                </>
-                <button type='submit'>Sign Up</button>
+                </div>
+                <button className = "signup-button" type='submit'>Sign Up</button>
             </form>
-            <p className = "signInText">Already have an account? <span className = "signInWord">Sign In</span></p>
-        </>
+            <p className="signInText">Already have an account? <button className = "signup-word" onClick={onChangeSignin}>Sign Up</button></p>
+        </div>
     );
 }
 
