@@ -34,8 +34,9 @@ const MatchingUser = (props) => {
 
     setTimeout(() => {
       getChatUser();
+      getApplyAndMatchedUser();
     }, 1000);
-    getApplyAndMatchedUser();
+
     return () => {
       setTimeout(() => getChatUser(), 1000);
     };
@@ -62,7 +63,7 @@ const MatchingUser = (props) => {
   };
 
   return (
-    <div style={{ flexGrow : '1', }}>
+    <div style={{ flexGrow: "1" }}>
       <p>chatUser</p>
       {chatUser?.map((element, idx) => {
         return <p key={idx}>{element}</p>;
@@ -81,7 +82,7 @@ const MatchingUser = (props) => {
         })}
 
       <p>matchedMembersList</p>
-      {matchedMembers.includes(id) && // 내가 들어가있으면서
+      {matchedMembers?.includes(id) && // 내가 들어가있으면서
       currentPost.author_id === id // 내가 호스트이면
         ? matchedMembers?.map((element, idx) => {
             return (
@@ -95,7 +96,7 @@ const MatchingUser = (props) => {
               </div>
             );
           })
-        : matchedMembers.includes(id)
+        : matchedMembers?.includes(id)
         ? matchedMembers?.map((element, idx) => {
             return (
               <div key={idx}>

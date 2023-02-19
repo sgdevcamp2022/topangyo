@@ -25,7 +25,7 @@ const MatchingChat = (props) => {
       let content = {
         Id: data.Id,
         message: data.message,
-        currentTime: data.currentTime,
+        sendAt: data.sendAt,
       };
       // console.log(content);
       setMessageReceived((current) => [...current, content]);
@@ -48,7 +48,7 @@ const MatchingChat = (props) => {
       Id: id,
       message,
       room,
-      currentTime: `${getHours(date)}:${
+      sendAt: `${getHours(date)}:${
         getMinutes(date) < 10 ? `0${getMinutes(date)}` : getMinutes(date)
       }`,
     });
@@ -84,7 +84,7 @@ const MatchingChat = (props) => {
                 }}
                 key={i}
               >
-                {element.Id} : {element.message} : {element.currentTime}
+                {element.Id} : {element.message} : {element.sendAt}
               </div>
             );
           })

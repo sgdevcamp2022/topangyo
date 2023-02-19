@@ -8,6 +8,9 @@ const ChatSchema = new Schema(
     message: {
       type: String,
     },
+    sendAt : {
+      type: String
+    }
   },
   {
     timestamps: true,

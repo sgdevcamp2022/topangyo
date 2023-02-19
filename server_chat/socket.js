@@ -46,6 +46,7 @@ module.exports = (server, app) => {
         let chatMsg = new Chat({
           Id: data.Id,
           message: data.message,
+          sendAt: data.sendAt,
         });
         await Promise.all([
           chatMsg.save(),
@@ -58,7 +59,7 @@ module.exports = (server, app) => {
         chat.to(data.room).emit("receive_msg", {
           Id: data.Id,
           message: data.message,
-          currentTime: data.currentTime,
+          sendAt: data.sendAt,
         });
       } catch (error) {
         console.error(error);
@@ -94,8 +95,8 @@ module.exports = (server, app) => {
         const userList = await Matching.findOne({ room: data.room });
         // if (userList.host === data.id) {
         chat.to(data.room).emit("getApplyAndMatchedUserList", {
-          applyUser: userList?.applyUser,
-          matchedMembers: userList?.members,
+          applyUser: userList.applyUser,
+          matchedMembers: userList.members,
         });
         // }
       } catch (error) {
@@ -177,25 +178,23 @@ module.exports = (server, app) => {
       });
     });
 
-    socket.on("setPlace", async (data) => {
-      const foundMatching = await Matching.findOneAndUpdate(
-        { room: data.room },
-        { place: data.place.place },
-        { new: true }
+    socket.on("getPlaceInfo", async (data) => {
+      const foundMatching = await Matching.findOne(
+        { room: data.room }
       );
 
-      chat.to(data.room).emit("getPlaceInfo", {
+      chat.to(data.room).emit("setPlaceInfo", {
         place: foundMatching.place,
       });
     });
 
-    socket.on("setMeetingDate", async (data) => {
+    socket.on("getMeetingDate", async (data) => {
       const foundMatching = await Matching.findOneAndUpdate(
         { room: data.room },
         { meetingDate: data.meetingDate },
         { new: true }
       );
-      chat.to(data.room).emit("getMeetingDate", {
+      chat.to(data.room).emit("setMeetingDate", {
         meetingDate: foundMatching.meetingDate,
       });
     });

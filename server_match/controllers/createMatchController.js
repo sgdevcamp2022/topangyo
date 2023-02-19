@@ -2,7 +2,7 @@ const ChatRoom = require("../models/ChatRoom");
 const Matching = require("../models/Matching");
 
 const handleCreateMatch = async (req, res) => {
-  const { room, Id } = req.body;
+  const { room, Id, title } = req.body;
 
   try {
     const check = await Matching.findOne({ room: toString(room) });
@@ -10,6 +10,7 @@ const handleCreateMatch = async (req, res) => {
       Promise.all([
         Matching.create({
           room,
+          title,
           host: Id,
           members: [Id],
           applyUser: [],
