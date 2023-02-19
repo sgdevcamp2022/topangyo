@@ -5,6 +5,9 @@ const MatchingSchema = new Schema(
     room: {
       type: String,
     },
+    title: {
+      type: String,
+    },
     host: {
       type: String,
     },

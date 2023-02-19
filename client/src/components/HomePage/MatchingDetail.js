@@ -20,7 +20,7 @@ const MatchingDetail = () => {
   const user = useSelector((state) => state.user);
 
   const myStorage = localStorage;
-  const getMatchingPost = JSON.parse(myStorage.getItem('matchingPost'));
+  const getMatchingPost = JSON.parse(myStorage.getItem("matchingPost"));
 
   const { id } = useSelector((state) => state.user); // 현재 로그인 유저 정보 가져오는 디스트럭팅 문법
   const [currentMatching, setCurrentMatching] = useState({});
@@ -28,8 +28,6 @@ const MatchingDetail = () => {
 
   const [applyUser, setApplyUser] = useState([]); // 신청 유저
   const [matchedMembers, setMatchedMembers] = useState([]); // 매칭확정유저
-
-
 
   const handleCloseModal = () => {
     dispatch(setPlaceSearch(false));
@@ -101,7 +99,7 @@ const MatchingDetail = () => {
       console.log(err)
     }
     handleCloseModal();
-  }
+  };
 
   // 이름 적절히 바꿀 것
   // 현재 상태에 따라 filtering하여서 밑에 버튼을 바꾼다.

@@ -79,6 +79,7 @@ const WritePost = () => {
       const result = await axios.post("http://localhost:4100/match", {
         room: postId,
         Id: user.id,
+        title : writePost.title
       });
     } catch (error) {
       console.log(error);

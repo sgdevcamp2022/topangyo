@@ -34,8 +34,9 @@ const MatchingUser = (props) => {
 
     setTimeout(() => {
       getChatUser();
+      getApplyAndMatchedUser();
     }, 1000);
-    getApplyAndMatchedUser();
+
     return () => {
       setTimeout(() => getChatUser(), 1000);
     };
@@ -131,7 +132,7 @@ const MatchingUser = (props) => {
               </div>
             );
           })
-        : matchedMembers.includes(id)
+        : matchedMembers?.includes(id)
         ? matchedMembers?.map((element, idx) => {
             return (
               <div key={idx} className='user-card'>
