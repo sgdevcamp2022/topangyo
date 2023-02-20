@@ -1,11 +1,25 @@
+import { useEffect } from 'react';
 import './../../styles/PostState.scss';
 
-const PostState = () => {
+const PostState = ({postInfo}) => {
+
   return (
     <>
-      <div className='poststate'>
+    {
+      postInfo?.matchingStatus === 0 || postInfo?.matchingStatus === false ?
+      (
+        <div className='poststate post-state-no'>
           모집중
-      </div>
+        </div>
+      )
+      :
+      (
+        <div className='poststate post-state-ok'>
+          모집 완료
+        </div>
+      )
+    }
+      
     </>
   )
 }

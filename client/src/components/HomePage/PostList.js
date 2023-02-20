@@ -8,13 +8,13 @@ import { setPosts } from "../../store/slice/postsslice";
 
 const PostList = ({page, setPage}) => {
   const dispatch = useDispatch();
-  const matching = useSelector((state) => state.matching);
-  const posts = useSelector((state) => state.posts);
+  const postList = useSelector((state) => state.posts.postList);
   const user = useSelector((state) => state.user);
   const place = useSelector((state) => state.place);
+
   const [maxPage, setMaxPage] = useState(1);
   const myStorage = localStorage;
-  const getMatchingPost = JSON.parse(myStorage.getItem('matchingPost'));
+  const getMatchingPostPK = JSON.parse(myStorage.getItem('matchingPostPK'));
 
   const searchLat = user.loc.lat;
   const searchLon = user.loc.lon;
@@ -35,7 +35,7 @@ const PostList = ({page, setPage}) => {
 
   useEffect(() => {
     isContents();
-  }, [getMatchingPost.length, page, user.loc, maxPage])
+  }, [getMatchingPostPK?.length, page, user.loc, maxPage])
 
   const onClickPrev = (e) => {
     e.preventDefault();
@@ -57,8 +57,8 @@ const PostList = ({page, setPage}) => {
         {
           myStorage.getItem('AccessToken') && !place.placeSearch ?
           (
-            getMatchingPost?.map((data, idx) => {
-              return (
+            getMatchingPostPK?.map((data, idx) => {
+              return(
                 <MatchingPost key={idx} data={data}/>
               )
             })
@@ -78,9 +78,9 @@ const PostList = ({page, setPage}) => {
       {
         !place.placeSearch ?
         (
-          posts.postList.map((data, idx) => {
+          postList.map((postInfo, idx) => {
             return (
-              <PostCard key={idx} data={data} />
+              <PostCard key={idx} postInfo={postInfo} />
             )
           })
         )

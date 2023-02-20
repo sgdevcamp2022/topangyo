@@ -4,7 +4,7 @@ const handlePlace = async (req, res) => {
   const { room, place } = req.body;
 
   try {
-    const foundMatching = await Matching.findOne({ room: toString(room) });
+    const foundMatching = await Matching.findOne({ room: room.toString() });
     if (!foundMatching) return res.sendStatus(400);
     foundMatching.place = place;
     foundMatching.save();

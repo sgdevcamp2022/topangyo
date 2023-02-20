@@ -9,7 +9,6 @@ import '../../styles/WritePost.scss';
 const WritePost = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const matching = useSelector((state) => state.matching);
   const myStorage = localStorage;
 
   const [writePost, setWritePost] = useState({
@@ -44,30 +43,26 @@ const WritePost = () => {
         postPK: data.postPK,
       })
     );
-    if(myStorage.getItem('matchingPost') === null) {
-      myStorage.setItem('matchingPost', JSON.stringify([data]));
+    if(myStorage.getItem('matchingPostPK') === null) {
+      myStorage.setItem('matchingPostPK', JSON.stringify([data.postPK]));
     } else {
-      myStorage.setItem('matchingPost', JSON.stringify([data, ...JSON.parse(myStorage.getItem('matchingPost'))]));
+      myStorage.setItem('matchingPostPK', JSON.stringify([data.postPK, ...JSON.parse(myStorage.getItem('matchingPostPK'))]));
     }
   };
 
   const handleCreatePost = async (variables) => {
     try {
-      if (matching.matchingCount < 3) {
-        const result = await axios.post(
-          "http://localhost:3700/post/create",
-          variables
-        );
-        if (result) {
-          alert("모집글 작성을 완료하였습니다!");
-        }
-        // 새로운 매치 CMS에 넣기(postPK result값 맞는지 확인하기)
+      const result = await axios.post(
+        "http://localhost:3700/post/create",
+        variables
+      );
 
+      if (result) {
+        alert("모집글 작성을 완료하였습니다!");
         handleCreateNewMatch(result.data.postPK);
         handleJoinPost(result.data);
-      } else {
-        alert("매칭 초과로 방을 생성할 수 없습니다!");
       }
+
     } catch (err) {
       console.log(err);
     }
@@ -97,7 +92,7 @@ const WritePost = () => {
       category: writePost.category,
       location_latitude: user.loc.lat,
       location_longitude: user.loc.lon,
-      meetTime: `${writePost.meetDate}T${writePost.meetTime}`,
+      meetTime: `${writePost.meetDate} ${writePost.meetTime.split('.')[0]}`,
       memberLimit: parseInt(writePost.memberLimit),
     };
     handleCreatePost(variables);

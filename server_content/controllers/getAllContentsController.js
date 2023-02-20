@@ -24,7 +24,7 @@ exports.getAllContents = (req, res) => {
         raw: true,
         attributes: [
             'postPK', 'title', 'description', 'author_name', 'author_nickname', 'author_id', 'memberLimit',
-            'category', 'imageURL', 'location_latitude', 'location_longitude', 'createdAt', 'meetTime',
+            'category', 'imageURL', 'location_latitude', 'location_longitude', 'createdAt', 'meetTime', 'matchingStatus',
             [sequelize.literal(haversine), 'distance']
         ],
         having: sequelize.literal(`distance <= ${distance}`),

@@ -6,18 +6,16 @@ import '../../styles/DetailPost.scss';
 
 const DetailPost = () => {
   const dispatch = useDispatch();
-  const getPost = useSelector((state) => state.posts);
+  const currentPost = useSelector((state) => state.posts.currentPost);
   const [duplicate, setDuplicate] = useState(true);
   const category = useSelector((state) => state.category);
   const myStorage = localStorage; 
-  const getMatchingPost = JSON.parse(myStorage.getItem('matchingPost'));
-
-  const currentPost = getPost.currentPost;
-  const matchingCount = getMatchingPost?.length;
+  const getMatchingPostPK = JSON.parse(myStorage.getItem('matchingPostPK'));
+  const matchedMembersCount = useSelector((state) => state.matching.matchedMembersCount)
 
   const handleDuplicate = () => {
-    getMatchingPost?.map((data, idx) => {
-      if(data.postPK === currentPost.postPK) {
+    getMatchingPostPK?.map((data, idx) => {
+      if(data === currentPost.postPK) {
         setDuplicate(false);
       }
     })
@@ -28,10 +26,12 @@ const DetailPost = () => {
   };
 
   const handleJoinPost = () => {
-    if(matchingCount === undefined) {
-      matchingCount = 0;
-    }
-    if(matchingCount < 3 && duplicate) {
+    if(duplicate) {
+      if(myStorage.getItem('matchingPostPK') == null) {
+        myStorage.setItem('matchingPostPK', JSON.stringify([currentPost.postPK]));
+      } else {
+        myStorage.setItem('matchingPostPK', JSON.stringify([currentPost.postPK, ...JSON.parse(myStorage.getItem('matchingPostPK'))]));
+      }
       dispatch(joinMatching());
       dispatch(
         openModal({
@@ -40,14 +40,8 @@ const DetailPost = () => {
           postPK : currentPost.postPK,
         })
       )
-      if(myStorage.getItem('matchingPost') === null) {
-        myStorage.setItem('matchingPost', JSON.stringify([currentPost]));
-      } else {
-        myStorage.setItem('matchingPost', JSON.stringify([currentPost, ...JSON.parse(myStorage.getItem('matchingPost'))]));
-      }
-      
     } else {
-      alert('더 이상 방을 입장할 수 없습니다!');
+      alert('더 이상 방에 입장할 수 없습니다!');
     }
   };
   
@@ -96,7 +90,7 @@ const DetailPost = () => {
           <div className='detailpost-item'>{currentPost.author_nickname}</div>
           <div className='detailpost-item'>{currentPost.category}</div> 
           <div className='detailpost-item'>{currentPost.meetTime} </div>
-          <div className='detailpost-item'> 0 / {currentPost.memberLimit}명 </div>
+          <div className='detailpost-item'> {matchedMembersCount.length} / {currentPost.memberLimit}명 </div>
         </div>
         <div className = "detailpost-description">{currentPost.description}</div>
       </div>

@@ -4,6 +4,7 @@ import { closeModal } from "../../../store/slice/modalslice";
 import { setPlaceSearch } from "../../../store/slice/placeslice";
 
 const MatchingPlace = (props) => {
+  const {kakao} = window;
   const dispatch = useDispatch();
   const modal = useSelector((state) => state.modal);
   const { currentPost } = props;
@@ -11,11 +12,35 @@ const MatchingPlace = (props) => {
 
   const [place, setPlace] = useState({
     place: {
-      place_name: "",
-      address_name: "",
-      place_url: "",
+      place_name: null,
+      address_name: null,
+      place_url: null,
+      latitude : null,
+      longitude : null,
     },
   });
+  
+  
+  const placeStaticMap = async () => {
+    try{
+      var markerPosition  = new kakao.maps.LatLng(place.place.longitude, place.place.latitude); 
+      var marker = {
+        position: markerPosition,
+        text : place.place.place_name,
+      };
+
+      const staticMapContainer = document.getElementById('static-map'),
+      staticMapOption = {
+        center : new kakao.maps.LatLng(place.place.longitude, place.place.latitude),
+        level : 3,
+        marker : marker
+      };
+      const staticMap = await new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+      
+    }catch(err) {
+      console.log(err)
+    }
+  }
 
   //------------------------------------------------------
   // 들어오면 place정보를 가져온다.
@@ -24,8 +49,12 @@ const MatchingPlace = (props) => {
     socket.on("setPlaceInfo", (data) => {
       setPlace(data);
     });
-    setTimeout(getPlaceInfo(), 1000);
+    setTimeout(() => getPlaceInfo(), 1000);
   }, []);
+
+  useEffect(() => {
+    placeStaticMap();
+  }, [place.place.latitude, place.place.longitude])
 
   /**
   useEffect(() => {
@@ -73,14 +102,31 @@ const MatchingPlace = (props) => {
   };
 
   return (
-    <div>
-      <div>
-        {console.log(place)}
-        <p>{place.place?.place_name}</p>
-        <p>{place.place?.address_name}</p>
-        <p>{place.place?.place_url}</p>
-      </div>
-      <button onClick={selectPlace}>장소 선택</button>
+    <div className="matching-place">
+      <h2>장소</h2>
+      <hr />
+      <button className="place-btn" onClick={selectPlace}>장소 선택</button>
+      {
+        place.place.place_name ?
+        (
+          <div className="place-area">
+            <a className="place-card" href={place.place?.place_url} target="_blank">
+              {
+                place.place.latitude && place.place.longitude ?
+                (
+                  <div className="place-map" id="static-map"></div>
+                )
+                :
+                null
+              }
+              <h3 className="place-text">{place.place?.place_name}</h3>
+              <p className="place-text">{place.place?.address_name}</p>
+            </a>
+          </div>
+        )
+        :
+        null
+      }
     </div>
   );
 };

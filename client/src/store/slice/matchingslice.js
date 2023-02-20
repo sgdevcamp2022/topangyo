@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     matchingCount : 0,
+    matchedMembersCount : [] // 매칭확정유저
 }
 
 const matching = createSlice({
@@ -15,8 +16,11 @@ const matching = createSlice({
         leaveMatching : (state) => {
             state.matchingCount-=1;
         },
+        setMatchedMembersCount : (state, actions) => {
+            state.matchedMembersCount = actions.payload;
+        }
     },
 });
 
 export default matching;
-export const {joinMatching, leaveMatching} = matching.actions;
+export const {joinMatching, leaveMatching, setMatchedMembersCount} = matching.actions;

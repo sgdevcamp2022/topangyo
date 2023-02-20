@@ -12,7 +12,7 @@
 }
 
 
-.id {
+.chatin-id {
     margin-left: 10px;
     font-size: 0.8rem;
 }
@@ -21,6 +21,17 @@
     background-color: #eaeaea;
     width : calc(100%-30px);
     padding: 10px 20px;
-    border-radius: 18px 18px 18px 0px;
-    margin: 2px 20px;
+    border-radius: 0px 18px 18px 18px;
+    margin: 5px 10px;
+}
+
+.chatin-container {
+    float: right;
+    display: flex;
+    align-items: end;
+}
+
+.chatin-time {
+    font-size: 12px;
+    color: rgba(128, 128, 128, 0.61);
 }

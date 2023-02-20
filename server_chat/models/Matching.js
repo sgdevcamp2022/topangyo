@@ -33,6 +33,12 @@ const MatchingSchema = new Schema(
       place_url: {
         type: String,
       },
+      latitude : {
+        type : String,
+      },
+      longitude : {
+        type : String,
+      },
     },
     meetingDate: {
       type: String,

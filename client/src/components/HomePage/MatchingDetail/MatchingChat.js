@@ -58,11 +58,9 @@ const MatchingChat = (props) => {
   };
 
   return (
-    <div className='matchingchat'>
+    <form className='matchingchat' onSubmit={sendMessage}>
       <div className='matchingchat-container'>
         <div className ="ballon-container">
-          {/* <ChatIn/>
-          <ChatIn/> */}
           { //채팅 내용이 남는 공간
             messageReceived.map((element, i) => {
               return (
@@ -90,9 +88,9 @@ const MatchingChat = (props) => {
       </div> 
       <div className="send-container">
         <input value={message} type="text" className="chat-input" onChange={onChangeText}/>
-        <button className="chat-submit-button"  onClick={sendMessage}>전송</button>
+        <button className="chat-submit-button" type="submit">전송</button>
       </div>
-    </div>
+    </form>
   );
 };
 

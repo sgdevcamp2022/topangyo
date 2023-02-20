@@ -13,12 +13,31 @@
     justify-content: center;
 }
 
+.matching-postcard {
+    background-color : rgba(255, 255, 255, 0.738);
+    min-width: 300px;
+    min-height: 135px;
+    display : flex;
+    flex-direction: column;
+    padding : 20px 20px;
+    box-sizing: border-box;
+    z-index: 30;
+    margin: 10px 0;
+    border-radius: 10px;
+    transition: all 0.2s;
+    justify-content: center;
+}
+
 .postcard:hover {
     box-shadow: 0px 0px 5px gray;
 }
 
 .non-matching {
     background-color : rgba(255, 183, 205, 0.738);
+}
+
+.matching {
+    background-color : rgba(148, 255, 157, 0.738);
 }
 
 .postcard-title {

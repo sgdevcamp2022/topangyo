@@ -10,6 +10,7 @@ import PlaceItem from "./PlaceItem.js";
 const MainMap = ({setPage}) => {
   const dispatch = useDispatch();
   const { kakao } = window;
+  const myStorage = localStorage;
 
   //reducer
   const user = useSelector((state) => state.user);
@@ -48,7 +49,7 @@ const MainMap = ({setPage}) => {
     image: currentMarkerImage // 마커이미지 설정 
   }); 
 
-  var moveImageSrc = 'https://ifh.cc/g/jXR5By.png',
+  var moveImageSrc = 'https://i.imgur.com/j4Hek5N.png',
     moveImageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
     moveImageOption = {offset: new kakao.maps.Point(20, 20)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
@@ -265,12 +266,16 @@ const MainMap = ({setPage}) => {
   }
 
   const handleWriteModal = () => {
-    dispatch(
-      openModal({
-        modalType : "WritePostModal",
-        isOpen : true,
-      })
-    )
+    if(myStorage.getItem('AccessToken')) {
+      dispatch(
+        openModal({
+          modalType : "WritePostModal",
+          isOpen : true,
+        })
+      )
+    } else {
+      alert('로그인을 먼저 해주세요!');
+    }
   }
 
   const handleGetPlaces = () => {
@@ -337,7 +342,7 @@ const MainMap = ({setPage}) => {
       >
           <div>
             <input className="input-box" type="text" id="keyword" onChange={onChangeKeyword} value={keyword} />
-            <button onClick={handleGetPlaces}>검색</button>
+            <button onClick={handleGetPlaces} style={{ width : '100%' }}>검색</button>
           </div>
 
         <div style={{ display:'flex', flexDirection : 'column' }}>

@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setMatchedMembersCount } from "../../../store/slice/matchingslice";
+
 
 // 추후에 porps 정리할것것
 const MatchingUser = (props) => {
@@ -14,6 +17,8 @@ const MatchingUser = (props) => {
     cancleMatching,
   } = props; //socket & room
   const [chatUser, setChatUser] = useState([]); // 유저 목록을 담는 변수
+  const dispatch = useDispatch();
+
 
   // 유저리스트에 설정해준다. 페이지가 언마운트 될 때 다시한번 유저목록을 갱신한다.
   // 이때 서버측 leave와의 데이터베이스 접근 시간을 고려하여
@@ -29,6 +34,7 @@ const MatchingUser = (props) => {
     socket.on("getApplyAndMatchedUserList", (data) => {
       setApplyUser(data.applyUser);
       setMatchedMembers(data.matchedMembers);
+      dispatch(setMatchedMembersCount(data.matchedMembers))
     });
     // }
 
@@ -63,7 +69,7 @@ const MatchingUser = (props) => {
   };
 
   return (
-    <div style={{ flexGrow : '1', }}>
+    <div>
       <h3>입장한 유저</h3>
       <hr />
       {

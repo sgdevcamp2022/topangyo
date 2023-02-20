@@ -14,13 +14,13 @@ const socket = io.connect(CONNECT_URL_SOCKET); // 채팅 소켓 연결
 
 const MatchingDetail = () => {
   const dispatch = useDispatch();
-  const getPost = useSelector((state) => state.posts);
+  const currentPost = useSelector((state) => state.posts.currentPost);
+  const matchedMembersCount = useSelector((state) => state.matching.matchedMembersCount)
   const modal = useSelector((state) => state.modal)
-  const currentPost = getPost.currentPost;
   const user = useSelector((state) => state.user);
 
   const myStorage = localStorage;
-  const getMatchingPost = JSON.parse(myStorage.getItem("matchingPost"));
+  const getMatchingPostPK = JSON.parse(myStorage.getItem("matchingPostPK"));
 
   const { id } = useSelector((state) => state.user); // 현재 로그인 유저 정보 가져오는 디스트럭팅 문법
   const [currentMatching, setCurrentMatching] = useState({});
@@ -54,7 +54,7 @@ const MatchingDetail = () => {
     return () => {
       leaveRoom(); // 언마운트시 room 끊기
     };
-  }, []);
+  }, [currentPost.matchingStatus]);
 
   // 방입장
   const joinRoom = () => {
@@ -85,11 +85,10 @@ const MatchingDetail = () => {
 
   const handleLeaveRoom = async () => {
     try {
-      getMatchingPost.map((data, idx) => {
-        if(data.postPK === currentPost.postPK) {
-          getMatchingPost.splice(idx,1);
-          myStorage.setItem('matchingPost', JSON.stringify(getMatchingPost))
-          
+      getMatchingPostPK.map((data, idx) => {
+        if(data === currentPost.postPK) {
+          getMatchingPostPK.splice(idx,1);
+          myStorage.setItem('matchingPostPK', JSON.stringify(getMatchingPostPK))
         }
       })
       if(currentPost.author_id === user.id) {
@@ -100,6 +99,14 @@ const MatchingDetail = () => {
     }
     handleCloseModal();
   };
+
+  const onConfirmMatching = async () => {
+    try {
+      const result = await axios.put(`http://localhost:3700/post/matchingstatus/${currentPost.postPK}`)
+    }catch(err) {
+      console.log(err)
+    }
+  }
 
   // 이름 적절히 바꿀 것
   // 현재 상태에 따라 filtering하여서 밑에 버튼을 바꾼다.
@@ -114,6 +121,9 @@ const MatchingDetail = () => {
       return <button onClick={cancleApplyment} className='non-application'>신청취소</button>;
     if (currentPost.author_id !== id && matchedMembers?.includes(id) === true)
       return <button onClick={() => cancleMatching(id)} className='non-application'>매칭취소</button>;
+    if (currentPost.author_id === id) 
+      return <button onClick={onConfirmMatching} className='application'>확정</button>;
+    
   };
 
   return (
@@ -121,12 +131,12 @@ const MatchingDetail = () => {
        <div className='chatpage-container'>
           <div className="chat-main">
             <div className='chat-first-text'>
-              <h2 className='chat-title'>{currentMatching.title}</h2>
+              <h2 className='chat-title'>{currentPost.title}</h2>
               <div>모집글 상태</div>
               <button style={{ padding : 0, backgroundColor : 'white' }} onClick={handleCloseModal}><img width="30px" className = "x-img" src = 'images/close.png' ></img></button>
             </div>
             <div className='chat-second-text'>
-                <div>매칭인원 : {matchedMembers.length} / 모집인원 : {currentMatching.memberLimit}</div>
+                <div>매칭인원 : {matchedMembersCount.length} / 모집인원 : {currentPost.memberLimit}</div>
             </div>
           </div>
           <div className='chating'>
@@ -147,7 +157,7 @@ const MatchingDetail = () => {
                       cancleMatching={cancleMatching}
                     /></div>
                   <div className="inform-place"><MatchingPlace socket={socket} room={room} id={id}/></div>
-                  <div className="inform-time"><MatchingTime socket={socket} room={room} id={id} /></div>
+                  <div className="inform-time"><MatchingTime socket={socket} room={room} id={id}/></div>
               </div>
               <div className="inform-button">{btn()}<button className='out' onClick={handleLeaveRoom}>나가기</button></div>
             </div>

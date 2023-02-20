@@ -13,7 +13,7 @@ exports.getUsetidContents = (req, res) => {
         where: { author_id: user_id },
         attributes: [
             'postPK', 'title', 'description', 'author_name', 'author_nickname', 'author_id', 'memberLimit',
-            'category', 'imageURL', 'location_latitude', 'location_longitude', 'createdAt', 'meetTime',
+            'category', 'imageURL', 'location_latitude', 'location_longitude', 'createdAt', 'meetTime', 'matchingStatus',
         ],
         order: [["createdAt", "DESC"]],
     }
