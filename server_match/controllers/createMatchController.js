@@ -5,7 +5,7 @@ const handleCreateMatch = async (req, res) => {
   const { room, Id, title } = req.body;
 
   try {
-    const check = await Matching.findOne({ room: toString(room) });
+    const check = await Matching.findOne({ room: room.toString() });
     if (!check) {
       Promise.all([
         Matching.create({

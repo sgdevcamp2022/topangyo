@@ -24,7 +24,7 @@ const MatchingPlace = (props) => {
     socket.on("setPlaceInfo", (data) => {
       setPlace(data);
     });
-    setTimeout(getPlaceInfo(), 1000);
+    setTimeout(() => getPlaceInfo(), 1000);
   }, []);
 
   /**

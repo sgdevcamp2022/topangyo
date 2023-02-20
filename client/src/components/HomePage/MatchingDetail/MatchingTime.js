@@ -8,7 +8,7 @@ const MatchingTime = (props) => {
     socket.on("setMeetingDate", (data) => {
       setMeetingDate(data.meetingDate);
     });
-    setTimeout(getMeetingDate(), 1000);
+    setTimeout(() => getMeetingDate(), 1000);
   }, []);
 
   // 버튼 눌렀을때
