@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setMatchedMembersCount } from "../../../store/slice/matchingslice";
-
+import axios from "axios";
 
 // 추후에 porps 정리할것것
 const MatchingUser = (props) => {
@@ -38,7 +38,7 @@ const MatchingUser = (props) => {
             url: 'chat',
             icon: ''
         }
-    })
+      })
     });
 
 
