@@ -18,8 +18,7 @@ const MainMap = ({setPage}) => {
   const getSlicePlace = useSelector((state) => state.place);
 
   const map = getSliceMap.map,
-  movePosition = getSliceMap.movePosition,
-  currentPosition = getSliceMap.currentPosition;
+  movePosition = getSliceMap.movePosition;
 
   const place = getSlicePlace.placeObject,
   placeList = getSlicePlace.placeList,
@@ -60,27 +59,43 @@ const MainMap = ({setPage}) => {
   });
 
   var circle = new kakao.maps.Circle({
-      radius: 1000, // 미터 단위의 원의 반지름입니다 
-      strokeWeight: 5, // 선의 두께입니다 
-      strokeColor: '#75B8FA', // 선의 색깔입니다
-      strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-      strokeStyle: 'dashed', // 선의 스타일 입니다
-      fillColor: '#CFE7FF', // 채우기 색깔입니다
-      fillOpacity: 0.2  // 채우기 불투명도 입니다   
+      radius: 1000, // 미터 단위의 원의 반지름
+      strokeWeight: 5, // 선의 두께
+      strokeColor: '#75B8FA', // 선의 색깔
+      strokeOpacity: 1, // 선의 불투명도 (1에서 0 사이의 값이며 0에 가까울수록 투명)
+      strokeStyle: 'dashed', // 선의 스타일
+      fillColor: '#CFE7FF', // 채우기 색깔
+      fillOpacity: 0.2  // 채우기 불투명도
   });
 
 
 
 
   const defaultMap = () => {
-    const container = document.getElementById('map'),
-    options = {
-      center : new kakao.maps.LatLng(37.400664, 127.110739),
-      level : 3
-    };
-    const kakaoMap = new kakao.maps.Map(container, options);
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src =
+      "//dapi.kakao.com/v2/maps/sdk.js?appkey=0626e9548e4f66be4c64910324ad8d4e&autoload=false";
+    script.async = true;
+    document.head.appendChild(script);
+    script.onload = () => {
+      window.kakao.maps.load(() => {
+        const container = document.getElementById("map");
+        var options = {
+          //지도를 생성할 때 필요한 기본 옵션
+          center: new window.kakao.maps.LatLng(37.365264512305174, 127.10676860117488), //지도의 중심좌표.
+          level: 3, //지도의 레벨(확대, 축소 정도)
+        };
+    var kakaoMap = new window.kakao.maps.Map(container, options);
     dispatch(setMap(kakaoMap));
-  }
+    // const container = document.getElementById('map'),
+    // options = {
+    //   center : new kakao.maps.LatLng(37.400664, 127.110739),
+    //   level : 3
+    // };
+    // const kakaoMap = new kakao.maps.Map(container, options);
+    // dispatch(setMap(kakaoMap));
+    })}}
 
   const placesSearchCB = (data, status, pagination) => {
     if(status === kakao.maps.services.Status.OK) {

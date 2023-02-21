@@ -37,3 +37,23 @@
 .matching-post::-webkit-scrollbar {
     display: none;
 }
+
+@media screen and (max-width : 576px) {
+
+    .postList {
+        display:flex;
+        position: absolute;
+        bottom : 0;
+        right: 50px;
+        z-index: 2;
+        align-items: center;
+        flex-direction: column;
+        max-width: 320px;
+        max-height: 400px;
+        overflow: scroll;
+    }
+
+    .postList::-webkit-scrollbar {
+        display: none;
+    }
+}

@@ -9,10 +9,8 @@ const Toolbar = ({page, setPage}) => {
   const dispatch = useDispatch();
   const [isSearch, setIsSearch] = useState(false);
   const [isCategory, setIsCategory] = useState(false);
-  const [isPostList, setIsPostList] = useState(false);
   const [displaySearch, setDisplaySearch] = useState('none');
   const [displayCategory, setDisplayCategory] = useState('none');
-  const [displayPostList, setDisplayPostList] = useState('none');
 
   const [categories, setCategories] = useState([
     {
@@ -95,17 +93,6 @@ const Toolbar = ({page, setPage}) => {
     }
   }
 
-  const onChangePostList = () => {
-    // if(isPostList) {
-    //   setDisplayPostList('none');
-    //   setIsPostList(false);
-    // } else {
-    //   setDisplayPostList('block');
-    //   setIsPostList(true);
-    // }
-    console.log('포스트리스트 접기');
-  }
-
   const handleChangeKeyword = async (e) => {
     if(isSearch) {
       try {
@@ -127,7 +114,7 @@ const Toolbar = ({page, setPage}) => {
       }}>
         <button className="toolbarButton" onClick={onChangeSearch}>🔍︎</button>
         <button className="toolbarButton" onClick={onChangeCategory}>카테고리</button>
-        <button className="toolbarButton" onClick={onChangePostList}>∨</button>
+        <button className="toolbarButton">∨</button>
       </div>
       
       <div style={{

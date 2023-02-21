@@ -17,13 +17,11 @@ const MatchingDetail = () => {
   const currentPost = useSelector((state) => state.posts.currentPost);
   const matchedMembersCount = useSelector((state) => state.matching.matchedMembersCount)
   const modal = useSelector((state) => state.modal)
-  const user = useSelector((state) => state.user);
 
   const myStorage = localStorage;
   const getMatchingPostPK = JSON.parse(myStorage.getItem("matchingPostPK"));
 
   const { id } = useSelector((state) => state.user); // 현재 로그인 유저 정보 가져오는 디스트럭팅 문법
-  const [currentMatching, setCurrentMatching] = useState({});
   const [room, setRoom] = useState(currentPost.postPK); // 추후 현재 postId / postTitle로 바꾸기
 
   const [applyUser, setApplyUser] = useState([]); // 신청 유저
@@ -43,7 +41,6 @@ const MatchingDetail = () => {
         const result = await axios.get(
           `http://localhost:3700/post/get/${currentPost.postPK}`
         );
-        setCurrentMatching(result.data);
       } catch (err) {
         console.log(err);
       }
