@@ -11,45 +11,7 @@ const Toolbar = ({page, setPage}) => {
   const [isCategory, setIsCategory] = useState(false);
   const [displaySearch, setDisplaySearch] = useState('none');
   const [displayCategory, setDisplayCategory] = useState('none');
-
-  const [categories, setCategories] = useState([
-    {
-      category : 'hobby',
-      text : '🎳 취미'
-    },
-    {
-      category : 'restaurant',
-      text : '🍴 맛집'
-    },
-    {
-      category : 'cafe',
-      text : '☕ 카페'
-    },
-    {
-      category : 'sports',
-      text : '🛹 스포츠/레저'
-    },
-    {
-      category : 'study',
-      text : '📕 공부'
-    },
-    {
-      category : 'shopping',
-      text : '🛍 쇼핑'
-    },
-    {
-      category : 'meeting',
-      text : '👨‍👩‍👧‍👦 소모임'
-    },
-    {
-      category : 'etc',
-      text : '🙌🏻 기타'
-    },
-    {
-      category : 'all',
-      text : '전체'
-    },
-  ])
+  const categories = useSelector((state) => state.category);
 
   const searchLat = user.loc.lat;
   const searchLon = user.loc.lon;
