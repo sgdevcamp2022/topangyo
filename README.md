@@ -70,7 +70,9 @@
 
 ### LCP최적화
 > 원인 1 : 카카오맵의 로딩용량이 컸었고, 카카오맵이 필요하지 않은 페이지에서도 카카오맵이 계속 실행되어 LCP에 영향을 준 것
-[기존]
+
+<p>[기존]</p>
+
 ```js
 (public/index.html)
 
@@ -82,7 +84,9 @@
 ...
 ```
 
-[변경]
+
+<p>[변경]</p>
+
 ```js
 (src/components/Homepage/MainMap.js)
 
@@ -116,28 +120,28 @@ useEffect(() => {
 
 ✅ 해당 페이지가 렌더링 될때 script태그를 생성하여 카카오맵을 표시하게 만들었고 그에따라 LCP의 성능을 5.3초 → 3.7초로 최적화 할 수 있었다.
 <div align="center">
-    (개선 전)
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a3e1c96b-9654-43e2-8fd0-6dc7c6cb34fe/Untitled.png)
+    <p>(개선 전)</p>
+    <img width="300" style="background-color : white;" alt="image" src="https://user-images.githubusercontent.com/67165016/220410841-eb3e9117-2378-48ef-9e58-145b272d1147.png">
 </div>
 
 
 <div align="center">
-    (개선 후)
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e602b249-c54e-46a0-9aeb-2e5955692570/Untitled.png)
+    <p>(개선 후)</p>
+    <img width="300" style="background-color : white;" alt="image" src="https://user-images.githubusercontent.com/67165016/220411191-e144008b-910c-4504-8220-1efdb727c787.png">
 </div>
 
 
 
 > 원인 2 : LCP에 영향을 끼치는 불필요한 script코드들과 css코드들이 많았음
-✅ 불필요한 코드들을 정리하여 LCP의 성능을 높였고 그에따라 LCP의 성능을 3.7초 → 3.3초로 최적화 할 수 있었다.
+<p>✅ 불필요한 코드들을 정리하여 LCP의 성능을 높였고 그에따라 LCP의 성능을 3.7초 → 3.3초로 최적화 할 수 있었다.</p>
 <div align="center">
-    (개선 전)
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5e97cff4-d2bc-477a-b184-0d775ab6d7f6/Untitled.png)
+    <p>(개선 전)</p>
+    <img width="300" style="background-color : white;" alt="image" src="https://user-images.githubusercontent.com/67165016/220411191-e144008b-910c-4504-8220-1efdb727c787.png">
 </div>
 
 <div align="center">
-    (개선 후)
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/de951c46-3040-4be6-831e-cef1ec7952b1/Untitled.png)
+    <p>(개선 후)</p>
+    <img width="300" style="background-color : white;" alt="image" src="https://user-images.githubusercontent.com/67165016/220411391-2238b921-653d-408f-a169-5fdbad9dc84b.png">
 </div>
 
 
@@ -183,6 +187,7 @@ useEffect(() => {
     - Github를 활용한 관리 및 업데이트 되는 코드
 
 <hr />
+
 ### 클라이언트 ❌(실패)
 - 효율적인 코드 (ex 코드 중복) 
 - 예외처리
