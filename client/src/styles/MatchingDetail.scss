@@ -53,7 +53,8 @@
 
 .chat-inform {
     width: 50%;
-    
+    overflow-y: scroll;
+    height: 900px;
 }
 
 .inform {
@@ -143,6 +144,7 @@
 
 .ballon-container {
     width: 90%;
+    overflow-y: 0;
 }
 
 .matchingchat-container::-webkit-scrollbar {

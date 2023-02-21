@@ -126,7 +126,6 @@ const MatchingDetail = () => {
           <div className="chat-main">
             <div className='chat-first-text'>
               <h2 className='chat-title'>{currentPost.title}</h2>
-              <div>모집글 상태</div>
               <button style={{ padding : 0, backgroundColor : 'white' }} onClick={handleCloseModal}><img width="30px" className = "x-img" src = 'images/close.png' ></img></button>
             </div>
             <div className='chat-second-text'>

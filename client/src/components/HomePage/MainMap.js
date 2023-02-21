@@ -72,30 +72,30 @@ const MainMap = ({setPage}) => {
 
 
   const defaultMap = () => {
-    const script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src =
-      "//dapi.kakao.com/v2/maps/sdk.js?appkey=0626e9548e4f66be4c64910324ad8d4e&autoload=false";
-    script.async = true;
-    document.head.appendChild(script);
-    script.onload = () => {
-      window.kakao.maps.load(() => {
-        const container = document.getElementById("map");
-        var options = {
-          //지도를 생성할 때 필요한 기본 옵션
-          center: new window.kakao.maps.LatLng(37.365264512305174, 127.10676860117488), //지도의 중심좌표.
-          level: 3, //지도의 레벨(확대, 축소 정도)
-        };
-    var kakaoMap = new window.kakao.maps.Map(container, options);
-    dispatch(setMap(kakaoMap));
-    // const container = document.getElementById('map'),
-    // options = {
-    //   center : new kakao.maps.LatLng(37.400664, 127.110739),
-    //   level : 3
-    // };
-    // const kakaoMap = new kakao.maps.Map(container, options);
+    // const script = document.createElement("script");
+    // script.type = "text/javascript";
+    // script.src =
+    //   "//dapi.kakao.com/v2/maps/sdk.js?appkey=0626e9548e4f66be4c64910324ad8d4e&autoload=false";
+    // script.async = true;
+    // document.head.appendChild(script);
+    // script.onload = () => {
+    //   window.kakao.maps.load(() => {
+    //     const container = document.getElementById("map");
+    //     var options = {
+    //       //지도를 생성할 때 필요한 기본 옵션
+    //       center: new window.kakao.maps.LatLng(37.365264512305174, 127.10676860117488), //지도의 중심좌표.
+    //       level: 3, //지도의 레벨(확대, 축소 정도)
+    //     };
+    // var kakaoMap = new window.kakao.maps.Map(container, options);
     // dispatch(setMap(kakaoMap));
-    })}}
+    const container = document.getElementById('map'),
+    options = {
+      center : new kakao.maps.LatLng(37.400664, 127.110739),
+      level : 3
+    };
+    const kakaoMap = new kakao.maps.Map(container, options);
+    dispatch(setMap(kakaoMap));
+  }
 
   const placesSearchCB = (data, status, pagination) => {
     if(status === kakao.maps.services.Status.OK) {

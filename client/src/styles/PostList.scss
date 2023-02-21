@@ -7,6 +7,12 @@
     align-items: center;
     flex-direction: column;
     max-width: 320px;
+    height: 600px;
+    overflow-y: scroll;
+}
+
+.postList::-webkit-scrollbar {
+    display: none;
 }
 
 .postTitle {
@@ -27,15 +33,6 @@
 
 .pagination-btn:hover {
     box-shadow: 0px 0px 10px gray;
-}
-
-.matching-post {
-    max-height: 350px;
-    overflow-y: scroll;
-}
-
-.matching-post::-webkit-scrollbar {
-    display: none;
 }
 
 @media screen and (max-width : 576px) {

@@ -11,6 +11,8 @@ const MatchingChat = (props) => {
   const [messageReceived, setMessageReceived] = useState([]); 
   let date = new Date(); 
 
+  const element = document.querySelector('.ballon-container')
+
   // 페이지 진입 시 이전채팅을 받는다.
   // chatList에서 메세지리시브에 저장한다.
   useEffect(() => {
