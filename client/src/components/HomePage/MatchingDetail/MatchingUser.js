@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setMatchedMembersCount } from "../../../store/slice/matchingslice";
-
+import axios from "axios";
 
 // 추후에 porps 정리할것것
 const MatchingUser = (props) => {
@@ -24,23 +24,21 @@ const MatchingUser = (props) => {
       setChatUser(data.chatUser);
     });
 
-
     socket.on("getApplyAndMatchedUserList", (data) => {
       setApplyUser(data.applyUser);
       setMatchedMembers(data.matchedMembers);
-      dispatch(setMatchedMembersCount(data.matchedMembers))
+      dispatch(setMatchedMembersCount(data.matchedMembers));
       axios({
-        method: 'post',
+        method: "post",
         url: `http://127.0.0.1:3800/push/${props.id}`,
         data: {
-            title: '매칭신청',
-            message: '작성하신글에 참여요청이 들어왔어요~ 확인해주세요',
-            url: 'chat',
-            icon: ''
-        }
-    })
+          title: "매칭신청",
+          message: "작성하신글에 참여요청이 들어왔어요~ 확인해주세요",
+          url: "chat",
+          icon: "",
+        },
+      });
     });
-
 
     setTimeout(() => {
       getChatUser();
@@ -76,67 +74,66 @@ const MatchingUser = (props) => {
     <div>
       <h3>입장한 유저</h3>
       <hr />
-      {
-        chatUser?.map((element, idx) => {
-          return (
-            <div key={idx} className='user-card'>
-              <div className='user-container'>
-                <img alt='userImage' className='user-icon' src='images/user/user_image.png' />{element}
-              </div>
+      {chatUser?.map((element, idx) => {
+        return (
+          <div key={idx} className="user-card">
+            <div className="user-container">
+              <img
+                alt="userImage"
+                className="user-icon"
+                src="images/user/user_image.png"
+              />
+              {element}
             </div>
-          )
-        })
-      }
-      {
-        currentPost.author_id === id ?
-        (
-          <>
-            <h3>매칭 신청한 유저</h3>
-            <hr />
-          </>
-        )
-        :
-        null
-      }
-      {
-        currentPost.author_id === id &&
+          </div>
+        );
+      })}
+      {currentPost.author_id === id ? (
+        <>
+          <h3>매칭 신청한 유저</h3>
+          <hr />
+        </>
+      ) : null}
+      {currentPost.author_id === id &&
         applyUser?.map((element, idx) => {
           return (
-            <div key={idx} className='user-card'>
-              <div className='user-container'>
-                <img alt='userImage' className='user-icon' src='images/user/user_image.png' />{element}
+            <div key={idx} className="user-card">
+              <div className="user-container">
+                <img
+                  alt="userImage"
+                  className="user-icon"
+                  src="images/user/user_image.png"
+                />
+                {element}
               </div>
-                <div>
-                  <button onClick={() => acceptApplyUser(element)}>수락</button>
-                  <button onClick={() => declineApplyUser(element)}>거절</button>
-                </div>
+              <div>
+                <button onClick={() => acceptApplyUser(element)}>수락</button>
+                <button onClick={() => declineApplyUser(element)}>거절</button>
+              </div>
             </div>
           );
-        })
-      }
-      {
-        matchedMembers.includes(id) ?
-        (
-          <>
-            <h3>매칭된 유저</h3>
-            <hr />
-          </>
-        )
-        :
-        null
-      }
-      {
-        matchedMembers.includes(id) &&
-        currentPost.author_id === id
+        })}
+      {matchedMembers.includes(id) ? (
+        <>
+          <h3>매칭된 유저</h3>
+          <hr />
+        </>
+      ) : null}
+      {matchedMembers.includes(id) && currentPost.author_id === id
         ? matchedMembers?.map((element, idx) => {
             return (
-              <div key={idx} className='user-card'>
-                <div className='user-container'>
-                <img alt='userImage' className='user-icon' src='images/user/user_image.png' />{element}
+              <div key={idx} className="user-card">
+                <div className="user-container">
+                  <img
+                    alt="userImage"
+                    className="user-icon"
+                    src="images/user/user_image.png"
+                  />
+                  {element}
                 </div>
                 {element !== id ? (
                   <button onClick={() => cancleMatching(element)}>
-                  매칭취소
+                    매칭취소
                   </button>
                 ) : null}
               </div>
@@ -145,15 +142,19 @@ const MatchingUser = (props) => {
         : matchedMembers?.includes(id)
         ? matchedMembers?.map((element, idx) => {
             return (
-              <div key={idx} className='user-card'>
-                <div className='user-container'>
-                <img alt='userImage' className='user-icon' src='images/user/user_image.png' />{element}
+              <div key={idx} className="user-card">
+                <div className="user-container">
+                  <img
+                    alt="userImage"
+                    className="user-icon"
+                    src="images/user/user_image.png"
+                  />
+                  {element}
                 </div>
               </div>
             );
           })
-        : null
-      }
+        : null}
     </div>
   );
 };
