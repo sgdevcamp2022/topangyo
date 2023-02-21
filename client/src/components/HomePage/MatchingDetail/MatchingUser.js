@@ -19,18 +19,12 @@ const MatchingUser = (props) => {
   const [chatUser, setChatUser] = useState([]); // 유저 목록을 담는 변수
   const dispatch = useDispatch();
 
-
-  // 유저리스트에 설정해준다. 페이지가 언마운트 될 때 다시한번 유저목록을 갱신한다.
-  // 이때 서버측 leave와의 데이터베이스 접근 시간을 고려하여
-  // 언마운트 후 1초후에 갱신하도록 한다.
   useEffect(() => {
     socket.on("getChatUserList", (data) => {
       setChatUser(data.chatUser);
     });
 
-    // 글 작성자(host)와 현재 유저 검증 === 로그인 유저가 host인지 검증
-    // 만약 호스트일경우 신청 유저를 받는 소켓을 연다.
-    // if (props.currentPost.author_id === props.id) {
+
     socket.on("getApplyAndMatchedUserList", (data) => {
       setApplyUser(data.applyUser);
       setMatchedMembers(data.matchedMembers);
@@ -46,7 +40,7 @@ const MatchingUser = (props) => {
         }
     })
     });
-    // }
+
 
     setTimeout(() => {
       getChatUser();
@@ -132,8 +126,8 @@ const MatchingUser = (props) => {
         null
       }
       {
-        matchedMembers.includes(id) && // 내가 들어가있으면서
-        currentPost.author_id === id // 내가 호스트이면
+        matchedMembers.includes(id) &&
+        currentPost.author_id === id
         ? matchedMembers?.map((element, idx) => {
             return (
               <div key={idx} className='user-card'>

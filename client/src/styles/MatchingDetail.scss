@@ -1,264 +1,265 @@
 .chatpage {
-    position : absolute;
-    width : 100%;
-    height : 100%;
-    z-index : 50;
-    background-color : white;
-    padding:20px;
-    box-sizing : border-box;
-    bottom :0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  background-color: white;
+  padding: 20px;
+  box-sizing: border-box;
+  bottom: 0;
 }
 
 .chatpage-container {
-    margin : 10px 30px;
+  margin: 10px 30px;
 }
 
 .chat-main {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .chat-first-text {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .chat-title {
-    font-family: 'bold';
+  font-family: "bold";
 }
 
 .chat-second-text {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    color : #8a8a8a;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  color: #8a8a8a;
 }
 
 #chat-column-line {
-    border-left : #c2c2c2 3px solid; 
-    height: 80vh;
+  border-left: #c2c2c2 3px solid;
+  height: 80vh;
 }
 
 .chating {
-    overflow : hidden;
-    display : flex;
-    height : 90%;
-    box-sizing : border-box;
+  overflow: hidden;
+  display: flex;
+  height: 90%;
+  box-sizing: border-box;
 }
 
 .chatting {
-    width: 50%;
+  width: 50%;
 }
 
 .chat-inform {
-    width: 50%;
-    
+  width: 50%;
 }
 
 .inform {
-    padding-left: 30px;
-    display: flex;
-    flex-direction: column;
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
 .inform-person {
-
+  max-height: 200px;
+  overflow-y: scroll;
 }
 
 .inform-place {
-    
 }
 
 .inform-time {
-
 }
 
 .inform-button {
-    position : fixed;
-    bottom : 6%;
-    width: 50%;
-    display: flex;
-    justify-content: center;
+  position: fixed;
+  bottom: 6%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
 }
 
 .non-application {
-    background-color: #ff7d7d;
-    color: white;
-    margin-right: 10px;
-    width: 60%;
-    height: 38px;
-    font-size: 16px;
-    &:hover {
-        background-color : #cb4d4d;
-    }
+  background-color: #ff7d7d;
+  color: white;
+  margin-right: 10px;
+  width: 60%;
+  height: 38px;
+  font-size: 16px;
+  &:hover {
+    background-color: #cb4d4d;
+  }
 }
 
 .application {
-    background-color: #8EB4E3;
-    color: white;
-    margin-right: 10px;
-    width: 60%;
-    height: 38px;
-    font-size: 16px;
-    &:hover {
-        background-color : #6892FF;
-    }
+  background-color: #8eb4e3;
+  color: white;
+  margin-right: 10px;
+  width: 60%;
+  height: 38px;
+  font-size: 16px;
+  &:hover {
+    background-color: #6892ff;
+  }
 }
 
 .non-click {
+  background-color: #7d7d7d;
+  margin-right: 10px;
+  width: 60%;
+  height: 38px;
+  font-size: 16px;
+  cursor: default;
+  &:hover {
     background-color: #7d7d7d;
-    margin-right: 10px;
-    width: 60%;
-    height: 38px;
-    font-size: 16px;
-    cursor: default;
-    &:hover {
-        background-color: #7d7d7d;
-    }
+  }
 }
 
 .out {
-    background-color:#c2c2c2;
-    color: white;
-    width: 20%;
-    height: 38px;
-    &:hover {
-        background-color: #7d7d7d;
-    }
-    word-break:keep-all;
+  background-color: #c2c2c2;
+  color: white;
+  width: 20%;
+  height: 38px;
+  &:hover {
+    background-color: #7d7d7d;
+  }
+  word-break: keep-all;
 }
 
 //matching chat
 .matchingchat {
-    width : 50%;
-    max-height: 82vh;
+  width: 50%;
+  max-height: 82vh;
 }
 
 .matchingchat-container {
-    height : 70vh;
-    width : 95%;
-    overflow : auto;
+  height: 70vh;
+  width: 95%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-y: auto;
 }
 
 .ballon-container {
-    width: 90%;
+  width: 90%;
 }
 
 .matchingchat-container::-webkit-scrollbar {
-    width: 13px;  /* 스크롤바의 너비 */
-    border-radius: 5px;
+  width: 13px; /* 스크롤바의 너비 */
+  border-radius: 5px;
 }
 
 .matchingchat-container::-webkit-scrollbar-thumb {
-    height: 5px; /* 스크롤바의 길이 */
-    background: #bdbdbd; /* 스크롤바의 색상 */
-    
-    border-radius: 5px;
+  height: 5px; /* 스크롤바의 길이 */
+  background: #bdbdbd; /* 스크롤바의 색상 */
+
+  border-radius: 5px;
 }
 
 .matchingchat-container::-webkit-scrollbar-track {
-    background: rgba(194, 194, 194, 0.45);  /*스크롤바 뒷 배경 색상*/
+  background: rgba(194, 194, 194, 0.45); /*스크롤바 뒷 배경 색상*/
 }
 
 .send-container {
-    position : fixed;
-    bottom : 6%;
-    width: calc(50% - 60px);
-    margin-left: 10px;
+  position: fixed;
+  bottom: 6%;
+  width: calc(50% - 60px);
+  margin-left: 10px;
 }
 .chat-input {
-    width : 70%;
-    border: #c2c2c2 1px solid;
-    border-radius: 5px;
-    height: 38px;
-    position: relative;
-    margin-right: 10px;
-    padding: 0 10px;
+  width: 70%;
+  border: #c2c2c2 1px solid;
+  border-radius: 5px;
+  height: 38px;
+  position: relative;
+  margin-right: 10px;
+  padding: 0 10px;
 }
 
 .chat-submit-button {
-    height : 38px;
-    width : 15%;
-    position: absolute;
-    color : white;
-    word-break:keep-all;
+  height: 38px;
+  width: 15%;
+  position: absolute;
+  color: white;
+  word-break: keep-all;
 }
 
 .user-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px;
-    margin: 10px;
-    border: 0.5px solid black;
-    border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  margin: 10px;
+  border: 0.5px solid black;
+  border-radius: 5px;
 }
 
 .user-container {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .user-icon {
-    width: 30px;
-    margin : 0 10px;
+  width: 30px;
+  margin: 0 10px;
 }
 
 .matching-place {
-    padding: 20px 0;
+  padding: 20px 0;
 }
 
 .place-area {
-    display: flex;
-    flex-direction: row;
-    height: 400px;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  height: 250px;
+  justify-content: center;
 }
 
 .place-card {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid #8eb4e35a;
-    border-radius: 15px;
-    padding: 15px;
-    transition: all 0.2s;
-    justify-content: end;
-    height: 400px;
-    width: 100%;
-    max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #8eb4e35a;
+  border-radius: 15px;
+  padding: 15px;
+  transition: all 0.2s;
+  justify-content: end;
+  height: 100%;
+  width: 60%;
+  max-width: 600px;
 }
 
 .place-card:hover {
-    background-color: #8eb4e346;
-    box-shadow: 0px 0px 10px gray;
+  background-color: #8eb4e346;
+  box-shadow: 0px 0px 10px gray;
 }
 
 .place-text {
-    margin: 10px 0;
+  //   margin: 5px 0;
 }
 
 .place-map {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .place-btn {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    font-size: 20px;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 20px;
 }
 
 .matching-time {
-    padding: 30px 0;
+  padding: 0 0 30px 0;
 }
 
 .matching-date {
-    padding: 10px 20px;
-    border: 0.5px solid gray;
-    border-radius: 10px;
-    margin: 10px 10px;
+  padding: 10px 20px;
+  border: 0.5px solid gray;
+  border-radius: 10px;
+  margin: 10px 10px;
 }

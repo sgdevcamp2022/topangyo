@@ -16,8 +16,6 @@ const MatchingTime = (props) => {
     setTimeout(() => getMeetingDate(), 1000);
   }, []);
 
-  // 버튼 눌렀을때
-  // 안에서 바뀐 시간 정보(meetingDate)가 아래 미팅데이트에 들어가면 됨.
   const getMeetingDate = (e) => {
     socket.emit("getMeetingDate", { room, meetingDate });
   };

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { getYear, getMonth, getDate, getHours, getMinutes } from "date-fns"; // 시간 설정을 위한 라이브러리
+import { getHours, getMinutes } from "date-fns"; 
 import ChatOut from "./ChatOut";
 import ChatIn from "./ChatIn";
 
 const MatchingChat = (props) => {
-  const { socket, room } = props; //socket & room
-  const { id, nickname } = useSelector((state) => state.user); // 현재 로그인 유저 정보 가져오는 디스트럭팅 문법
-  const [message, setMessage] = useState(""); // 내가 보낼 메세지
-  const [messageReceived, setMessageReceived] = useState([]); // 받은 메세지
-  let date = new Date(); // Date 객체 생성
+  const { socket, room } = props; 
+  const { id } = useSelector((state) => state.user); 
+  const [message, setMessage] = useState(""); 
+  const [messageReceived, setMessageReceived] = useState([]); 
+  let date = new Date(); 
 
   // 페이지 진입 시 이전채팅을 받는다.
   // chatList에서 메세지리시브에 저장한다.
@@ -21,7 +21,6 @@ const MatchingChat = (props) => {
     return () => {};
   }, []);
 
-  // 메세지 받았을 때
   useEffect(() => {
     socket.on("receive_msg", (data) => {
       let content = {
@@ -29,7 +28,6 @@ const MatchingChat = (props) => {
         message: data.message,
         sendAt: data.sendAt,
       };
-      // console.log(content);
       setMessageReceived((current) => [...current, content]);
     });
   }, []);
@@ -38,12 +36,10 @@ const MatchingChat = (props) => {
     setMessage(e.target.value);
   };
 
-  // 이전 채팅을 받는 함수
   const getPreviousChatHistory = () => {
     socket.emit("getPreviousChatHistory", { room });
   };
 
-  // 메세지 보낼때
   const sendMessage = (e) => {
     e.preventDefault();
     socket.emit("send_msg", {
@@ -61,7 +57,7 @@ const MatchingChat = (props) => {
     <form className='matchingchat' onSubmit={sendMessage}>
       <div className='matchingchat-container'>
         <div className ="ballon-container">
-          { //채팅 내용이 남는 공간
+          {
             messageReceived.map((element, i) => {
               return (
                 <div
