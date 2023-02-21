@@ -179,9 +179,7 @@ module.exports = (server, app) => {
     });
 
     socket.on("getPlaceInfo", async (data) => {
-      const foundMatching = await Matching.findOne(
-        { room: data.room }
-      );
+      const foundMatching = await Matching.findOne({ room: data.room });
 
       chat.to(data.room).emit("setPlaceInfo", {
         place: foundMatching.place,

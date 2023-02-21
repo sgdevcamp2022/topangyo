@@ -43,7 +43,7 @@ const MatchingUser = (props) => {
     setTimeout(() => {
       getChatUser();
       getApplyAndMatchedUser();
-    }, 1000);
+    }, 1500);
 
     return () => {
       setTimeout(() => getChatUser(), 1000);
