@@ -10,9 +10,9 @@ const MatchingPost = ({data}) => {
     const category = useSelector((state) => state.category);
     const user = useSelector((state) => state.user);
     const [postInfo, setPostInfo] = useState({});
+    const [memberList, setMemberList] = useState([]);
     const myStorage = localStorage;
     const getMatchingPostPK = JSON.parse(myStorage.getItem('matchingPostPK'));
-    const matchedMembersCount = useSelector((state) => state.matching.matchedMembersCount)
     
 
     const handleOpenModal = () => {
@@ -37,13 +37,24 @@ const MatchingPost = ({data}) => {
       }
     }
 
+    const isMembers = async () => {
+      try {
+        const getMatchedMembers = await axios.post(`http://localhost:4100/match/membersList`, {
+          room : postInfo.postPK
+        });
+        setMemberList(getMatchedMembers.data.membersList.members);
+      } catch(err) {
+        console.log(err);
+      }
+    }
+
     useEffect(() => {
-      console.log(matchedMembersCount?.includes(user.id))
       isContents();
+      isMembers();
     }, [postInfo.matchingStatus, getMatchingPostPK?.length, user.loc])
         
     return (
-      postInfo.author_id === user.id || matchedMembersCount?.includes(user.id) ?
+      postInfo.author_id === user.id || memberList?.includes(user.id) ?
       (
         <a className='matching-postcard matching' onClick={handleOpenModal}>
         <div className="postcard-main">
@@ -65,7 +76,7 @@ const MatchingPost = ({data}) => {
           <p className='postcard-category'>{postInfo.category}</p> 
           <p className='postcard-time'>{postInfo.meetTime}</p>
         </div>
-        <span className='postcard-participate'> {matchedMembersCount.length} / {postInfo.memberLimit}명 <PostState postInfo={postInfo}/></span>  
+        <span className='postcard-participate'> {memberList?.length} / {postInfo.memberLimit}명 <PostState postInfo={postInfo}/></span>  
         </a>
       )
       :
@@ -90,7 +101,7 @@ const MatchingPost = ({data}) => {
             <p className='postcard-category'>{postInfo.category}</p> 
             <p className='postcard-time'>{postInfo.meetTime}</p>
           </div>
-          <span className='postcard-participate'> {matchedMembersCount.length} / {postInfo.memberLimit}명 <PostState postInfo={postInfo}/></span>  
+          <span className='postcard-participate'> {memberList?.length} / {postInfo.memberLimit}명 <PostState postInfo={postInfo}/></span>  
         </a>
       )
     )

@@ -91,9 +91,6 @@ const MatchingDetail = () => {
           myStorage.setItem('matchingPostPK', JSON.stringify(getMatchingPostPK))
         }
       })
-      if(currentPost.author_id === user.id) {
-        const deletePost = await axios.delete(`http://localhost:3700/post/delete/${currentPost.postPK}`);
-      }
     } catch(err) {
       console.log(err)
     }

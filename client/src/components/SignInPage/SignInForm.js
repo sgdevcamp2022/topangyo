@@ -58,6 +58,16 @@ const SignInForm = () => {
         }
     }
 
+    const postNotification = async (variables) => {
+        try {
+            const resultNotification = await axios.post(`http://localhost:3800/subscribe/${variables.id}`);
+            console.log(resultNotification);    
+        } catch(err) {
+            console.log(err)
+        }
+        
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -66,6 +76,7 @@ const SignInForm = () => {
             password : loginUser.password
         }
         postFetch(variables);
+        postNotification(variables)
     }
 
     const onChangeSignup = (e) => {

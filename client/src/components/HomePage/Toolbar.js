@@ -109,7 +109,7 @@ const Toolbar = ({page, setPage}) => {
   const handleChangeKeyword = async (e) => {
     if(isSearch) {
       try {
-        const getContentData = await axios.get(`http://localhost:3700/post/content/list?page=${page}&keyword=test&lat=${searchLat}&lon=${searchLon}`)
+        const getContentData = await axios.get(`http://localhost:3700/post/content/list?page=${page}&keyword=test14&lat=${searchLat}&lon=${searchLon}`)
       } catch(err) {
         console.log(err);
       }

@@ -3,15 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { closeModal, openModal } from '../../store/slice/modalslice';
 import { joinMatching } from '../../store/slice/matchingslice';
 import '../../styles/DetailPost.scss';
+import axios from 'axios';
 
 const DetailPost = () => {
   const dispatch = useDispatch();
   const currentPost = useSelector((state) => state.posts.currentPost);
   const [duplicate, setDuplicate] = useState(true);
+  const [memberList, setMemberList] = useState([]);
   const category = useSelector((state) => state.category);
   const myStorage = localStorage; 
   const getMatchingPostPK = JSON.parse(myStorage.getItem('matchingPostPK'));
-  const matchedMembersCount = useSelector((state) => state.matching.matchedMembersCount)
 
   const handleDuplicate = () => {
     getMatchingPostPK?.map((data, idx) => {
@@ -26,6 +27,11 @@ const DetailPost = () => {
   };
 
   const handleJoinPost = () => {
+    if(!(memberList.length < currentPost.memberLimit)) {
+      return alert('이미 방이 꽉찼습니다!');
+    } else if (currentPost.matchingStatus) {
+      return alert('이미 모집이 완료되었습니다!');
+    }
     if(duplicate) {
       if(myStorage.getItem('matchingPostPK') == null) {
         myStorage.setItem('matchingPostPK', JSON.stringify([currentPost.postPK]));
@@ -62,9 +68,21 @@ const DetailPost = () => {
     }
   }
 
+  const isMembers = async () => {
+    try {
+      const getMatchedMembers = await axios.post(`http://localhost:4100/match/membersList`, {
+        room : currentPost.postPK
+      });
+      setMemberList(getMatchedMembers.data.membersList.members);
+    } catch(err) {
+      console.log(err);
+    }
+  }
+
   useEffect(() => {
     isToken();
     handleDuplicate();
+    isMembers();
   }, [])
 
   return (
@@ -90,7 +108,7 @@ const DetailPost = () => {
           <div className='detailpost-item'>{currentPost.author_nickname}</div>
           <div className='detailpost-item'>{currentPost.category}</div> 
           <div className='detailpost-item'>{currentPost.meetTime} </div>
-          <div className='detailpost-item'> {matchedMembersCount.length} / {currentPost.memberLimit}명 </div>
+          <div className='detailpost-item'> {memberList.length} / {currentPost.memberLimit}명 </div>
         </div>
         <div className = "detailpost-description">{currentPost.description}</div>
       </div>

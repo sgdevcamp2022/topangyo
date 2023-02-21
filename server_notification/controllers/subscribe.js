@@ -3,9 +3,21 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Subscription = mongoose.model('subscribers');
 
+let userid;
+
+router.post('/:id', async (req, res) => {
+    console.log(req.params);
+    userid = req.params.id;
+    res.json({
+        data: 'First value saved.'
+    });
+});
+
 router.post('/', async (req, res) => {
-    const subscriptionModel = new Subscription(req.body);
-    console.log(subscriptionModel)
+    console.log(userid)
+    const model = {"id":userid,"endpoint":req.body.endpoint,"keys":{"p256dh":req.body.keys.p256dh,"auth":req.body.keys.auth}}
+    console.log(model)
+    const subscriptionModel = new Subscription(model);
     subscriptionModel.save((err, subscription) => {
         if (err) {
             console.error(`Error occurred while saving subscription. Err: ${err}`);
@@ -15,22 +27,6 @@ router.post('/', async (req, res) => {
         } else {
             res.json({
                 data: 'Subscription saved.'
-            });
-        }
-    });
-});
-
-router.post('/unsubscribe', (req, res) => {
-    const subscriptionModel = new Subscription(req.body);
-    subscriptionModel.delete((err, subscription) => {
-        if (err) {
-            console.error(`Error occurred while saving subscription. Err: ${err}`);
-            res.status(500).json({
-                error: 'Technical error occurred'
-            });
-        } else {
-            res.json({
-                data: 'your subscribe is deleted.'
             });
         }
     });

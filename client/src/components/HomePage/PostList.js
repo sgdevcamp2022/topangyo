@@ -33,10 +33,12 @@ const PostList = ({page, setPage}) => {
     }
   }
 
+
   useEffect(() => {
     isContents();
   }, [getMatchingPostPK?.length, page, user.loc, maxPage])
 
+  
   const onClickPrev = (e) => {
     e.preventDefault();
     if(page > 1) {
@@ -94,6 +96,7 @@ const PostList = ({page, setPage}) => {
             display : 'flex',
             justifyContent : 'space-between',
             marginBottom : '10px'
+            
           }}>
             <button className="pagination-btn" onClick={onClickPrev}><img width="15px" src="https://cdn-icons-png.flaticon.com/512/130/130882.png" alt="prevImage" /></button>
             <button className="pagination-btn" onClick={onClickNext}><img width="15px" src="https://cdn-icons-png.flaticon.com/512/130/130884.png" alt="nextImage" /></button>
