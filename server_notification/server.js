@@ -36,7 +36,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', index);
-app.use('/subscribe/:userid', subscribe);
+app.use('/subscribe', subscribe);
 app.use('/unsubscribe',unsubscribe)
 app.use('/',require('./routes/notification'))
 
