@@ -1,4 +1,4 @@
-let notificationUrl = 'http://naver.com';
+let notificationUrl ="http://localhost:3000";
 
 self.addEventListener('push', function (event) {
     console.log('Push received: ', event);
@@ -7,20 +7,7 @@ self.addEventListener('push', function (event) {
     event.waitUntil(
         self.registration.showNotification(_data.title, {
             body: _data.message,
-            icon: _data.icon,
-            tag: _data.tag
-        })
-    );
-});
-
-self.addEventListener('join', function (event) {
-    console.log('join received: ', event);
-    let _data = event.data ? JSON.parse(event.data.text()) : {};
-    notificationUrl = _data.url;
-    event.waitUntil(
-        self.registration.sendNotification(_data.title, {
-            body: _data.message,
-            icon: _data.icon,
+            icon: '/ms-icon-150x150.png',
             tag: _data.tag
         })
     );

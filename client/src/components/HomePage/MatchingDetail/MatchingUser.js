@@ -29,6 +29,16 @@ const MatchingUser = (props) => {
       setApplyUser(data.applyUser);
       setMatchedMembers(data.matchedMembers);
       dispatch(setMatchedMembersCount(data.matchedMembers))
+      axios({
+        method: 'post',
+        url: `http://127.0.0.1:3800/push/${props.id}`,
+        data: {
+            title: '매칭신청',
+            message: '작성하신글에 참여요청이 들어왔어요~ 확인해주세요',
+            url: 'chat',
+            icon: ''
+        }
+    })
     });
 
 
