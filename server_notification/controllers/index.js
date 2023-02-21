@@ -1,5 +1,4 @@
 const express = require('express');
-const { async } = require('q');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -8,6 +7,5 @@ router.get('/', async (req, res) => {
         message: 'Server is running'
     });
 });
-
 
 module.exports = router;
