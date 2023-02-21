@@ -13,7 +13,6 @@ dotenv.config();
 exports.pushAllSubscriber = async (req,res) => {
     console.log('push all subscriber')
     const payload = {
-        id:'',
         title: req.body.title,
         message: req.body.message,
         url: req.body.url,
@@ -29,8 +28,6 @@ exports.pushAllSubscriber = async (req,res) => {
         } else {
             let parallelSubscriptionCalls = await subscriptions.map((subscription) => {
                 return new Promise((resolve, reject) => {
-                    
-                    console.log(payload.id)
                     const pushSubscription = {
                         endpoint: subscription.endpoint,
                         keys: {
@@ -41,7 +38,7 @@ exports.pushAllSubscriber = async (req,res) => {
                     const pushPayload = JSON.stringify(payload);
                     const pushOptions = {
                         vapidDetails: {
-                            subject: 'http://localhost:3000',
+                            subject: 'http://example.com',
                             privateKey: config.privateKey,
                             publicKey: config.publicKey
                         },

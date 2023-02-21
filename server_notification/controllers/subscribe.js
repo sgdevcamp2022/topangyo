@@ -5,12 +5,12 @@ const Subscription = mongoose.model("subscribers");
 
 let userid;
 
-router.post("/:id", async (req, res) => {
-  userid = req.params.id;
-  console.log(`userid is: ${userid}`);
-  res.json({
-    data: "UserId saved.",
-  });
+router.post('/:id', async (req, res) => {
+    console.log(req.params);
+    userid = req.params.id;
+    res.json({
+        data: 'First value saved.'
+    });
 });
 
 router.post("/", async (req, res) => {

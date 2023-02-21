@@ -58,6 +58,7 @@ exports.pushSpecificSubscriber = async (req,res) => {
                             endpoint: subscription.endpoint,
                             data: value
                         });
+                        payload.id=id
                         Notification.insertMany(payload)
                     }).catch((err) => {
                         reject({
