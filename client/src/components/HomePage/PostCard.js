@@ -24,41 +24,46 @@ const PostCard = ({ postInfo }) => {
 
   const isMembers = async () => {
     try {
-      const getMatchedMembers = await axios.post(`http://localhost:4100/match/membersList`, {
-        room : postInfo.postPK
-      });
-      setMemberList(getMatchedMembers.data.membersList.members);
-    } catch(err) {
+      setTimeout(async () => {
+        const getMatchedMembers = await axios.post(
+          `http://localhost:4100/match/membersList`,
+          {
+            room: postInfo.postPK,
+          }
+        );
+        setMemberList(getMatchedMembers.data.membersList.members);
+      }, 1000);
+    } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   useEffect(() => {
     isMembers();
-  }, [memberList.length])
+  }, [memberList.length]);
 
   return (
     <a className="postcard" onClick={handleOpenModal}>
-      <div className = "postcard-main">
+      <div className="postcard-main">
         <div className="postcard-title">
-          {
-            category.map((categoryData, idx) => {
-              if(categoryData.category === postInfo.category) {
-                return (
-                  <span key={idx}>{categoryData.text.slice(0, 2)}</span>
-                )
-              }
-            })
-          }
+          {category.map((categoryData, idx) => {
+            if (categoryData.category === postInfo.category) {
+              return <span key={idx}>{categoryData.text.slice(0, 2)}</span>;
+            }
+          })}
           {postInfo.title}
         </div>
       </div>
-      <div className='postcard-inform'>
+      <div className="postcard-inform">
         <p>{postInfo.author_nickname}</p>
-        <p className='postcard-category'>{postInfo.category}</p> 
-        <p className='postcard-time'>{postInfo.meetTime.split(".")[0]}</p>
+        <p className="postcard-category">{postInfo.category}</p>
+        <p className="postcard-time">{postInfo.meetTime.split(".")[0]}</p>
       </div>
-      <span className='postcard-participate'> {memberList.length} / {postInfo.memberLimit}명 <PostState postInfo={postInfo}/></span> 
+      <span className="postcard-participate">
+        {" "}
+        {memberList.length} / {postInfo.memberLimit}명{" "}
+        <PostState postInfo={postInfo} />
+      </span>
     </a>
   );
 };
