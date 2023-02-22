@@ -93,12 +93,18 @@ module.exports = (server, app) => {
     socket.on("getApplyAndMatchedUser", async (data) => {
       try {
         const userList = await Matching.findOne({ room: data.room });
-        // if (userList.host === data.id) {
-        chat.to(data.room).emit("getApplyAndMatchedUserList", {
-          applyUser: userList.applyUser,
-          matchedMembers: userList.members,
-        });
-        // }
+
+        userData =
+          userList.applyUser === null
+            ? {
+                matchedMembers: userList.members,
+              }
+            : {
+                applyUser: userList.applyUser,
+                matchedMembers: userList.members,
+              };
+              console.log(userData)
+        chat.to(data.room).emit("getApplyAndMatchedUserList", userData);
       } catch (error) {
         console.error(error);
       }
