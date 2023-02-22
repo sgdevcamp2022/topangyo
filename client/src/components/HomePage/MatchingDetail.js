@@ -104,6 +104,7 @@ const MatchingDetail = () => {
       const result = await axios.put(
         `http://localhost:3700/post/matchingstatus/${currentPost.postPK}`
       );
+      alert("확정 되었습니다.");
     } catch (err) {
       console.log(err);
     }
@@ -134,12 +135,13 @@ const MatchingDetail = () => {
           매칭취소
         </button>
       );
-    if (currentPost.author_id === id)
+    if (currentPost.author_id === id) {
       return (
         <button onClick={onConfirmMatching} className="application">
           확정
         </button>
       );
+    }
   };
 
   return (

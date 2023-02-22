@@ -12,16 +12,6 @@ const { async } = require('q');
 
 dotenv.config();
 
-const redisClient = redis.createClient({ legacyMode: true }); 
-redisClient.on('connect', () => {
-   console.info('Redis connected!');
-});
-redisClient.on('error', (err) => {
-   console.error('Redis Client Error', err);
-});
-redisClient.connect().then(); 
-const redisCli = redisClient.v4; 
-
 exports.pushSpecificSubscriber = async (req,res) => {
     const payload = {
         id :req.params.id,
@@ -31,7 +21,6 @@ exports.pushSpecificSubscriber = async (req,res) => {
         icon: req.body.icon
     };
     const id  = req.params.id;
-    let value= await redisCli.set('sub_id',id)
 
     Subscription.find({id:id}, async (err, subscriber) => {
         if (err) {
@@ -50,7 +39,7 @@ exports.pushSpecificSubscriber = async (req,res) => {
                         }
                     };
                     const pushPayload = JSON.stringify(payload);
-                    let value2= redisCli.set(id,pushPayload)
+                    
                     const pushOptions = {
                         vapidDetails: {
                             subject: 'http://example.com',
@@ -69,6 +58,7 @@ exports.pushSpecificSubscriber = async (req,res) => {
                             endpoint: subscription.endpoint,
                             data: value
                         });
+                        payload.id=id
                         Notification.insertMany(payload)
                     }).catch((err) => {
                         reject({

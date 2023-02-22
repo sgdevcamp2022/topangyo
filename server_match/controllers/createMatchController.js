@@ -23,6 +23,7 @@ const handleCreateMatch = async (req, res) => {
         }),
       ]);
     }
+    console.log("생성");
     res.sendStatus(200);
   } catch (error) {
     console.error(error);

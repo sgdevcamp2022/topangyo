@@ -7,7 +7,7 @@ self.addEventListener('push', function (event) {
     event.waitUntil(
         self.registration.showNotification(_data.title, {
             body: _data.message,
-            icon: '/ms-icon-150x150.png',
+            icon: _data.icon,
             tag: _data.tag
         })
     );

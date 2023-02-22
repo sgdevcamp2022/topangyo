@@ -1,7 +1,6 @@
 let isSubscribed = false;
 let swRegistration = null;
-let applicationKey =
-  "BJAD-eUB3rWHkpWEpzJJgVbWFatglZ-GIJWkZFLP0BbElvYeVqJQ221hE7QF6WCxcsVX30-x8qM_GvyFpVb9n8E";
+let applicationKey ="BJAD-eUB3rWHkpWEpzJJgVbWFatglZ-GIJWkZFLP0BbElvYeVqJQ221hE7QF6WCxcsVX30-x8qM_GvyFpVb9n8E";
 const connectURL = `http://localhost:3800/subscribe`;
 function urlB64ToUint8Array(base64String) {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
