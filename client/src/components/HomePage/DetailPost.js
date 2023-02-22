@@ -73,7 +73,7 @@ const DetailPost = () => {
       const getMatchedMembers = await axios.post(`http://localhost:4100/match/membersList`, {
         room : currentPost.postPK
       });
-      setMemberList(getMatchedMembers.data.membersList.members);
+      setMemberList(getMatchedMembers?.data.membersList.members);
     } catch(err) {
       console.log(err);
     }
@@ -83,6 +83,7 @@ const DetailPost = () => {
     isToken();
     handleDuplicate();
     isMembers();
+    
   }, [])
 
   return (

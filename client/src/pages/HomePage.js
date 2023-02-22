@@ -74,8 +74,13 @@ const HomePage = () => {
         }
     }
 
+    const isCategory = () => {
+        myStorage.setItem('category', 'all');
+    }
+
     useEffect(() => {
         isToken();
+        isCategory();
     }, [user.accessToken, modal.isOpen])
 
 

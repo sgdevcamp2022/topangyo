@@ -35,7 +35,6 @@ const PostList = ({page, setPage}) => {
 
 
   useEffect(() => {
-    console.log('모집글 변경');
     isContents();
   }, [getMatchingPostPK?.length, page, user.loc, maxPage])
 

@@ -27,7 +27,7 @@ const PostCard = ({ postInfo }) => {
       const getMatchedMembers = await axios.post(`http://localhost:4100/match/membersList`, {
         room : postInfo.postPK
       });
-      setMemberList(getMatchedMembers.data.membersList.members);
+      setMemberList(getMatchedMembers?.data.membersList.members);
     } catch(err) {
       console.log(err);
     }
@@ -35,7 +35,7 @@ const PostCard = ({ postInfo }) => {
 
   useEffect(() => {
     isMembers();
-  }, [memberList.length])
+  }, [memberList?.length])
 
   return (
     <a className="postcard" onClick={handleOpenModal}>

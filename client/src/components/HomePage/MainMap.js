@@ -417,17 +417,7 @@ const MainMap = ({ setPage }) => {
       {show && placeSearch === false && (
         <button
           onClick={handleClickRescan}
-          style={{
-            color: "white",
-            zIndex: "2",
-            position: "absolute",
-            right: "46%",
-            margin: "10px",
-            backgroundColor: "#82B0E0",
-            padding: "10px 25px",
-            borderRadius: "10px",
-            boxShadow: "0px 0px 3px gray",
-          }}
+          className="rescan-btn"
         >
           해당 위치로 재검색
         </button>

@@ -135,3 +135,42 @@
     height: 100%;
     background-color: #717171a2;
 }
+
+.rescan-btn {
+    color: white;
+    z-index: 2;
+    position: absolute;
+    right: 46%;
+    margin: 10px;
+    background-color: #82B0E0;
+    padding: 10px 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 3px gray;
+}
+
+@media screen and (max-width: 576px) {
+    .write-button {
+        z-index : 2;
+        position : absolute;
+        bottom : 80%;
+        padding: 15px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        box-shadow: 0px 0px 5px gray;
+    }
+    
+    .rescan-btn {
+        color: white;
+        z-index: 2;
+        position: absolute;
+        right: 30%;
+        margin: 10px;
+        background-color: #82B0E0;
+        padding: 10px 25px;
+        border-radius: 10px;
+        box-shadow: 0 0 3px gray;
+    }
+}
