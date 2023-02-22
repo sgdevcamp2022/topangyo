@@ -92,6 +92,7 @@ module.exports = (server, app) => {
 
     socket.on("getApplyAndMatchedUser", async (data) => {
       try {
+        console.log(data.room);
         const userList = await Matching.findOne({ room: data.room });
 
         userData =
@@ -103,7 +104,8 @@ module.exports = (server, app) => {
                 applyUser: userList.applyUser,
                 matchedMembers: userList.members,
               };
-              console.log(userData)
+        console.log(userData);
+        console.log(userList);
         chat.to(data.room).emit("getApplyAndMatchedUserList", userData);
       } catch (error) {
         console.error(error);
