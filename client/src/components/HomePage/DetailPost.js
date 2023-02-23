@@ -78,13 +78,6 @@ const DetailPost = () => {
 
   const isMembers = async () => {
     try {
-<<<<<<< HEAD
-      const getMatchedMembers = await axios.post(`http://localhost:4100/match/membersList`, {
-        room : currentPost.postPK
-      });
-      setMemberList(getMatchedMembers?.data.membersList.members);
-    } catch(err) {
-=======
       setTimeout(async () => {
         const getMatchedMembers = await axios.post(
           `http://localhost:4100/match/membersList`,
@@ -95,7 +88,6 @@ const DetailPost = () => {
         setMemberList(getMatchedMembers.data.membersList.members);
       }, 1000);
     } catch (err) {
->>>>>>> 322036b87d6c394eb145c07c43f9104146e9ff79
       console.log(err);
     }
   };
@@ -104,12 +96,7 @@ const DetailPost = () => {
     isToken();
     handleDuplicate();
     isMembers();
-<<<<<<< HEAD
-    
-  }, [])
-=======
   }, []);
->>>>>>> 322036b87d6c394eb145c07c43f9104146e9ff79
 
   return (
     <div className="detailpost">

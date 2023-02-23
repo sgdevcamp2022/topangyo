@@ -2,10 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setMatchedMembersCount } from "../../../store/slice/matchingslice";
 import axios from "axios";
-<<<<<<< HEAD
-
-=======
->>>>>>> 322036b87d6c394eb145c07c43f9104146e9ff79
 
 // 추후에 porps 정리할것것
 const MatchingUser = (props) => {

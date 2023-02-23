@@ -24,13 +24,6 @@ const PostCard = ({ postInfo }) => {
 
   const isMembers = async () => {
     try {
-<<<<<<< HEAD
-      const getMatchedMembers = await axios.post(`http://localhost:4100/match/membersList`, {
-        room : postInfo.postPK
-      });
-      setMemberList(getMatchedMembers?.data.membersList.members);
-    } catch(err) {
-=======
       setTimeout(async () => {
         const getMatchedMembers = await axios.post(
           `http://localhost:4100/match/membersList`,
@@ -41,18 +34,13 @@ const PostCard = ({ postInfo }) => {
         setMemberList(getMatchedMembers.data.membersList.members);
       }, 1000);
     } catch (err) {
->>>>>>> 322036b87d6c394eb145c07c43f9104146e9ff79
       console.log(err);
     }
   };
 
   useEffect(() => {
     isMembers();
-<<<<<<< HEAD
-  }, [memberList?.length])
-=======
   }, [memberList.length]);
->>>>>>> 322036b87d6c394eb145c07c43f9104146e9ff79
 
   return (
     <a className="postcard" onClick={handleOpenModal}>
