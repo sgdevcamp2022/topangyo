@@ -1,0 +1,10 @@
+.toolBar {
+    display :flex;
+    flex-direction: column;
+}
+
+.toolbarButton {
+    background-color : rgba(255, 255, 255, 0.838);
+    margin : 10px 10px;
+    border-radius: 30px;
+}

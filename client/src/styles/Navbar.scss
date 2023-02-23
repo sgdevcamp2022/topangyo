@@ -4,6 +4,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px 10%;
+    z-index: 10;
+    position: relative;
 
     li, a, button {
         font-size: 16px;
@@ -31,6 +33,45 @@ header {
         margin : 0 10px;
     }
 
+    .user-account {
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+    }
 
 }
 
+.log-button {
+    background-color: white;
+    color : #8EB4E3;
+    border-radius: 40px 40px / 40px 40px;
+}
+
+#logo-title {
+    font-family: 'title2';
+    font-size: 1.2rem;
+}
+
+@media screen and (max-width: 576px) {
+    #logo-title {
+        font-family: 'title2';
+        font-size: 0.5rem;
+    }
+    .user-icon {
+        width: 15px;
+        margin : 0;
+    }
+
+    .user-account {
+        display: flex;
+        align-items: center;
+    }
+
+    .log-button {
+        background-color: white;
+        color : #8EB4E3;
+        border-radius: 40px 40px / 40px 40px;
+        font-size: 6px;
+    }
+}
+  

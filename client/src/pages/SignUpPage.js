@@ -1,10 +1,12 @@
 import SignUpForm from "../components/SignUpPage/SignUpForm";
 
 
-export function SignUpPage() {
+const SignUpPage = () => {
     return(
         <div className="container-col align-center">
-           <SignUpForm></SignUpForm>
+            <SignUpForm></SignUpForm>
         </div>
     );
 }
+
+export default SignUpPage

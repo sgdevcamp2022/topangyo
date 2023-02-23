@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import axios from 'axios';
 import '../../styles/SignUpPage.scss';
+import { useNavigate } from 'react-router-dom';
 
 const SignUpForm = () => {
+    const navigate = useNavigate();
 
     const [registerUser, setRegisterUser] = useState({
         id : "",
@@ -20,7 +22,29 @@ const SignUpForm = () => {
             ...registerUser,
             [e.target.name] : e.target.value,
         })
-    }   
+    }
+
+    const handleSignup = async (variables) => {
+        try {
+            const result = await axios.post('http://localhost:3500/auth/register', variables);
+            if(result) {
+                alert('생성 완료하였습니다!');
+            }
+            navigate('/signin');
+        } catch(err) {
+            switch(err.response.status) {
+                case 409:
+                    alert('중복된 아이디입니다');
+                    break;
+                case 500:
+                    alert('요청 오류로 생성되지 않았습니다');
+                    break;
+                default:
+                    alert('알 수 없는 오류가 발생하였습니다');
+                    break;
+            }
+        }
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -35,77 +59,87 @@ const SignUpForm = () => {
             phoneNumber : registerUser.phoneNumber,
             gender : parseInt(registerUser.gender)
         }
+        handleSignup(variables);
+    }
 
-        axios.post('http://localhost:3500/auth/register', variables)
-        .then((response) => {
-            console.log(response);
-            console.log(variables);
-        })
-        
+    const onChangeSignin = (e) => {
+        e.preventDefault();
+        navigate('/signin');
     }
 
 	return(
-        <>
-            <form className="signup-box" onSubmit={handleSubmit}>
-                <input 
-                    onChange={handleChange} 
-                    className="input-box" 
-                    name="id" 
-                    type="text" 
-                    minLength={4} 
-                    maxLength={20} 
-                    placeholder = "ID"
-                />
-                <input 
-                    onChange={handleChange} 
-                    className="input-box" 
-                    name="password" 
-                    type="password" 
-                    minLength={4} 
-                    maxLength={20} 
-                    placeholder = "PASSWORD"
-                />
-                <input 
-                    onChange={handleChange}
-                    className="input-box" 
-                    name="name" 
-                    type="text" 
-                    minLength={1} 
-                    maxLength={10} 
-                    placeholder = "NAME"
-                />
-                <input 
-                    onChange={handleChange} 
-                    className="input-box" 
-                    name="nickname" 
-                    type="text" 
-                    minLength={2} 
-                    maxLength={10} 
-                    placeholder = "NICKNAME"
-                />
-                <input 
-                    onChange={handleChange} 
-                    className="input-box" 
-                    name="birth" 
-                    type="date"
-                />
-                <input 
-                    onChange={handleChange} 
-                    className="input-box" 
-                    name="email" 
-                    type="email" 
-                    minLength={4} 
-                    maxLength={30}
-                    placeholder="EMAIL (example@gmail.com)" 
-                />
-                <input 
-                    onChange={handleChange} 
-                    className="input-box" 
-                    name ="phoneNumber" 
-                    type = "number" 
-                    placeholder="phone Number (01012345678)"
-                />
-                <>
+        <div className='signup'>
+            <div className='signup-title'>회원가입</div>
+                <form className="signup-box" 
+                    onSubmit={handleSubmit}>
+                    <input 
+                        onChange={handleChange} 
+                        className="input-box" 
+                        name="id" 
+                        type="text" 
+                        minLength={4} 
+                        maxLength={20} 
+                        placeholder="ID"
+                        required
+                    />
+                    <input 
+                        onChange={handleChange} 
+                        className="input-box" 
+                        name="password" 
+                        type="password" 
+                        minLength={4} 
+                        maxLength={20} 
+                        placeholder="PASSWORD"
+                        pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{1,}$"
+                        required
+                    />
+                    <input 
+                        onChange={handleChange}
+                        className="input-box" 
+                        name="name" 
+                        type="text" 
+                        minLength={1} 
+                        maxLength={10} 
+                        placeholder="NAME"
+                        required
+                    />
+                    <input 
+                        onChange={handleChange} 
+                        className="input-box" 
+                        name="nickname" 
+                        type="text" 
+                        minLength={2} 
+                        maxLength={10} 
+                        placeholder="NICKNAME"
+                        required
+                    />
+                    <input 
+                        onChange={handleChange} 
+                        className="input-box" 
+                        name="birth" 
+                        type="date"
+                        required
+                    />
+                    <input 
+                        onChange={handleChange} 
+                        className="input-box" 
+                        name="email" 
+                        type="email" 
+                        minLength={4} 
+                        maxLength={30}
+                        placeholder="EMAIL (example@gmail.com)" 
+                        required
+                    />
+                    <input 
+                        onChange={handleChange} 
+                        className="input-box" 
+                        name ="phoneNumber" 
+                        type="tel"
+                        placeholder="phone Number (01012345678)"
+                        pattern='[0-9]{3}[0-9]{4}[0-9]{4}'
+                        required
+                    />
+                <div className = "gender-form">
                     <label htmlFor='men'>
                         <input 
                             onChange={handleChange} 
@@ -115,7 +149,7 @@ const SignUpForm = () => {
                             value="1"
                             defaultChecked
                         />
-                        남자
+                         {" "}남자
                     </label>
                     <label htmlFor='women'>
                         <input 
@@ -125,13 +159,13 @@ const SignUpForm = () => {
                             name='gender' 
                             value="2"
                         />
-                        여자
+                         {" "}여자
                     </label>
-                </>
-                <button type='submit'>Sign Up</button>
+                </div>
+                <button className = "signup-button" type='submit'>Sign Up</button>
             </form>
-            <p className = "signInText">Already have an account? <span className = "signInWord">Sign In</span></p>
-        </>
+            <p className="signInText">Already have an account? <button className = "signup-word" onClick={onChangeSignin}>Sign Up</button></p>
+        </div>
     );
 }
 

@@ -35,5 +35,6 @@ app.use(morganMiddleware);
 // routes sample
 app.use("/auth", require("./routes/auth"));
 
+
 // open server with specific port
 app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));

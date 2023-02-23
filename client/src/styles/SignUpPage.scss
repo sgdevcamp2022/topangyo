@@ -1,15 +1,20 @@
+.signup {
+    margin-top : 20px;
+    text-align: center;
+}
+
+.signup-title {
+    font-size: 2rem;
+    font-family: 'title';
+}
+
+
 .signup-box {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.input-box {
-    padding: 10px;
-    font-size: 1rem;
-    width: 300px;
-    border: 3px solid #868e96;
-    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 .gender-box {
@@ -21,8 +26,36 @@
 }
 
 .signInWord {
-    color :  #6892FF;
+    color : #6892FF;;
     font-size: 1.1rem;
     font-weight: bolder;
+    margin-left: 10px;
 }
 
+.gender-form {
+    display: flex;
+    font-size: 1.1rem;
+    padding: 10px;
+    font-size: 1rem;
+    width: 300px;
+    border: 0.5px solid silver;
+    border-radius: 5px;
+    box-shadow: 0 4px 4px -4px rgb(172, 172, 172);
+    height : 45px;
+    justify-content: space-evenly;
+}
+
+.signup-button {
+    margin-top: 15px;
+    height: 40px;
+    width: 100%;
+}
+
+.input-box {
+    padding : 10px;
+    font-size: 16px;
+    margin: 10px 0;
+    border: 1px solid gray;
+    border-radius: 10px;
+    width: 100%;
+}
